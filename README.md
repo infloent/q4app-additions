@@ -45,7 +45,7 @@ or the second if you always want the latest version.
 ### Documentation
 
 Use `grunt doc` to build documentation.
-This appears in the `doc_html/` folder.
+This appears in the `docs/` folder.
 There is also an `index.html` in the root that redirects to this folder.
 If you push to the `gh-pages` branch on GitHub,
 the documentation will appear on GitHub Pages for this repo.
@@ -59,7 +59,7 @@ To push documention live git push origin master:gh-pages
 
 ### Deployment
 
-Currently the `dist/` and `doc_html/` files are committed into the repo,
+Currently the `dist/` and `docs/` files are committed into the repo,
 even though they really don't need to be.
 Ideally, commits would just include changes to the source code,
 and pushing them would trigger a continuous integration tool like Codeship

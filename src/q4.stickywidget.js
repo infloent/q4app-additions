@@ -69,4 +69,5 @@
                     beforeSticky: function(event) {},
                     onStopSticky: function(event) {}
         }
+    });
 })(jQuery);

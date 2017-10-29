@@ -75,16 +75,16 @@ module.exports = function(grunt) {
                 data = fs.readFileSync(path, 'utf8'),
                 name = path.match(/q4\.(.*)\.js/)[1],
                 version = data.match(/@version (.*)/)[1],
-                files = {
+                file = {
                     src: [path],
                     dest: 'dist/q4.' + name + '.' + version + '.min.js'
                 };
 
             // create clean and uglify targets for this file
             grunt.config('clean.' + name, ['dist/**/q4.' + name + '*.min.js']);
-            grunt.config('uglify.' + name + '.files', [files]);
+            grunt.config('uglify.' + name + '.files', [file]);
             grunt.config('copy.' + name, {
-                src: [files.dest],
+                src: [file.dest],
                 dest: 'dist/latest/q4.' + name + '.min.js'
             });
 
