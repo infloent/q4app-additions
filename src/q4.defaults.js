@@ -25,7 +25,7 @@ var q4Defaults = {
         /**
          * Any mailing list with this class will have their validation overwritten.
          * @type {string}
-         * @default
+         * @default 
          */
         mailingListSignupCls: '.module-subscribe--fancy',
         /**

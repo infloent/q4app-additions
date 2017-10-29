@@ -30,14 +30,14 @@ module.exports = function(grunt) {
         less: {
             default: {
                 src: 'jsdoc_template/style.less',
-                dest: 'doc_html/style.css'
+                dest: 'docs/style.css'
             }
         },
 
         jsdoc: {
             default: {
                 src: 'src/*.js',
-                dest: 'doc_html',
+                dest: 'docs',
                 options: {
                     configure: 'jsdoc.conf.json'
                 }

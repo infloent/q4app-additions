@@ -181,13 +181,13 @@ exports.publish = function(data, opts) {
         indexTemplate = fs.readFileSync('jsdoc_template/index.html.mustache', 'utf-8'),
         pageTemplate = fs.readFileSync('jsdoc_template/doc.html.mustache', 'utf-8');
 
-    fs.writeFileSync('doc_html/index.html', mustache.render(layoutTemplate, {
+    fs.writeFileSync('docs/index.html', mustache.render(layoutTemplate, {
         classes: classlist,
         content: mustache.render(indexTemplate, { classes: classlist })
     }), 'utf8');
     console.log(classlist);
     classlist.forEach(function(clss) {
-        fs.writeFileSync('doc_html/' + clss.name + '.html', mustache.render(layoutTemplate, {
+        fs.writeFileSync('docs/' + clss.name + '.html', mustache.render(layoutTemplate, {
             classes: classlist,
             content: mustache.render(pageTemplate, clss)
         }), 'utf8');
