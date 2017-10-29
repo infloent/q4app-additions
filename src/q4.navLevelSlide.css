@@ -1,0 +1,242 @@
+/*--------------Nav Slide Leves Default-------------*/
+
+.js--nav--slide {
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+ 
+
+/* nav generic template layout*/
+
+
+/* nav header */
+
+.js--nav--slide .nav_header {
+    margin: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    font-size: 1.4rem;
+}
+
+
+/* nav back button*/
+
+.js--nav--slide .nav_back-level {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 0 6px;
+    vertical-align: top;
+    cursor: pointer;
+    font-size: 19px;
+    color: #000;
+}
+
+
+/* nav level title*/
+
+.js--nav--slide .nav_level-title {
+    color: rgba(0, 0, 0, .3);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+    line-height: 20px;
+    font-size: 1.4rem;
+}
+
+.js--nav--slide .nav_back-level + .nav_level-title {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 80px);
+}
+
+
+/* nav back button with level title*/
+
+.js--nav--slide .nav_back-level--name {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.js--nav--slide .nav_back-level--name i {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    line-height: 40px;
+}
+
+.js--nav--slide .nav_back-level--name .nav_level-title {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 80px);
+    vertical-align: top;
+}
+
+
+/*nav next button*/
+
+.js--nav--slide .nav_next-level {
+    display: inline-block;
+    background: transparent;
+    border: none;
+    width: 60px;
+    height: 33px;
+    padding: 0;
+    vertical-align: top;
+    font-size: 19px;
+    border-left: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color: #000;
+}
+
+.js--nav--slide li {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.js--nav--slide li.has-children.js--nav_has-arrow > a {
+    width: calc(100% - 60px);
+    display: inline-block;
+    vertical-align: top;
+}
+
+.js--nav--slide li.has-children:not(.js--nav_has-arrow) > a {
+    display: block;
+    position: relative;
+}
+
+.js--nav--slide li.has-children:not(.js--nav_has-arrow) > a:before {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: inline-block;
+    background: transparent;
+    border: none;
+    width: 60px;
+    line-height: 33px;
+    font-size: 19px;
+    text-align: center;
+    border-left: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color: #000;
+}
+
+
+/* end nav generic template layout*/
+
+
+/* nav slide layout and animation styles 
+    DO NOT MODIFY THIS 
+*/
+
+
+/* If other type of animation is needed
+    duplice one of the below animation css and add a new modifier
+    e.g. js--nav_slide-in--over duplicated and modified in js--nav_slide-in--newanimation
+    and use the new modifier "newanimation" in js as slideStyle: "newanimation";
+*/
+
+
+/* nav slide layout */
+
+.js--nav--slide ul {
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: left 0.4s ease 0s;
+}
+
+.js--nav--slide .js--nav_active {}
+
+.js--nav--slide .level1 ul {
+    left: 100%;
+    visibility: hidden;
+    transition: left 0.4s ease 0s, visibility 0s linear 0.6s;
+}
+
+
+/* nav slide animation */
+
+
+/*slide default*/
+
+.js--nav--slide .level1 .js--nav_slide-in {
+    left: 100%;
+    visibility: visible;
+    transition: left 0.4s ease 0s, visibility 0s linear 0s;
+}
+
+.js--nav--slide .js--nav_slide-out { 
+    /*height: 100%;*/
+    left: -100%;
+    visibility: hidden;
+    transition: left 0.6s ease 0.0s, visibility 0s linear 0.6s;
+}
+
+.js--nav--slide .level1 .js--nav_slide-in.js--nav_slide-out {
+    left: 0%;
+    visibility: hidden;
+    transition: left 0.4s ease 0s, visibility 0s linear 0.6s;
+}
+
+
+/*slide over
+e.g. slideStyle: "over"*/
+
+.js--nav--slide .level1 .js--nav_slide-in--over {
+    left: 40%;
+    visibility: visible;
+    transition: left 0.4s ease 0.1s, visibility 0s linear 0s;
+}
+
+.js--nav--slide .js--nav_slide-out--over {
+    /*height: 100%;*/
+    left: -40%;
+    visibility: hidden;
+    transition: left 0.6s ease 0s, visibility 0s linear 0.6s;
+}
+
+.js--nav--slide .level1 .js--nav_slide-in--over.js--nav_slide-out--over {
+    left: 0;
+    visibility: hidden;
+    transition: left 0.4s ease 0s, visibility 0s linear 0.6s;
+}
+
+
+/*slide stack
+e.g. slideStyle: "stack" */
+
+.js--nav--slide .level1 .js--nav_slide-in--stack {
+    left: 0;
+    visibility: visible;
+    transition: left 0.4s ease 0s, visibility 0s linear 0s;
+}
+
+.js--nav--slide .js--nav_slide-out--stack {
+    height: 100%;
+    /*left: 0;*/
+    visibility: hidden;
+    transition: left 0s ease 0s, visibility 0s linear 0.6s;
+}
+
+.js--nav--slide .level1 .js--nav_slide-in--stack.js--nav_slide-out--stack {
+    left: 0;
+    visibility: hidden;
+    transition: left 0.4s ease 0s, visibility 0s linear 0.6s;
+}
+
+
+/*------------End Nav Slide Leves Default-----------*/

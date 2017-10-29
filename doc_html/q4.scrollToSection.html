@@ -1,0 +1,820 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.scrollToSection</h1>
+    Adds scroll to section functionality for navigations.<br><br>
+    <ul class="top-nav">
+        <li><a href='#examples'>Examples</a></li>
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                    <li><a href='#method-scrollToSection'>scrollToSection</a>
+                        <ul>
+                            <li><a href='#options-method-scrollToSection'>Options:</a></li>
+                            <li><a href='#method-option-menu'>menu</a></li>
+                            <li><a href='#method-option-level'>level</a></li>
+                            <li><a href='#method-option-sectionFocusElem'>sectionFocusElem</a></li>
+                            <li><a href='#method-option-sectionClass'>sectionClass</a></li>
+                            <li><a href='#method-option-hrefId'>hrefId</a></li>
+                            <li><a href='#method-option-scrollSpeed'>scrollSpeed</a></li>
+                            <li><a href='#method-option-scrollOnLoad'>scrollOnLoad</a></li>
+                            <li><a href='#method-option-updateHrefHash'>updateHrefHash</a></li>
+                            <li><a href='#method-option-addActiveClass'>addActiveClass</a></li>
+                            <li><a href='#method-option-addScrollEvent'>addScrollEvent</a></li>
+                            <li><a href='#method-option-scrollSectionOffset'>scrollSectionOffset</a></li>
+                            <li><a href='#method-option-offsetTopElem'>offsetTopElem</a></li>
+                            <li><a href='#method-option-offsetTopBreakPoint'>offsetTopBreakPoint</a></li>
+                            <li><a href='#method-option-getTopOffset'>getTopOffset</a></li>
+                            <li><a href='#method-option-addActiveClassScrollTolerance'>addActiveClassScrollTolerance</a></li>
+                            <li><a href='#method-option-closePopup'>closePopup</a></li>
+                            <li><a href='#method-option-popupShowingClass'>popupShowingClass</a></li>
+                            <li><a href='#method-option-onClosePopup'>onClosePopup</a></li>
+                            <li><a href='#method-option-onClick'>onClick</a></li>
+                            <li><a href='#method-option-onScrollEachSection'>onScrollEachSection</a></li>
+                            <li><a href='#method-option-onScrollActiveSection'>onScrollActiveSection</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='../dist/q4.scrollToSection.1.0.0.min.js' target='_blank'>q4.scrollToSection.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='../src/q4.scrollToSection.js#L1' target='_blank'>q4.scrollToSection.js</a>, line 1</dd>
+
+
+        <dt><strong>Requires</strong></dt>
+        <dd><ul class='plain'><li><a href='q4.getTopOffset.html'>q4.getTopOffset.js</a></li></ul></dd>
+    </dl>
+
+
+    <p>
+        This <em>extends</em> the <a href='q4.defaults.html'>'q4.defaults'</a> library. All the options and methods from <code>'q4.scrollToSection'</code> will be inherited by <a href='q4.defaults.html'>'q4.defaults'</a> and will be available in <code>q4App</code>.<br>
+        All the default options and methods from <a href='q4.defaults.html'>'q4.defaults'</a> are also inherited by <code>'q4.scrollToSection'</code> and may be use here in the implementation of it's own options and methods.
+    </p>
+
+</section>
+
+<section id='examples'>
+    <h1>Examples </h1>
+    <div>
+        
+        <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.getTopOffset.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.scrollToSection.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">var</span> q4App = $.extend(q4Defaults, {
+    _options: $.extend(q4Defaults.options, {
+        <span class="hljs-comment">//these tow options are available here since 'q4.getTopOffset' extends 'q4.defaults'</span>
+        offsetTopElem: [$(<span class="hljs-string">'.pane--navigation .pane_outer'</span>)],
+        offsetTopBreakPoint: [{
+            breakPoint: <span class="hljs-number">1023</span>,
+            offsetTopElem: []
+        }]
+    }),
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>,
+            q4Options: <span class="hljs-keyword">this</span>.options;
+        app.setHeaderOffset();
+        <span class="hljs-comment">//...</span>
+        <span class="hljs-comment">//default q4 inits found already in main scripts here in between</span>
+        <span class="hljs-comment">//...</span>
+        app.scrollToSection({
+           menu: <span class="hljs-string">'.nav--main'</span>,
+           level: <span class="hljs-string">'.level2'</span>,
+           sectionClass: <span class="hljs-string">'.js__section--'</span>,
+           hrefId: <span class="hljs-string">'#section='</span>,
+           scrollOnLoad: <span class="hljs-literal">true</span>,
+           updateHrefHash: <span class="hljs-literal">true</span>,
+           addActiveClass: <span class="hljs-literal">true</span>,
+           closeMobileNav: <span class="hljs-literal">true</span>,
+           offsetTopElem: q4Options.offsetTopElem,
+           offsetTopBreakPoint: q4Options.offsetTopBreakPoint
+        });
+    }
+});
+q4App.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre>
+    </div>
+</section>
+
+
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        <div id='method-scrollToSection'>
+            <dt><strong><a href='../src/q4.scrollToSection.js#L57' target='_blank'>scrollToSection</a></strong></dt>
+            <dd>
+                Use this method to add scroll to section functionality to a navigation.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>options</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>Object of options used to initialize <code>'scrollToSection'</code> method</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+                    <section id='options-method-scrollToSection'>
+                        <strong>scrollToSection options:</strong>
+                        <dl>
+                            <div id='method-option-menu'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L76' target='_blank'>menu</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Navigation element class.<br>
+If there are more navigation that use the same page sections for scroll and all the other options will be the same they can be intialize all at oance.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">".nav--main"</span></code></dd>
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">".nav--main, .nav--secondary, .nav--mobile"</span></code></dd>
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-level'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L85' target='_blank'>level</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Level class at which the scroll links will be displayed.<br>
+This is used to limit the script to check only the link from the selected link's child level.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-sectionFocusElem'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L94' target='_blank'>sectionFocusElem</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Element common in all the section that will get focused after the scroll to active section finishes. This is <code>required</code> for <code>accesibility</code>.
+<br><br>
+This should be one of the top most element in the section, no other focusable elemenet should exist above <code>'sectionFocusElem'</code> in the section.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.module_title</code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-sectionClass'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L124' target='_blank'>sectionClass</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Page section should have BEM like css class from a <code>module(general)</code> part and a <code>modifier(unique)</code>.<br>
+These classes can start with a <code>'js_'</code> prefix to point out that they will be used by a <code>JavaScript</code>.
+<pre>
+Example: 
+js_scroll-section--intro
+js_scroll-section--events
+js_scroll-section--news
+</pre>
+
+<sup>*</sup>Particular case:<br>
+If a section has it's own scroll navigation with subsections this option should be unique for each subsections group and so on.<br>
+And <code>'scrollToSection'</code> should be initialized for each of these sections navigation.
+<pre>
+Example:
+js_scroll-sectionintro--about
+js_scroll-sectionintro--why-invest
+js_scroll-sectionintro--legal
+</pre>
+<br>
+This option should be set with the <code>module(general)</code> part of the css class and <code>include</code> the modifier delimiter hence the <code>two hyphens</code>.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">"js_scroll-section--"</span></code></dd>
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">"js_scroll-sectionintro--"</span></code></dd>
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-hrefId'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L151' target='_blank'>hrefId</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Each navigation link that will scroll to a section needs to have an <code>href id</code> at the end formed from a <code>general part</code> and a <code>unique one</code>.
+<pre>
+Example:
+/events/default.aspx#section=intro
+/events/default.aspx#section=events
+/events/default.aspx#section=news
+</pre>
+
+<sup>*</sup>Particular case:<br>
+If a section has a it's own scroll navigation with subsections this option should be unique for each subsections group and so on.<br>
+And <code>'scrollToSection'</code> should be initialized for each of these sections navigation.
+<pre>
+Example:
+/home/default.aspx#sectionintro=about
+/home/default.aspx#sectionintro=why-invest
+/home/default.aspx#sectionintro=legal
+</pre><br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">"#section="</span></code></dd>
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">"#sectionintro="</span></code></dd>
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-scrollSpeed'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L161' target='_blank'>scrollSpeed</a></strong>
+                                    <span>number</span>
+                                </dt>
+                                <dd>
+                                    Set scroll speed. By default it inherits the default <code>'scrollSpeed'</code> from <code>'q4.defaults'</code>.
+<br><br>
+Either change the default <code>'scrollSpeed'</code> from <code>'q4.defaults'</code> to affect all scroll animation using this setting or set this on initialization to a different number.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>q4Options.scrollSpeed <span class="hljs-comment">//q4Options points to general options from q4.defaults</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-scrollOnLoad'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L174' target='_blank'>scrollOnLoad</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    Activates scroll to section on page load when a link has a <code>hrefId</code> pointing to a section.
+<br><br>
+
+<sup>*</sup>Particular case:
+<br>
+If there are more initializations of <code>'scrollToSection'</code> for the same sections with this option set to <code>'true'</code> only the <code>first initalization</code> will actualy <code>run</code> this functionality to <code>prevent conflicts</code>.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">false</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-updateHrefHash'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L190' target='_blank'>updateHrefHash</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    Adds the complete <code>'hredId'</code> to the window href when scroll links are clicked and dynamically on scroll for the current section in view port that's most near the top.
+<br><br>
+
+This is useful to share links that point to a section.
+<br><br> 
+
+<sup>*</sup>Particular case:
+<br>
+If there are more initializations of <code>'scrollToSection'</code> for the same sections with this option set to <code>'true'</code> only the <code>first initalization</code> will actualy <code>run</code> this functionality on scroll to <code>prevent conflicts</code>.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">false</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-addActiveClass'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L196' target='_blank'>addActiveClass</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    With this set to <code>'true'</code> a <code>'js--active'</code> class will be added on the currently clicked scroll link, also the class will pe dinamically added on scroll for the section that it's top most closer to the top of the window.<br><br>
+                                    <dl>
+
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-addScrollEvent'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L201' target='_blank'>addScrollEvent</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    <sup>*</sup> not implemented<br><br>
+                                    <dl>
+
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-scrollSectionOffset'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L209' target='_blank'>scrollSectionOffset</a></strong>
+                                    <span>Number</span>
+                                </dt>
+                                <dd>
+                                    A way to add a number offset at which the scroll will stop from the top.
+<br>
+This can be either <code>positive</code> or <code>negative</code> number.<br><br>
+                                    <dl>
+
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-offsetTopElem'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L225' target='_blank'>offsetTopElem</a></strong>
+                                    <span>array.&lt;elements&gt;</span>
+                                </dt>
+                                <dd>
+                                    Array of elements that will be used to set scroll offset with <code>'getTopOffset'</code> option.
+<br><br>
+
+An option with the same name it's also available in the options from <code>'q4.getTopOffset.js'</code>.
+<br>
+<sup>*</sup>If the value of <code>'offsetTopElem'</code> for the current initialization matches the one in the general options then it should point to the general option. <a href="#examples">See example at top of the page.</a><br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>[] <span class="hljs-comment">//empty array for no offset top</span></code></dd>
+
+    
+
+
+                                        <dt>Example</dt>
+                                        <dd><pre>offsetTopElem: [$(<span class="hljs-string">'.pane--header'</span>), $(<span class="hljs-string">'.pane--banner'</span>)] <span class="hljs-comment">// 'getTopOffset' will return the sum of these two elements heights.</span>
+    </pre></dd>
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-offsetTopBreakPoint'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L250' target='_blank'>offsetTopBreakPoint</a></strong>
+                                    <span>array.&lt;object&gt;</span>
+                                </dt>
+                                <dd>
+                                    An array of objects containing two properties <code>'breakPoint'</code> and <code>'offsetTopElem'</code> the will be used to set set scroll offset with <code>'getTopOffset'</code> option, on one or more given breakpoint resolutions.
+<br><br>
+
+An option with the same name it's also available in the options from <code>'q4.getTopOffset.js'</code>.
+<br>
+<sup>*</sup>If the value of <code>'offsetTopBreakPoint'</code> for the current initialization matches the one in the general options then it should point to the general option. <a href="#examples">See example at top of the page.</a><br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>[] <span class="hljs-comment">//empty array. In this case will calculte the offset only based on 'offsetTopElem'</span></code></dd>
+
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>breakPoint</strong>
+                                                <span>number</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>offsetTopElem</strong>
+                                                <span>array.&lt;elements&gt;</span>
+                                            </dt>
+                                            <dd></dd>
+                                        </dl></dd>
+
+
+                                        <dt>Example</dt>
+                                        <dd><pre>offsetTopBreakPoint: [{
+    breakPoint: <span class="hljs-number">1024</span>,
+    offsetTopElem: [$(<span class="hljs-string">'.pane--header'</span>)] <span class="hljs-comment">// 'getTopOffset' will return this element's height</span>
+  },{
+    breakPoint: <span class="hljs-number">768</span>,
+    offsetTopElem: [] <span class="hljs-comment">//empty array for no offset top at resolutions below or equal tp 768px</span>
+}]</pre></dd>
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-getTopOffset'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L269' target='_blank'>getTopOffset</a></strong>
+                                    <span>function</span>
+                                </dt>
+                                <dd>
+                                    This option points to the method with the same name from <code>'q4.getTopOffset.js'</code> and inheriths it's fucntionality. <a href="q4.getTopOffset.html#method-getTopOffset">Click here for more details</a>
+<br><br>
+
+This has no parameters set on init so it will use the local options <code>'offsetTopElem'</code> and <code>'offsetTopBreakPoint'</code>.
+<br><br>
+
+<sup>*</sup>Particular case:
+<br>
+If for some reason the <code>default implementation</code> of this method it's not enought, it can be <code>completely rewriten</code> on initialization.<br><br>
+                                    <dl>
+
+
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>_offsetElem</strong>
+                                                <span>array</span>
+                                            </dt>
+                                            <dd>If not set this methotd will use <code>'this.offsetTopElem'</code></dd>
+                                            <dt>
+                                                <strong>_offsetBreakPoint</strong>
+                                                <span>array.&lt;object&gt;</span>
+                                            </dt>
+                                            <dd>If not set this methotd will use <code>'this.offsetTopBreakPoint'</code></dd>
+                                        </dl></dd>
+
+
+
+                                        <dt>Returns</dt>
+                                        <dd>number</dd>
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-addActiveClassScrollTolerance'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L279' target='_blank'>addActiveClassScrollTolerance</a></strong>
+                                    <span>number</span>
+                                </dt>
+                                <dd>
+                                    Adds the ability to trigger the <code>'js--active'</code> class on scroll sooner or later that it would by default.
+<br>
+This cand be either <code>positive</code> or <code>negative</code> number.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-number">0</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-closePopup'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L294' target='_blank'>closePopup</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    Activates the functionality from <code>'onClosePopup'</code> that by default will close the mobile navigation when a scroll link it's clicked.
+<br><br>
+
+By default the mobile nav it's opened by adding a <code>'js--mobile'</code> class to the <code>'.layout'</code> element.
+<br><br>
+For other pop-ups to close with this default functionality, build them in the same way by adding a class to the <code>'.layout'</code> element.
+<br>
+e.g. a search pop-up should be opend with a <code>'js--search'</code> class added to the <code>'.layout'</code> element.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">false</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-popupShowingClass'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L307' target='_blank'>popupShowingClass</a></strong>
+                                    <span>String</span>
+                                </dt>
+                                <dd>
+                                    Class that will be removed with <code>'onClosePopup'</code> method from the <code>'.layout'</code> element.
+<br>
+You can pass more classes separated by a space to this option.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>js--mobile</code></dd>
+
+    
+
+
+                                        <dt>Example</dt>
+                                        <dd><pre><span class="hljs-string">"js--mobile js--search js--custompopup"</span> 
+<span class="hljs-keyword">if</span> one or more <span class="hljs-keyword">of</span> these classes are found on the <span class="hljs-string">'.layout'</span> element they will be removed when a scroll link it is clicked</pre></dd>
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-onClosePopup'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L318' target='_blank'>onClosePopup</a></strong>
+                                    <span>function</span>
+                                </dt>
+                                <dd>
+                                    When <code>'closePopup'</code> it's <code>'true'</code> removes the classes passed to <code>'popupShowingClass'</code> option.
+<br><br>
+
+<sup>*</sup>Particular case:
+<br>
+If for some reason a custom popup was not implemented in the default way an can not be close with the defualt <code>'onClosePopup'</code> functionality, more functionality cand be added on initialization by rewriting this method.<br><br>
+                                    <dl>
+
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-onClick'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L335' target='_blank'>onClick</a></strong>
+                                    
+                                </dt>
+                                <dd>
+                                    This callback will run when a scroll navigation link is clicked.<br><br>
+                                    <dl>
+
+
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>event</strong>
+                                                <span>event</span>
+                                            </dt>
+                                            <dd>The triggering event of this function</dd>
+                                            <dt>
+                                                <strong>data</strong>
+                                                <span>object</span>
+                                            </dt>
+                                            <dd>Object containg the data available to use in this function to extend or add functionality.
+<br><br><br>
+
+The following paramenters are the properties available in the 'data' object:</dd>
+                                            <dt>
+                                                <strong>$selectedLevelItemsLinks</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>$clickedLink</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>$sectionSelected</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>sectionSpecificCls</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                        </dl></dd>
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-onScrollEachSection'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L356' target='_blank'>onScrollEachSection</a></strong>
+                                    
+                                </dt>
+                                <dd>
+                                    This callback will run on scroll in a loop for each section available in the page.<br><br>
+                                    <dl>
+
+
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>event</strong>
+                                                <span>event</span>
+                                            </dt>
+                                            <dd>The triggering event of this function</dd>
+                                            <dt>
+                                                <strong>data</strong>
+                                                <span>object</span>
+                                            </dt>
+                                            <dd>Object containg the data available to use in this function to extend or add functionality.<br><br><br>
+
+The following paramenters are the properties available in the 'data' object:</dd>
+                                            <dt>
+                                                <strong>$sectionsElem</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>$selectedLevel</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>$selectedLevelItems</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>sectionCommonCls</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>hasEventNameSpace</strong>
+                                                <span>boolean</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>$currentSection</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>curentScroll</strong>
+                                                <span>number</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>currentSectionHeight</strong>
+                                                <span>number</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>currentSectionOffsetTop</strong>
+                                                <span>number</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>inViewPort</strong>
+                                                <span>boolean</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>notAboveViewPort</strong>
+                                                <span>boolean</span>
+                                            </dt>
+                                            <dd></dd>
+                                        </dl></dd>
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-onScrollActiveSection'>
+                                <dt>
+                                    <strong><a href='../src/q4.scrollToSection.js#L368' target='_blank'>onScrollActiveSection</a></strong>
+                                    
+                                </dt>
+                                <dd>
+                                    This callback will run on scroll and will only apply for the current active section.<br><br>
+                                    <dl>
+
+
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>event</strong>
+                                                <span>event</span>
+                                            </dt>
+                                            <dd>The triggering event of this function</dd>
+                                            <dt>
+                                                <strong>data</strong>
+                                                <span>object</span>
+                                            </dt>
+                                            <dd>Object containg the data available to use in this function to extend or add functionality.<br><br><br>
+
+The following paramenters are the properties available in the 'data' object:<br><br>
+- inherits all paramenters of 'data' object from 'onScrollEachSection' plus the ones below</dd>
+                                            <dt>
+                                                <strong>sectionSpecificCls</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>$selectedLevelActiveItem</strong>
+                                                <span>element</span>
+                                            </dt>
+                                            <dd></dd>
+                                        </dl></dd>
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                        </dl>
+                    </section>
+            </dd>
+           
+        </div>
+    </dl>
+</section>
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>

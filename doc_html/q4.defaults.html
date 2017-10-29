@@ -1,0 +1,908 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.defaults</h1>
+    Reuseable functions used on Q4app Websites<br><br>
+    <ul class="top-nav">
+        
+            <li><a href='#options'>Options</a>
+                <ul>
+                    <li><a href='#option-scrollSpeed'>scrollSpeed</a></li>
+                    <li><a href='#option-headerOffset'>headerOffset</a></li>
+                    <li><a href='#option-mailingListSignupCls'>mailingListSignupCls</a></li>
+                    <li><a href='#option-errorMessage'>errorMessage</a></li>
+                    <li><a href='#option-requiredText'>requiredText</a></li>
+                    <li><a href='#option-invalidText'>invalidText</a></li>
+                    <li><a href='#option-captchaValidationText'>captchaValidationText</a></li>
+                    <li><a href='#option-provideCodeText'>provideCodeText</a></li>
+                    <li><a href='#option-errorTpl'>errorTpl</a></li>
+                    <li><a href='#option-mailingListConfig'>mailingListConfig</a></li>
+                    <li><a href='#option-superfish'>superfish</a></li>
+                </ul>
+            </li>
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                    <li><a href='#method-cleanUp'>cleanUp</a>
+                    </li>
+                    <li><a href='#method-resetDate'>resetDate</a>
+                    </li>
+                    <li><a href='#method-previewToolbar'>previewToolbar</a>
+                    </li>
+                    <li><a href='#method-unWrapLink'>unWrapLink</a>
+                    </li>
+                    <li><a href='#method-reveal'>reveal</a>
+                    </li>
+                    <li><a href='#method-cleanQuickLinks'>cleanQuickLinks</a>
+                    </li>
+                    <li><a href='#method-scrollTo'>scrollTo</a>
+                    </li>
+                    <li><a href='#method-isValidEmailAddress'>isValidEmailAddress</a>
+                    </li>
+                    <li><a href='#method-validateUnsubscribe'>validateUnsubscribe</a>
+                    </li>
+                    <li><a href='#method-validateSubmit'>validateSubmit</a>
+                    </li>
+                    <li><a href='#method-submitOnEnter'>submitOnEnter</a>
+                    </li>
+                    <li><a href='#method-superfish'>superfish</a>
+                    </li>
+                    <li><a href='#method-mobileMenuToggle'>mobileMenuToggle</a>
+                    </li>
+                    <li><a href='#method-accessibleNav'>accessibleNav</a>
+                    </li>
+                    <li><a href='#method-accessibilize'>accessibilize</a>
+                    </li>
+                    <li><a href='#method-toggle'>toggle</a>
+                    </li>
+                    <li><a href='#method-remindMeOnce'>remindMeOnce</a>
+                    </li>
+                    <li><a href='#method-addToCalendar'>addToCalendar</a>
+                    </li>
+                    <li><a href='#method-hidePastCal'>hidePastCal</a>
+                    </li>
+                    <li><a href='#method-fancySignup'>fancySignup</a>
+                    </li>
+                    <li><a href='#method-copyright'>copyright</a>
+                    </li>
+                    <li><a href='#method-docTracking'>docTracking</a>
+                    </li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='../dist/q4.defaults.1.0.0.min.js' target='_blank'>q4.defaults.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='../src/q4.defaults.js#L1' target='_blank'>q4.defaults.js</a>, line 1</dd>
+
+
+    </dl>
+
+
+
+    <p>
+        Child libraries have all the options and methods of this widget, but may add their own as well.
+        See the child library's documentation for additional options or methods.<br>
+        This library has the following child libraries:
+    </p>
+    <ul>
+        <li><a href='q4.getTopOffset.html'>q4.getTopOffset</a></li>
+        <li><a href='q4.navLevelSlide.html'>q4.navLevelSlide</a></li>
+        <li><a href='q4.scrollToSection.html'>q4.scrollToSection</a></li>
+        <li><a href='q4.sticky.html'>q4.sticky</a></li>
+    </ul>
+</section>
+
+
+<section id='options'>
+    <h1>Options</h1>
+    <dl>
+        <div id='option-scrollSpeed'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L18' target='_blank'>scrollSpeed</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Scroll speed for `scrollTo`.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-number">1000</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-headerOffset'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L24' target='_blank'>headerOffset</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Offset used with the `scrollTo` method to account for fixed headers.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-number">0</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-mailingListSignupCls'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L30' target='_blank'>mailingListSignupCls</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Any mailing list with this class will have their validation overwritten.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>.module-subscribe--fancy</code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-errorMessage'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L36' target='_blank'>errorMessage</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Error message to display (i.e. mailing list signup / unsubscribe)<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>The following errors must be corrected</code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-requiredText'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L42' target='_blank'>requiredText</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Text to display if an item is required for validation<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>is required</code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-invalidText'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L48' target='_blank'>invalidText</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Text to display if an entry is invalid and failed validation<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>is invalid</code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-captchaValidationText'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L54' target='_blank'>captchaValidationText</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Text to display if captcha is required. `requiredText` and `invalidText` will often proceed this text (i.e Code is required)<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>Code</code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-provideCodeText'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L60' target='_blank'>provideCodeText</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Text used if a code is required.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>Please provide the code</code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-errorTpl'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L72' target='_blank'>errorTpl</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Custom template for email validation<br><br>
+                <dl>
+
+
+                    <dt>Default value</dt>
+                    <dd><pre><span class="hljs-string">'&lt;p class="module_message module_message--error"&gt;{{errorMessage}}&lt;/p&gt;'</span> +
+ <span class="hljs-string">'&lt;ul&gt;'</span> +
+     <span class="hljs-string">'{{#errors}}'</span> +
+         <span class="hljs-string">'&lt;li&gt;{{name}} {{message}}&lt;/li&gt;'</span> +
+     <span class="hljs-string">'{{/errors}}'</span> +
+ <span class="hljs-string">'&lt;/ul&gt;'</span></pre></dd>
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-mailingListConfig'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L103' target='_blank'>mailingListConfig</a></strong>
+                <span>object</span>
+            </dt>
+            <dd>
+                Options for mainlist module.<br><br>
+                <dl>
+
+
+                    <dt>Default value</dt>
+                    <dd><pre>{
+ tpl: (
+     <span class="hljs-string">'&lt;div id="SubscriberConfirmation" class="module module-subscribe module-subscribe--fancy dark grid_col grid_col--3-of-6 grid_col--md-1-of-2"&gt;'</span> +
+         <span class="hljs-string">'&lt;div class="module_container--outer"&gt;'</span> +
+             <span class="hljs-string">'&lt;h2 class="module_title"&gt;Email Alerts&lt;/h2&gt;'</span> +
+             <span class="hljs-string">'&lt;div class="module_container--inner"&gt;'</span> +
+                 <span class="hljs-string">'&lt;p class="module_message module_message--success"&gt;&lt;/p&gt;'</span> +
+             <span class="hljs-string">'&lt;/div&gt;'</span> +
+         <span class="hljs-string">'&lt;/div&gt;'</span> +
+     <span class="hljs-string">'&lt;/div&gt;'</span>
+ ),
+ location: <span class="hljs-string">'.pane--footer'</span>
+ }</pre></dd>
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>tpl</strong>
+                            <span>string</span>
+                        </dt>
+                        <dd>Template to overwrite mailing list signup confirmation html. See above default value.</dd>
+                        <dt>
+                            <strong>location</strong>
+                            <span>string</span>
+                        </dt>
+                        <dd>Location where the 'tpl' will be apended. See above default value.</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-superfish'>
+            <dt>
+                <strong><a href='../src/q4.defaults.js#L126' target='_blank'>superfish</a></strong>
+                <span>boolean</span>
+            </dt>
+            <dd>
+                Enable superfish plugin<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-literal">true</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+    </dl>
+</section>
+
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        <div id='method-cleanUp'>
+            <dt><strong><a href='../src/q4.defaults.js#L159' target='_blank'>cleanUp</a></strong></dt>
+            <dd>
+                Removes DOM elements on load<br><br>
+                <dl>
+
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-resetDate'>
+            <dt><strong><a href='../src/q4.defaults.js#L166' target='_blank'>resetDate</a></strong></dt>
+            <dd>
+                Easier preview navigation<br><br>
+                <dl>
+
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-previewToolbar'>
+            <dt><strong><a href='../src/q4.defaults.js#L176' target='_blank'>previewToolbar</a></strong></dt>
+            <dd>
+                A better Preview Toolbar<br><br>
+                <dl>
+
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-unWrapLink'>
+            <dt><strong><a href='../src/q4.defaults.js#L199' target='_blank'>unWrapLink</a></strong></dt>
+            <dd>
+                Used to replace an anchor with a span.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>selector</span>
+                        </dt>
+                        <dd>a selector containing a item to be unwrapped</dd>
+                    </dl></dd>
+
+
+                    <dt>Example</dt>
+                    <dd><pre>before: &lt;a class="unwraplink" href="#"&gt;Text to unwrap&lt;/a&gt;
+
+app.unWrapLink( 'a.module-stock-header_stock-price' );
+
+after: &lt;span class="unwraplink"&gt;Text to unwrap&lt;/span&gt;</pre></dd>
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-reveal'>
+            <dt><strong><a href='../src/q4.defaults.js#L214' target='_blank'>reveal</a></strong></dt>
+            <dd>
+                Used to reveal an element by clicking on a trigger element.
+Use this function to create anything from "Read More" buttons to revealing hidden elements with a trigger.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>container</span>
+                        </dt>
+                        <dd>the wrapping element</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>trigger</span>
+                        </dt>
+                        <dd>the element that will be clicked to reveal</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>panel</span>
+                        </dt>
+                        <dd>the element to be revealed</dd>
+                        <dt>
+                            <strong>boolean</strong>
+                            <span>once</span>
+                        </dt>
+                        <dd>(optional) whether or not the event will be triggered only once</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.reveal('.read-more', '.read-more_button', '.read-more_panel', true);</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-cleanQuickLinks'>
+            <dt><strong><a href='../src/q4.defaults.js#L245' target='_blank'>cleanQuickLinks</a></strong></dt>
+            <dd>
+                Used to remove the duplicate classes on a Quick Link Module's <ul> element<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$el</span>
+                        </dt>
+                        <dd>the quick links module to clean up</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.cleanQuickLinks($('.module-links'));</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-scrollTo'>
+            <dt><strong><a href='../src/q4.defaults.js#L254' target='_blank'>scrollTo</a></strong></dt>
+            <dd>
+                Scroll to an element on the page<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$el</span>
+                        </dt>
+                        <dd>A selector containing the element to scroll to</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.scrollTo( $('div[id*="SubscriberConfirmation"]') )</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-isValidEmailAddress'>
+            <dt><strong><a href='../src/q4.defaults.js#L273' target='_blank'>isValidEmailAddress</a></strong></dt>
+            <dd>
+                Validate if a string is a vaild email address<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>string</strong>
+                            <span>emailAddress</span>
+                        </dt>
+                        <dd>An email address that will be tested against the regular expression</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.isValidEmailAddress ( 'support@q4appinc.com' );</code></dd>
+
+
+                    <dt>Returns</dt>
+                    <dd>boolean</dd>
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-validateUnsubscribe'>
+            <dt><strong><a href='../src/q4.defaults.js#L284' target='_blank'>validateUnsubscribe</a></strong></dt>
+            <dd>
+                Attaches a click handler to the modules submit button which will not allow 
+the form to submit without a true email address<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$el</span>
+                        </dt>
+                        <dd>an element containing the submit button</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.validateUnsubscribe($('.MailingListUnsubscribeContainer'));</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-validateSubmit'>
+            <dt><strong><a href='../src/q4.defaults.js#L319' target='_blank'>validateSubmit</a></strong></dt>
+            <dd>
+                Attaches a check to a search module's submit button which will not allow
+the module to submit without text inside the search input<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>selector</span>
+                        </dt>
+                        <dd>the class being used by the search module</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.validateSubmit('.module-search');</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-submitOnEnter'>
+            <dt><strong><a href='../src/q4.defaults.js#L335' target='_blank'>submitOnEnter</a></strong></dt>
+            <dd>
+                Allows the user to submit our forms using the enter key<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>selector</span>
+                        </dt>
+                        <dd>the class being used by the formbuilder module</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.submitOnEnter('.module-form')</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-superfish'>
+            <dt><strong><a href='../src/q4.defaults.js#L363' target='_blank'>superfish</a></strong></dt>
+            <dd>
+                Accessible Navigation powered by Superfish<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$nav</span>
+                        </dt>
+                        <dd>the nav element (or ul element) you would like to apply superfish to</dd>
+                        <dt>
+                            <strong>object</strong>
+                            <span>options</span>
+                        </dt>
+                        <dd>options to be passed into superfish</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.superfish($('.nav--secondary .level2'), {cssArrows:false}, 1024)</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-mobileMenuToggle'>
+            <dt><strong><a href='../src/q4.defaults.js#L376' target='_blank'>mobileMenuToggle</a></strong></dt>
+            <dd>
+                Standard mobile menu functionality<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$layout</span>
+                        </dt>
+                        <dd>the default layout element</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>pane</span>
+                        </dt>
+                        <dd>the class of the pane element containing the mobile navigation</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>toggleClass</span>
+                        </dt>
+                        <dd>the class assigned to the element used to toggle the mobile navigation</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.mobileMenuToggle($('.layout'), '.pane--navigation', '.layout_toggle i')</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-accessibleNav'>
+            <dt><strong><a href='../src/q4.defaults.js#L390' target='_blank'>accessibleNav</a></strong></dt>
+            <dd>
+                Gives a navigation element accessibility assistance in the form of the .focused class.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$nav</span>
+                        </dt>
+                        <dd>the navigation element used for this function</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>topLevel</span>
+                        </dt>
+                        <dd>the class assigned to the highest visible level of the navigation</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.accessibleNav($('.nav'), '.level1')</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-accessibilize'>
+            <dt><strong><a href='../src/q4.defaults.js#L411' target='_blank'>accessibilize</a></strong></dt>
+            <dd>
+                Gives element accessibility properties suitable for accordions, slide toggles, and tab navigation.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$tablist</span>
+                        </dt>
+                        <dd>the wrapping element for the accessible section</dd>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$tab</span>
+                        </dt>
+                        <dd>the element used to toggle the appropriate $tabpanel</dd>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$tabpanel</span>
+                        </dt>
+                        <dd>the element intended to display in respect to the currently selected $tab</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.accessibilize($tablist, $tab, $tabpanel)</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-toggle'>
+            <dt><strong><a href='../src/q4.defaults.js#L428' target='_blank'>toggle</a></strong></dt>
+            <dd>
+                Creates a fully accessible expanding and collapsing accordion with the ability to switch between toggle and accordion functionality.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$container</span>
+                        </dt>
+                        <dd>the wrapping element for the toggle list</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>item</span>
+                        </dt>
+                        <dd>the class assigned to each designated toggling element</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>toggle</span>
+                        </dt>
+                        <dd>the class assigned to the element that will toggle the containing item</dd>
+                        <dt>
+                            <strong>selector</strong>
+                            <span>panel</span>
+                        </dt>
+                        <dd>the class assigned to the section that will be revealed if its containing item is toggled</dd>
+                        <dt>
+                            <strong>boolean</strong>
+                            <span>accordion</span>
+                        </dt>
+                        <dd>(optional) if true, the toggling section will take on accordion functionality</dd>
+                        <dt>
+                            <strong>boolean</strong>
+                            <span>allButton</span>
+                        </dt>
+                        <dd>(optional) if true, the toggling section will be accompanied by a "Hide All / Show All" button</dd>
+                        <dt>
+                            <strong>boolean</strong>
+                            <span>openFirst</span>
+                        </dt>
+                        <dd>(optional) if true, the first item will be set to active with its panel revealed</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.toggle($('.accordion'), '.accordion_item', '.accordion_toggle', '.accordion_panel', false, true);</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-remindMeOnce'>
+            <dt><strong><a href='../src/q4.defaults.js#L518' target='_blank'>remindMeOnce</a></strong></dt>
+            <dd>
+                Used to hide the "Remind Me" functionality for events modules if a reminder has already been created.
+Works for both list and details pages.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$el</span>
+                        </dt>
+                        <dd>element(s) containing the "Remind Me" form</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.remindMeOnce($('.module-event .module_item')); or app.remindMeOnce($('.module-event-details'));</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-addToCalendar'>
+            <dt><strong><a href='../src/q4.defaults.js#L531' target='_blank'>addToCalendar</a></strong></dt>
+            <dd>
+                Our standard "Add to Calendar" functionality. Opens up a fancybox.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>selector</span>
+                        </dt>
+                        <dd>Selector for the module containing "Add to Calendar" links</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.addToCalendar('.module-event'); or app.addToCalendar('.module-event-latest, .module-event-upcoming');</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-hidePastCal'>
+            <dt><strong><a href='../src/q4.defaults.js#L549' target='_blank'>hidePastCal</a></strong></dt>
+            <dd>
+                Used to hide the "Add to Calendar" functionality for past events. Works for both list and details pages.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$events</span>
+                        </dt>
+                        <dd>element(s) containing the unwanted "Add to Calendar" link</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.hidePastCal($('.module-event .module_item')); or app.hidePastCal($('.module-event-details'));</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-fancySignup'>
+            <dt><strong><a href='../src/q4.defaults.js#L570' target='_blank'>fancySignup</a></strong></dt>
+            <dd>
+                Opens the Mailing List Signup - Captcha inside a fancybox<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$el</span>
+                        </dt>
+                        <dd>The mailing list module</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.fancySignup( '.module-subscribe' );</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-copyright'>
+            <dt><strong><a href='../src/q4.defaults.js#L750' target='_blank'>copyright</a></strong></dt>
+            <dd>
+                Used to automatically set the copyright year to the current year.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>element</strong>
+                            <span>$el</span>
+                        </dt>
+                        <dd>an element that will have its html replaced by the year</dd>
+                    </dl></dd>
+
+                    <dt>Example</dt>
+                    <dd><code>app.copyright($('.copyright_year'));</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-docTracking'>
+            <dt><strong><a href='../src/q4.defaults.js#L758' target='_blank'>docTracking</a></strong></dt>
+            <dd>
+                Small plugin used for document tracking w/ Google Analytics<br><br>
+                <dl>
+
+                    <dt>Example</dt>
+                    <dd><code>app.docTracking();</code></dd>
+
+
+                </dl>
+            </dd>
+           
+        </div>
+    </dl>
+</section>
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>

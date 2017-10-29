@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.widgetsCompleted</h1>
+    Adds the functioanlity to run a callback function when all the choosen <code>q4.widgets</code> have completed.<br><br>
+    <ul class="top-nav">
+        <li><a href='#examples'>Examples</a></li>
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                    <li><a href='#method-widgetsCompleted'>widgetsCompleted</a>
+                    </li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='../dist/q4.widgetsCompleted.1.0.0.min.js' target='_blank'>q4.widgetsCompleted.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='../src/q4.widgetsCompleted.js#L1' target='_blank'>q4.widgetsCompleted.js</a>, line 1</dd>
+
+
+    </dl>
+
+
+
+</section>
+
+<section id='examples'>
+    <h1>Examples </h1>
+    <div>
+        
+        <pre>q4Defaults.widgetsCompleted({
+      widgets: [{
+          $element: $('.module-financial-quarter .module_container--inner'),
+          events: "financialscomplete"
+      }, {
+          $element: $('.module-financial-year'),
+          events: "financialscomplete"
+      }],
+      completed: function(events) {
+          console.log(this);
+          console.dir(events);
+      }
+ });</pre>
+    </div>
+</section>
+
+
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        <div id='method-widgetsCompleted'>
+            <dt><strong><a href='../src/q4.widgetsCompleted.js#L36' target='_blank'>widgetsCompleted</a></strong></dt>
+            <dd>
+                Runs a callback function when all the choosen <code>q4.widgets</code> have completed.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>obj</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>object literal that will be used as an paramenter when calling <code>'widgetsCompleted'</code> method. 
+<br><br>
+This object has the following properties and methods:</dd>
+                        <dt>
+                            <strong>completed</strong>
+                            <span>function</span>
+                        </dt>
+                        <dd>Callback f</dd>
+                        <dt>
+                            <strong>widgets</strong>
+                            <span>array.&lt;objects&gt;</span>
+                        </dt>
+                        <dd><br><br>Array of object containing two properties:</dd>
+                        <dt>
+                            <strong>$element</strong>
+                            <span>element</span>
+                        </dt>
+                        <dd>Element on which a <code>q4.widget</code> was initialized</dd>
+                        <dt>
+                            <strong>events</strong>
+                            <span>event</span>
+                        </dt>
+                        <dd>Name of the event triggered by the <code>q4.widget</code> when completed.</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+            </dd>
+           
+        </div>
+    </dl>
+</section>
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>

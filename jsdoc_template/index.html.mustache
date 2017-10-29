@@ -1,0 +1,20 @@
+<section id='index'>
+    <dl>
+        {{#classes}}
+        <div>
+            <dt>
+                <strong>{{name}}</strong>
+                <span>{{version}}</span>
+            </dt>
+            <dd>
+                {{{description}}}
+                <p>
+                    <a href='{{name}}.html'>Documentation</a> –
+                    <a href='https://widgets.q4app.com/widgets/{{distfile}}' target='_blank'>Script link</a> –
+                    <a href='https://q4implementation.s3.amazonaws.com/widgets/latest/{{latest}}' target='_blank'>Latest</a>
+                </p>
+            </dd>
+        </div>
+        {{/classes}}
+    </dl>
+</section>

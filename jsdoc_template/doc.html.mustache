@@ -1,0 +1,265 @@
+<header>
+    <h1>{{name}}</h1>
+    {{{description}}}<br><br>
+    <ul class="top-nav">
+        {{#examples.0}}<li><a href='#examples'>Examples</a></li>{{/examples.0}}
+        {{#options.0}}
+            <li><a href='#options'>Options</a>
+                <ul>
+                {{#options}}
+                    <li><a href='#option-{{name}}'>{{name}}</a></li>
+                {{/options}}
+                </ul>
+            </li>
+        {{/options.0}}
+        {{#methods.0}}
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                {{#methods}}
+                    <li><a href='#method-{{name}}'>{{name}}</a>
+                        {{#optionsForMethod.0}}
+                        <ul>
+                            <li><a href='#options-method-{{methodName}}'>Options:</a></li>
+                            {{#optionsForMethod}}
+                            <li><a href='#method-option-{{optionName}}'>{{optionName}}</a></li>
+                            {{/optionsForMethod}}
+                        </ul>
+                        {{/optionsForMethod.0}}
+                    </li>
+                {{/methods}}
+                </ul>
+            </li>
+        {{/methods.0}}
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='../dist/{{distfile}}' target='_blank'>{{distfile}}</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='../src/{{file}}#L{{line}}' target='_blank'>{{file}}</a>, line {{line}}</dd>
+
+        {{#author.0}}
+        <dt><strong>Author(s)</strong></dt>
+        <dd><ul class='plain'>{{#author}}<li>{{.}}</li>{{/author}}</ul></dd>
+        {{/author.0}}
+
+        {{#requires.0}}
+        <dt><strong>Requires</strong></dt>
+        <dd><ul class='plain'>{{#requires}}<li><a href='{{{url}}}'>{{name}}</a></li>{{/requires}}</ul></dd>
+        {{/requires.0}}
+    </dl>
+
+    {{#abstract}}
+    <p>
+        This is an <em>abstract</em> widget; it isn't meant to be instantiated directly.
+        Use one of its child widgets.
+    </p>
+    {{/abstract}}
+
+    {{#extends.0}}
+    <p>
+        This <em>extends</em> the <a href='{{.}}.html'>'{{.}}'</a> library. All the options and methods from <code>'{{name}}'</code> will be inherited by <a href='{{.}}.html'>'{{.}}'</a> and will be available in <code>q4App</code>.<br>
+        All the default options and methods from <a href='{{.}}.html'>'{{.}}'</a> are also inherited by <code>'{{name}}'</code> and may be use here in the implementation of it's own options and methods.
+    </p>
+    {{/extends.0}}
+
+    {{#children.0}}
+    <p>
+        Child libraries have all the options and methods of this widget, but may add their own as well.
+        See the child library's documentation for additional options or methods.<br>
+        This library has the following child libraries:
+    </p>
+    <ul>
+        {{#children}}
+        <li><a href='{{.}}.html'>{{.}}</a></li>
+        {{/children}}
+    </ul>
+    {{/children.0}}
+</section>
+
+{{#examples.0}}
+<section id='examples'>
+    <h1>Examples </h1>
+    {{#examples}}
+    <div>
+        {{{caption}}}
+        <pre>{{{code}}}</pre>
+    </div>
+    {{/examples}}
+</section>
+{{/examples.0}}
+
+{{#options.0}}
+<section id='options'>
+    <h1>Options</h1>
+    <dl>
+        {{#options}}
+        <div id='option-{{name}}'>
+            <dt>
+                <strong><a href='../src/{{file}}#L{{line}}' target='_blank'>{{name}}</a></strong>
+                {{#type}}<span>{{.}}</span>{{/type}}
+            </dt>
+            <dd>
+                {{{description}}}<br><br>
+                <dl>
+                    {{#required}}
+                    <dt>Required</dt>
+                    <dd><pre>{{{.}}}</pre></dd>
+                    {{/required}}
+
+                    {{#defaultval}}
+                    <dt>Default value</dt>
+                    <dd><code>{{{.}}}</code></dd>
+                    {{/defaultval}}
+
+                    {{#defaultvals}}
+                    <dt>Default value</dt>
+                    <dd><pre>{{{.}}}</pre></dd>
+                    {{/defaultvals}}
+
+                    {{#params.0}}
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        {{#params}}
+                        <dt>
+                            <strong>{{optionParamName}}</strong>
+                            {{#type}}<span>{{.}}</span>{{/type}}
+                        </dt>
+                        <dd>{{{optionParamDescription}}}</dd>
+                        {{/params}}
+                    </dl></dd>
+                    {{/params.0}}
+
+                    {{#examples}}
+                    <dt>Example</dt>
+                    <dd><code>{{{.}}}</code></dd>
+                    {{/examples}}
+
+                    {{#exblocks}}
+                    <dt>Example</dt>
+                    <dd><pre>{{{.}}}</pre></dd>
+                    {{/exblocks}}
+
+                    {{#returns}}
+                    <dt>Returns</dt>
+                    <dd>{{description}}</dd>
+                    {{/returns}}
+                </dl>
+            </dd>
+        </div>
+        {{/options}}
+    </dl>
+</section>
+{{/options.0}}
+
+{{#methods.0}}
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        {{#methods}}
+        <div id='method-{{name}}'>
+            <dt><strong><a href='../src/{{file}}#L{{line}}' target='_blank'>{{name}}</a></strong></dt>
+            <dd>
+                {{{description}}}<br><br>
+                <dl>
+                    {{#params.0}}
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        {{#params}}
+                        <dt>
+                            <strong>{{methodParamName}}</strong>
+                            {{#type}}<span>{{.}}</span>{{/type}}
+                        </dt>
+                        <dd>{{{methodParamDescription}}}</dd>
+                        {{/params}}
+                    </dl></dd>
+                    {{/params.0}}
+
+                    {{#examples}}
+                    <dt>Example</dt>
+                    <dd><code>{{{.}}}</code></dd>
+                    {{/examples}}
+
+                    {{#exblocks}}
+                    <dt>Example</dt>
+                    <dd><pre>{{{.}}}</pre></dd>
+                    {{/exblocks}}
+
+                    {{#returns}}
+                    <dt>Returns</dt>
+                    <dd>{{description}}</dd>
+                    {{/returns}}
+                </dl>
+                {{#optionsForMethod.0}}
+                    <section id='options-method-{{methodName}}'>
+                        <strong>{{methodName}} options:</strong>
+                        <dl>
+                            {{#optionsForMethod}}
+                            <div id='method-option-{{optionName}}'>
+                                <dt>
+                                    <strong><a href='../src/{{file}}#L{{optionLine}}' target='_blank'>{{optionName}}</a></strong>
+                                    {{#optionType}}<span>{{.}}</span>{{/optionType}}
+                                </dt>
+                                <dd>
+                                    {{{optionDescription}}}<br><br>
+                                    <dl>
+                                        {{#optionRequired}}
+                                        <dt>Required</dt>
+                                        <dd><pre>{{{.}}}</pre></dd>
+                                        {{/optionRequired}}
+
+                                        {{#optionDefaultval}}
+                                        <dt>Default value</dt>
+                                        <dd><code>{{{.}}}</code></dd>
+                                        {{/optionDefaultval}}
+
+                                        {{#optionDefaultvals}}
+                                        <dt>Default value</dt>
+                                        <dd><pre>{{{.}}}</pre></dd>
+                                        {{/optionDefaultvals}}
+    
+                                        {{#optionParams.0}}
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            {{#optionParams}}
+                                            <dt>
+                                                <strong>{{methodOptParamName}}</strong>
+                                                {{#type}}<span>{{.}}</span>{{/type}}
+                                            </dt>
+                                            <dd>{{{methodOptParamDescription}}}</dd>
+                                            {{/optionParams}}
+                                        </dl></dd>
+                                        {{/optionParams.0}}
+
+                                        {{#optionExamples}}
+                                        <dt>Example</dt>
+                                        <dd><code>{{{.}}}</code></dd>
+                                        {{/optionExamples}}
+
+                                        {{#optionExblocks}}
+                                        <dt>Example</dt>
+                                        <dd><pre>{{{.}}}</pre></dd>
+                                        {{/optionExblocks}}
+
+                                        {{#optionReturns}}
+                                        <dt>Returns</dt>
+                                        <dd>{{description}}</dd>
+                                        {{/optionReturns}}
+                                    </dl>
+                                </dd>
+                            </div>
+                            {{/optionsForMethod}}
+                        </dl>
+                    </section>
+                {{/optionsForMethod.0}}
+            </dd>
+           
+        </div>
+        {{/methods}}
+    </dl>
+</section>
+{{/methods.0}}

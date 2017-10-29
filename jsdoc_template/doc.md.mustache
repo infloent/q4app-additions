@@ -1,0 +1,43 @@
+# {{{name}}}
+
+### {{{description}}}
+
+*Source file: `{{file}}`, line {{line}}*  
+{{#author.0}}*Author(s): {{#author}}{{.}} {{/author}}*  {{/author.0}}
+{{#requires.0}}*Requires:*
+{{#requires}}- {{{.}}}
+{{/requires}}{{/requires.0}}
+
+{{#exblocks.0}}
+Example:
+```
+{{{.}}}
+```
+{{/exblocks.0}}
+
+{{#options.0}}## Options
+{{#options}}
+- **{{name}}** - *{{type}}*  
+{{{description}}}  
+{{#params.0}}*Parameters:*
+{{#params}}    - **{{name}}** - *{{type}}*  
+    {{{description}}}
+{{/params}}{{/params.0}}{{#defaultval}}*Default:* `{{{.}}}`  
+{{/defaultval}}{{#examples.0}}*Example:* `{{{.}}}`  
+{{/examples.0}}{{#exblocks.0}}*Example:*
+```
+{{{.}}}
+```
+{{/exblocks.0}}
+
+{{/options}}{{/options.0}}
+
+{{#methods.0}}## Methods
+{{#methods}}
+- **{{name}}**  
+{{{description}}}  
+{{#params.0}}*Parameters:*
+{{#params}}    - **{{name}}** - *{{type}}*  
+    {{{description}}}
+{{/params}}{{/params.0}}
+{{/methods}}{{/methods.0}}

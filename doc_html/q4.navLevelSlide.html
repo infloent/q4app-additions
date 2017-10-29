@@ -1,0 +1,528 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.navLevelSlide</h1>
+    Adds <code>accesible level slide</code> functionality for <code>q4 navigation module</code>.<br><br>
+    <ul class="top-nav">
+        
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                    <li><a href='#method-navLevelSlide'>navLevelSlide</a>
+                        <ul>
+                            <li><a href='#options-method-navLevelSlide'>Options:</a></li>
+                            <li><a href='#method-option-$nav'>$nav</a></li>
+                            <li><a href='#method-option-startLevel'>startLevel</a></li>
+                            <li><a href='#method-option-slideStyle'>slideStyle</a></li>
+                            <li><a href='#method-option-nextArrow'>nextArrow</a></li>
+                            <li><a href='#method-option-nextArrowCls'>nextArrowCls</a></li>
+                            <li><a href='#method-option-nextArrowIconCls'>nextArrowIconCls</a></li>
+                            <li><a href='#method-option-nextArrowTpl'>nextArrowTpl</a></li>
+                            <li><a href='#method-option-mainMenuName'>mainMenuName</a></li>
+                            <li><a href='#method-option-navHeaderCls'>navHeaderCls</a></li>
+                            <li><a href='#method-option-menuHeaderTpl'>menuHeaderTpl</a></li>
+                            <li><a href='#method-option-addTopSectionName'>addTopSectionName</a></li>
+                            <li><a href='#method-option-topSectionNameTriggerBack'>topSectionNameTriggerBack</a></li>
+                            <li><a href='#method-option-backArrowCls'>backArrowCls</a></li>
+                            <li><a href='#method-option-backArrowIconCls'>backArrowIconCls</a></li>
+                            <li><a href='#method-option-levelHeaderTpl'>levelHeaderTpl</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='../dist/q4.navLevelSlide.1.0.0.min.js' target='_blank'>q4.navLevelSlide.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='../src/q4.navLevelSlide.js#L1' target='_blank'>q4.navLevelSlide.js</a>, line 1</dd>
+
+
+        <dt><strong>Requires</strong></dt>
+        <dd><ul class='plain'><li><a href='q4.navLevelSlide.css'>q4.navLevelSlide.css</a></li></ul></dd>
+    </dl>
+
+
+    <p>
+        This <em>extends</em> the <a href='q4.defaults.html'>'q4.defaults'</a> library. All the options and methods from <code>'q4.navLevelSlide'</code> will be inherited by <a href='q4.defaults.html'>'q4.defaults'</a> and will be available in <code>q4App</code>.<br>
+        All the default options and methods from <a href='q4.defaults.html'>'q4.defaults'</a> are also inherited by <code>'q4.navLevelSlide'</code> and may be use here in the implementation of it's own options and methods.
+    </p>
+
+</section>
+
+
+
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        <div id='method-navLevelSlide'>
+            <dt><strong><a href='../src/q4.navLevelSlide.js#L21' target='_blank'>navLevelSlide</a></strong></dt>
+            <dd>
+                Use this method to add stiky functionality to an element.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>options</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>Object of options used to initialize <code>'navLevelSlide'</code> method</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+                    <section id='options-method-navLevelSlide'>
+                        <strong>navLevelSlide options:</strong>
+                        <dl>
+                            <div id='method-option-$nav'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L34' target='_blank'>$nav</a></strong>
+                                    <span>element</span>
+                                </dt>
+                                <dd>
+                                    Navigation element<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+                                        <dt>Example</dt>
+                                        <dd><code>$(<span class="hljs-string">'.nav--mobile'</span>)</code></dd>
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-startLevel'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L48' target='_blank'>startLevel</a></strong>
+                                    <span>String</span>
+                                </dt>
+                                <dd>
+                                    <sup>*</sup> not implemented
+<br>
+This allows to se set the level class from which the functionality will be added.
+<br><br>
+<sup>*</sup>This solves the problem when the 'home' page is set to show in nav, or when the '.level1' items are corporate link and the navigation it's styles to only show Investor relations items which are .level2 elements.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.level1</code></dd>
+
+    
+
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">'.level2'</span></code></dd>
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-slideStyle'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L69' target='_blank'>slideStyle</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Defines a css class modifier from the default slide classes that can be uset to create custom slide animation using css.
+
+<pre>By default the following css classes will be used:
+js--nav_slide-in
+js--nav_slide-out</pre>
+There are three slide style animation available in  <code>'q4.navLevelSlide.css'</code>
+<br>
+One with the default css classes.
+<br>
+And two more available by setting <code>'slideStyle'</code> to <code>"over"</code> or <code>"stack"</code>. See examples below.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+
+                                        <dt>Example</dt>
+                                        <dd><pre><span class="hljs-string">"over"</span>
+<span class="hljs-keyword">this</span> will modify the <span class="hljs-keyword">default</span> css slide classes to <span class="hljs-string">'js--nav_slide-in--over'</span> and <span class="hljs-string">'js--nav_slide-out--over'</span></pre></dd>
+                                        <dt>Example</dt>
+                                        <dd><pre><span class="hljs-string">"stack"</span> 
+<span class="hljs-keyword">this</span> will modify the <span class="hljs-keyword">default</span> css slide classes to <span class="hljs-string">'js--nav_slide-in--stack'</span> and <span class="hljs-string">'js--nav_slide-out--stack'</span></pre></dd>
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-nextArrow'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L81' target='_blank'>nextArrow</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    Adds the element defined in <code>'nextArrowTpl'</code> after each anchor that has children in the <code>'$nav'</code>.
+<br><br>
+If <code>true</code> the slide next functionality will be triggered by the element that has the class from <code>'nextArrowCls'</code> option.
+<br>
+If <code>false</code> the silde next functionality will be triggered by each anchor that has children in the <code>'startLevel'</code>.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">true</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-nextArrowCls'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L90' target='_blank'>nextArrowCls</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Class that will be use to trigger the slide next functionality on 'click' if <code>'nextArrow'</code> it's <code>true</code>.
+<br><br>
+This class is available to be use in <code>'nextArrowTpl'</code> as <code>'{{nextArrowTpl}}'</code>.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.nav_next-level</code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-nextArrowIconCls'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L98' target='_blank'>nextArrowIconCls</a></strong>
+                                    <span>String</span>
+                                </dt>
+                                <dd>
+                                    This class is used to add a arrow icon to <code>'nextArrow'</code> button
+<br>
+If another arrow icon is needed to be used, change this class without the need to change <code>'nextArrowTpl'</code> default template.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.q4-icon_chevron-right</code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-nextArrowTpl'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L120' target='_blank'>nextArrowTpl</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    If the default template need to be changed a <code>button</code> element with the <code>'nextArrowCls'</code> class should always be used.
+<br><br>
+A <code>button</code> element <code>is required</code> for accesibility because it's a focusable element and also emulates <code>'click'</code> event handler by default on <code>'enter'</code> keypress.
+<br>
+The <code>'nextArrowCls'</code> class <code>is required</code> to be set on the <code>'button'</code> because this class trigger the functionality.
+<br><br>
+The <code>default</code> template it's buid to be <code>accesible</code>, when creating a <code>custom template</code> please follow the <code>accesiblity requirements</code>.<br><br>
+                                    <dl>
+
+
+                                        <dt>Default value</dt>
+                                        <dd><pre><span class="hljs-string">'&lt;button class="{{nextArrowCls}}" type="button"&gt;'</span> +
+     <span class="hljs-string">'&lt;i class="{{nextArrowIconCls}}"&gt;&lt;/i&gt;'</span> +
+     <span class="hljs-string">'&lt;span class="sr-only"&gt;Open submenu ({{sectionTitle}})&lt;/span&gt;'</span> +
+ <span class="hljs-string">'&lt;/button&gt;'</span></pre></dd>
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>&#39;{{nextArrowCls}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd>the defined class for the slide next button element</dd>
+                                            <dt>
+                                                <strong>&#39;{{nextArrowIconCls}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd>the defined next arrow icon class</dd>
+                                            <dt>
+                                                <strong>&#39;{{sectionTitle}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd>in the default template this is included in a sr-only span for accesibility in the default</dd>
+                                        </dl></dd>
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-mainMenuName'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L137' target='_blank'>mainMenuName</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Text that will be used in <code>'menuHeaderTpl'</code> to display a menu name.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">null</span></code></dd>
+
+    
+
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">"menu"</span></code></dd>
+                                        <dt>Example</dt>
+                                        <dd><code><span class="hljs-string">"Investors Relation"</span></code></dd>
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-navHeaderCls'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L145' target='_blank'>navHeaderCls</a></strong>
+                                    <span>String</span>
+                                </dt>
+                                <dd>
+                                    Class that will be used in <code>'menuHeaderTpl'</code> and <code>'levelHeaderTpl'</code> to define the menu header element<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.nav_header</code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-menuHeaderTpl'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L159' target='_blank'>menuHeaderTpl</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    The elements defined in this option will be prepended to the <code>'startLevel'</code> element if the <code>'mainMenuName'</code> has a <code>string value</code><br><br>
+                                    <dl>
+
+
+                                        <dt>Default value</dt>
+                                        <dd><pre><span class="hljs-string">'&lt;li class="{{navHeaderCls}}"&gt;'</span> +
+     <span class="hljs-string">'&lt;span class="nav_level-title"&gt;{{mainMenuName}}&lt;/span&gt;'</span> +
+<span class="hljs-string">'&lt;/li&gt;'</span></pre></dd>
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>&#39;{{navHeaderCls}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>&#39;{{mainMenuName}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                        </dl></dd>
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-addTopSectionName'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L173' target='_blank'>addTopSectionName</a></strong>
+                                    <span>boolean</span>
+                                </dt>
+                                <dd>
+                                    Adds the text of link that have children to <code>'levelHeaderTpl'</code> as a title for their child level header.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">false</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-topSectionNameTriggerBack'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L180' target='_blank'>topSectionNameTriggerBack</a></strong>
+                                    <span>Boolean</span>
+                                </dt>
+                                <dd>
+                                    Includes the section title in the slide back button from <code>'levelHeaderTpl'</code> so the slide back functionality can be triggerd by clicking on the title too.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code><span class="hljs-literal">false</span></code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-backArrowCls'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L189' target='_blank'>backArrowCls</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    Class that will be use to trigger the slide back functionality on 'click'
+<br><br>
+This class is available to be used in <code>'levelHeaderTpl'</code> as <code>'{{backArrowCls}}'</code>.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.nav_back-level</code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-backArrowIconCls'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L197' target='_blank'>backArrowIconCls</a></strong>
+                                    <span>String</span>
+                                </dt>
+                                <dd>
+                                    This class is used to add a arrow icon to the slide back button from <code>'levelHeaderTpl'</code>
+<br>
+If another arrow icon is needed to be used, change this class without the need to change <code>'levelHeaderTpl'</code> default template.<br><br>
+                                    <dl>
+
+                                        <dt>Default value</dt>
+                                        <dd><code>.q4-icon_chevron-left</code></dd>
+
+    
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                            <div id='method-option-levelHeaderTpl'>
+                                <dt>
+                                    <strong><a href='../src/q4.navLevelSlide.js#L229' target='_blank'>levelHeaderTpl</a></strong>
+                                    <span>string</span>
+                                </dt>
+                                <dd>
+                                    The <code>default</code> template it's buid to be <code>accesible</code>, when creating a <code>custom template</code> please follow the <code>accesiblity requirements</code>.<br><br>
+                                    <dl>
+
+
+                                        <dt>Default value</dt>
+                                        <dd><pre><span class="hljs-string">'&lt;li class="{{navHeaderCls}}"&gt;'</span> +
+     <span class="hljs-string">'{{^topSectionNameTriggerBack}}'</span> +
+         <span class="hljs-string">'&lt;button class="{{backArrowCls}}" type="button"&gt;'</span> +
+             <span class="hljs-string">'{{#backArrowIconCls}}&lt;i class="{{backArrowIconCls}}"&gt;&lt;/i&gt;{{/backArrowIconCls}}'</span> +
+             <span class="hljs-string">'&lt;span class="sr-only"&gt;Go back ({{parentSectionTitle}} menu)&lt;/span&gt;'</span> +
+         <span class="hljs-string">'&lt;/button&gt;'</span> +
+     <span class="hljs-string">'   {{#levelName}}&lt;span class="nav_level-title"&gt;{{levelName}}&lt;/span&gt;{{/levelName}}'</span> +
+     <span class="hljs-string">'{{/topSectionNameTriggerBack}}'</span> +
+     <span class="hljs-string">'{{#topSectionNameTriggerBack}}'</span> +
+         <span class="hljs-string">'&lt;button class="{{backArrowCls}} {{backArrowCls}}--name" type="button"&gt;'</span> +
+             <span class="hljs-string">'{{#backArrowIconCls}}&lt;i class="{{backArrowIconCls}}"&gt;&lt;/i&gt;{{/backArrowIconCls}}'</span> +
+             <span class="hljs-string">'&lt;span class="sr-only"&gt;Go back ({{parentSectionTitle}} menu)&lt;/span&gt;'</span> +
+             <span class="hljs-string">'{{#levelName}}&lt;span class="nav_level-title"&gt;{{levelName}}&lt;/span&gt;{{/levelName}}'</span> +
+         <span class="hljs-string">'&lt;/button&gt;'</span> +
+     <span class="hljs-string">'{{/topSectionNameTriggerBack}}'</span> +
+ <span class="hljs-string">'&lt;/li&gt;'</span></pre></dd>
+    
+                                        <dt>Parameters</dt>
+                                        <dd><dl>
+                                            <dt>
+                                                <strong>&#39;{{navHeaderCls}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>&#39;{{topSectionNameTriggerBack}}&#39;</strong>
+                                                <span>boolean</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>&#39;{{backArrowCls}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>&#39;{{backArrowIconCls}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                            <dt>
+                                                <strong>&#39;{{parentSectionTitle}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd>in the default template this is included in a sr-only span for accesibility in the default template.</dd>
+                                            <dt>
+                                                <strong>&#39;{{levelName}}&#39;</strong>
+                                                <span>string</span>
+                                            </dt>
+                                            <dd></dd>
+                                        </dl></dd>
+
+
+
+                                    </dl>
+                                </dd>
+                            </div>
+                        </dl>
+                    </section>
+            </dd>
+           
+        </div>
+    </dl>
+</section>
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>

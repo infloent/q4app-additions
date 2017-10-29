@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.getTopOffset</h1>
+    Adds functionality to set <code>'headerOffset'</code> based on multiple elements and resolution breakpoins.<br><br>
+    <ul class="top-nav">
+        <li><a href='#examples'>Examples</a></li>
+            <li><a href='#options'>Options</a>
+                <ul>
+                    <li><a href='#option-offsetTopElem'>offsetTopElem</a></li>
+                    <li><a href='#option-offsetTopBreakPoint'>offsetTopBreakPoint</a></li>
+                </ul>
+            </li>
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                    <li><a href='#method-getTopOffset'>getTopOffset</a>
+                    </li>
+                    <li><a href='#method-setHeaderOffset'>setHeaderOffset</a>
+                    </li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='../dist/q4.getTopOffset.1.0.0.min.js' target='_blank'>q4.getTopOffset.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='../src/q4.getTopOffset.js#L1' target='_blank'>q4.getTopOffset.js</a>, line 1</dd>
+
+
+    </dl>
+
+
+    <p>
+        This <em>extends</em> the <a href='q4.defaults.html'>'q4.defaults'</a> library. All the options and methods from <code>'q4.getTopOffset'</code> will be inherited by <a href='q4.defaults.html'>'q4.defaults'</a> and will be available in <code>q4App</code>.<br>
+        All the default options and methods from <a href='q4.defaults.html'>'q4.defaults'</a> are also inherited by <code>'q4.getTopOffset'</code> and may be use here in the implementation of it's own options and methods.
+    </p>
+
+</section>
+
+<section id='examples'>
+    <h1>Examples </h1>
+    <div>
+        
+        <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.getTopOffset.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">var</span> q4App = $.extend(q4Defaults, {
+    _options: $.extend(q4Defaults.options, {
+        <span class="hljs-comment">//these tow options below are available here since 'q4.getTopOffset' extends 'q4.defaults'</span>
+        
+        <span class="hljs-comment">// this array sould be set to all element that are fixed at the top to calculate the top scroll offset based on this elements.</span>
+        
+        offsetTopElem: [$(<span class="hljs-string">'.pane--header .pane_outer'</span>), $(<span class="hljs-string">'.pane--navigation .pane_outer'</span>)],
+        
+        <span class="hljs-comment">// Because one of the offset element will be used as a mobile navigation on resolutions equal or less than 1023px this element will be hidden and not a fixed element anymore; and</span>
+        <span class="hljs-comment">// Because on resolutions equal or less than 768px the remaining fixed element will not be fixed anymore, 'offsetTopBreakPoint' sould be set like in the example below:</span>
+        
+        offsetTopBreakPoint: [{
+            breakPoint: <span class="hljs-number">1023</span>,
+            offsetTopElem: [$(<span class="hljs-string">'.pane--header .pane_outer'</span>]
+        },{
+            breakPoint: <span class="hljs-number">768</span>,
+            offsetTopElem: []
+        }]
+    }),
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>,
+            q4Options: <span class="hljs-keyword">this</span>.options;
+            
+        
+        app.setHeaderOffset();
+        <span class="hljs-comment">//...</span>
+        <span class="hljs-comment">//default q4 inits found already in main scripts here below</span>
+        <span class="hljs-comment">//...</span>
+    }
+});
+q4App.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre>
+    </div>
+</section>
+
+<section id='options'>
+    <h1>Options</h1>
+    <dl>
+        <div id='option-offsetTopElem'>
+            <dt>
+                <strong><a href='../src/q4.getTopOffset.js#L56' target='_blank'>offsetTopElem</a></strong>
+                <span>array.&lt;elements&gt;</span>
+            </dt>
+            <dd>
+                Array of elements that will be used to set <code>'headerOffset'</code> with <code>'setHeaderOffset'</code> method.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>[] <span class="hljs-comment">//empty array for no offset top</span></code></dd>
+
+
+
+                    <dt>Example</dt>
+                    <dd><code>offsetTopElem: [$(<span class="hljs-string">'.pane--header'</span>), $(<span class="hljs-string">'.pane--banner'</span>)] <span class="hljs-comment">// 'getTopOffset' will return the sum of these two elements heights.</span></code></dd>
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-offsetTopBreakPoint'>
+            <dt>
+                <strong><a href='../src/q4.getTopOffset.js#L73' target='_blank'>offsetTopBreakPoint</a></strong>
+                <span>array.&lt;object&gt;</span>
+            </dt>
+            <dd>
+                An array of objects containing two properties <code>'breakPoint'</code> and <code>'offsetTopElem'</code> that will be used to set <code>'headerOffset'</code> with <code>'setHeaderOffset'</code> method one ore more given breakpoint resolutions.
+<br><br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>[] <span class="hljs-comment">//empty array. In this case will calculte the offset only based on 'offsetTopElem'</span></code></dd>
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>breakPoint</strong>
+                            <span>number</span>
+                        </dt>
+                        <dd></dd>
+                        <dt>
+                            <strong>offsetTopElem</strong>
+                            <span>array.&lt;elements&gt;</span>
+                        </dt>
+                        <dd></dd>
+                    </dl></dd>
+
+
+                    <dt>Example</dt>
+                    <dd><pre>offsetTopBreakPoint: [{
+    breakPoint: <span class="hljs-number">1024</span>,
+    offsetTopElem: [$(<span class="hljs-string">'.pane--header'</span>)] <span class="hljs-comment">// 'getTopOffset' will return this element's height</span>
+  },{
+    breakPoint: <span class="hljs-number">768</span>,
+    offsetTopElem: [] <span class="hljs-comment">//empty array for no offset top at resolutions below or equal tp 768px</span>
+}]</pre></dd>
+
+                </dl>
+            </dd>
+        </div>
+    </dl>
+</section>
+
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        <div id='method-getTopOffset'>
+            <dt><strong><a href='../src/q4.getTopOffset.js#L89' target='_blank'>getTopOffset</a></strong></dt>
+            <dd>
+                Method that returns the top offset number based on <code>'offsetTopElem'</code> array and <code>'offsetTopBreakPoint'</code> array of objects.
+<br><br>
+This method also checks if the elements passed to the <code>'offsetTopElem</code>' array exists before calculating the offset. 
+<br>
+In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <code>'setHeaderOffset'</code> can be initialized globally and will not throw an error if a sticky navigation it's not a global element and only shows on some pages.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>_offsetElem</strong>
+                            <span>array</span>
+                        </dt>
+                        <dd>If not set this methotd will use <code>'this.offsetTopElem'</code></dd>
+                        <dt>
+                            <strong>_offsetBreakPoint</strong>
+                            <span>array.&lt;object&gt;</span>
+                        </dt>
+                        <dd>If not set this methotd will use <code>'this.offsetTopBreakPoint'</code></dd>
+                    </dl></dd>
+
+
+
+                    <dt>Returns</dt>
+                    <dd>number</dd>
+                </dl>
+            </dd>
+           
+        </div>
+        <div id='method-setHeaderOffset'>
+            <dt><strong><a href='../src/q4.getTopOffset.js#L149' target='_blank'>setHeaderOffset</a></strong></dt>
+            <dd>
+                Method that sets <a href="q4.defaults.html#option-headerOffset"><code>'headerOffset'</code></a> by calling on resize the <a href="q4.getTopOffset.html#method-getTopOffset"><code>'getTopOffset'</code></a> method.
+<br><br>
+This is useful for scripts that are using the <a href="q4.defaults.html#option-headerOffset"><code>'headerOffset'</code></a> option like the <a href="q4.defaults.html#method-scrollTo"><code>'scrollTo'</code></a> method from <a href="q4.defaults.html"><code>'q4.defaults.js'</code></a> that is used on other methods from <code>'q4.defaults.js'</code>.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                    </dl></dd>
+
+
+                    <dt>Example</dt>
+                    <dd><pre>initialization:
+- this should be called first in  q4App.init method.
+
+var q4App = $.extend(q4Defaults, {
+    init: function() {
+     var app = this;
+     
+     app.setHeaderOffset();
+         
+     //followed by default methods that comes from blank
+
+     }
+  });
+ </pre></dd>
+
+                </dl>
+            </dd>
+           
+        </div>
+    </dl>
+</section>
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>
