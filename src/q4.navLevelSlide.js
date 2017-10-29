@@ -5,7 +5,7 @@
  * 
  * @class  q4.navLevelSlide
  *
- * @requires   [q4.navLevelSlide.css](q4.navLevelSlide.css) 
+ * @requires   [q4.navLevelSlide.css](https://github.com/infloent/q4app-additions/tree/master/src/q4.navLevelSlide.css) 
  * 
  * @extends q4.defaults
  *
