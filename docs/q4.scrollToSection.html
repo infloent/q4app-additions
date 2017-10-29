@@ -79,15 +79,15 @@
         <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.getTopOffset.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.scrollToSection.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
-<span class="hljs-keyword">var</span> q4App = $.extend(q4Defaults, {
-    _options: $.extend(q4Defaults.options, {
+<span class="hljs-keyword">var</span> q4App = $.extend(<span class="hljs-literal">true</span>, q4Defaults, {
+    options: {
         <span class="hljs-comment">//these tow options are available here since 'q4.getTopOffset' extends 'q4.defaults'</span>
         offsetTopElem: [$(<span class="hljs-string">'.pane--navigation .pane_outer'</span>)],
         offsetTopBreakPoint: [{
             breakPoint: <span class="hljs-number">1023</span>,
             offsetTopElem: []
         }]
-    }),
+    },
     init: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>,
             q4Options: <span class="hljs-keyword">this</span>.options;
@@ -813,7 +813,6 @@ The following paramenters are the properties available in the 'data' object:<br>
             <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
             <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
             <a href='q4.sticky.html'>q4.sticky</a>
-            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
         </nav>
     </div>
 </body>

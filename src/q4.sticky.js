@@ -13,8 +13,8 @@
  * <script src="/files/js/q4.getTopOffset.1.0.0.min.js"></script>
  * <script src="/files/js/q4.sticky.1.0.0.min.js"></script>
  * <script>
- * var q4App = $.extend(q4Defaults, {
- *     _options: $.extend(q4Defaults.options, {
+ * var q4App = $.extend(true, q4Defaults, {
+ *     options: {
  *         //these tow options below are available here since 'q4.getTopOffset' extends 'q4.defaults'
  *         
  *         // this array sould be set to all element that are fixed at the top to calculate the top scroll offset based on this elements.
@@ -31,18 +31,18 @@
  *             breakPoint: 768,
  *             offsetTopElem: []
  *         }]
- *     }),
+ *     },
  *     init: function() {
  *         var app = this,
  *             q4Options: this.options;
- *         .setHeaderOffset();
+ *         app.setHeaderOffset();
  *         //...
  *         //default q4 inits found already in main scripts here in between
  *         //...
  *         
  *         //This sticky element has a top offset of zero because there is no other fixed element above it so 'offsetTopElem' and 'offsetTopBreakPoint' will not be set.
  *         
- *         .sticky({
+ *         app.sticky({
  *            $stickyElem: $('.pane--header .pane_outer'),
  *            $stickyElemTrigger: $('.pane--header'),
  *            layoutStickyActiveCls: 'js-sticky--pane-header' //optional; use if needed to style other elements on the page when this element get's fixed.
@@ -52,7 +52,7 @@
  *         // This sticky navigation will be used as a mobile navigation on resolutions equal or less than 1023px. 
  *         // In this case we set 'stopStickyBreakPoint: 1023' and 'stopStickySwitchCondition: true' to stop the sticky functionality so it no interfier with the mobile design of the navigation.
  *         
- *         .sticky({
+ *         app.sticky({
  *            $stickyElem: $('.pane--navigation .pane_outer'),
  *            $stickyElemTrigger: $('.pane--navigation'),
  *            layoutStickyActiveCls: 'js-sticky--pane-navigation', //optional; use if needed to style other elements on the page when this element get's fixed. 
@@ -62,10 +62,10 @@
  *         });
  *     }
  * });
- * q4.init();
+ * q4App.init();
  * </script>
  */
-var stickyFunctionality = $.extend(q4Defaults, /** @lends q4.sticky */ {
+$.extend(q4Defaults, /** @lends q4.sticky */ {
     /**
      * Use this method to add stiky functionality to an element.
      * 

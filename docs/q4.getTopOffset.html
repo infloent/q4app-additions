@@ -60,8 +60,8 @@
         
         <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.getTopOffset.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
-<span class="hljs-keyword">var</span> q4App = $.extend(q4Defaults, {
-    _options: $.extend(q4Defaults.options, {
+<span class="hljs-keyword">var</span> q4App = $.extend(<span class="hljs-literal">true</span>, q4Defaults, {
+    options: {
         <span class="hljs-comment">//these tow options below are available here since 'q4.getTopOffset' extends 'q4.defaults'</span>
         
         <span class="hljs-comment">// this array sould be set to all element that are fixed at the top to calculate the top scroll offset based on this elements.</span>
@@ -78,7 +78,7 @@
             breakPoint: <span class="hljs-number">768</span>,
             offsetTopElem: []
         }]
-    }),
+    },
     init: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>,
             q4Options: <span class="hljs-keyword">this</span>.options;
@@ -213,7 +213,7 @@ This is useful for scripts that are using the <a href="q4.defaults.html#option-h
                     <dd><pre>initialization:
 - this should be called first in  q4App.init method.
 
-var q4App = $.extend(q4Defaults, {
+var q4App = $.extend(true, q4Defaults, {
     init: function() {
      var app = this;
      
@@ -240,7 +240,6 @@ var q4App = $.extend(q4Defaults, {
             <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
             <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
             <a href='q4.sticky.html'>q4.sticky</a>
-            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
         </nav>
     </div>
 </body>

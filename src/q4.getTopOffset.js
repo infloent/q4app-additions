@@ -10,8 +10,8 @@
  * @example 
  * <script src="/files/js/q4.getTopOffset.1.0.0.min.js"></script>
  * <script>
- * var q4App = $.extend(q4Defaults, {
- *     _options: $.extend(q4Defaults.options, {
+ * var q4App = $.extend(true, q4Defaults, {
+ *     options: {
  *         //these tow options below are available here since 'q4.getTopOffset' extends 'q4.defaults'
  *         
  *         // this array sould be set to all element that are fixed at the top to calculate the top scroll offset based on this elements.
@@ -28,7 +28,7 @@
  *             breakPoint: 768,
  *             offsetTopElem: []
  *         }]
- *     }),
+ *     },
  *     init: function() {
  *         var app = this,
  *             q4Options: this.options;
@@ -44,8 +44,8 @@
  * </script>
  */
 
-var getTopOffset = $.extend(q4Defaults, /** @lends q4.getTopOffset */ {
-    _options: $.extend(q4Defaults.options, /** @lends q4.getTopOffset._options */ {
+$.extend(true, q4Defaults, /** @lends q4.getTopOffset */ {
+    options: {
         /**
          * Array of elements that will be used to set <code>'headerOffset'</code> with <code>'setHeaderOffset'</code> method.
          * @type {array<elements>}
@@ -71,7 +71,7 @@ var getTopOffset = $.extend(q4Defaults, /** @lends q4.getTopOffset */ {
          * @default [] //empty array. In this case will calculte the offset only based on 'offsetTopElem'
          */
         offsetTopBreakPoint: [],
-    }),
+    },
     /**
      * Method that returns the top offset number based on <code>'offsetTopElem'</code> array and <code>'offsetTopBreakPoint'</code> array of objects.
      * <br><br>
@@ -134,7 +134,7 @@ var getTopOffset = $.extend(q4Defaults, /** @lends q4.getTopOffset */ {
      * initialization:
      * - this should be called first in  q4App.init method.
      * 
-     * var q4App = $.extend(q4Defaults, {
+     * var q4App = $.extend(true, q4Defaults, {
      *     init: function() {
      *      var app = this;
      *      

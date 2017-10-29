@@ -10,7 +10,7 @@
  * @extends q4.defaults
  *
  */
-var navLevelSlide = $.extend(q4Defaults, /** @lends q4.navLevelSlide */ {
+$.extend(true, q4Defaults, /** @lends q4.navLevelSlide */ {
     /**
      * Use this method to add stiky functionality to an element.
      * 

@@ -63,8 +63,8 @@
         <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.getTopOffset.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.sticky.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
-<span class="hljs-keyword">var</span> q4App = $.extend(q4Defaults, {
-    _options: $.extend(q4Defaults.options, {
+<span class="hljs-keyword">var</span> q4App = $.extend(<span class="hljs-literal">true</span>, q4Defaults, {
+    options: {
         <span class="hljs-comment">//these tow options below are available here since 'q4.getTopOffset' extends 'q4.defaults'</span>
         
         <span class="hljs-comment">// this array sould be set to all element that are fixed at the top to calculate the top scroll offset based on this elements.</span>
@@ -81,18 +81,18 @@
             breakPoint: <span class="hljs-number">768</span>,
             offsetTopElem: []
         }]
-    }),
+    },
     init: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>,
             q4Options: <span class="hljs-keyword">this</span>.options;
-        .setHeaderOffset();
+        app.setHeaderOffset();
         <span class="hljs-comment">//...</span>
         <span class="hljs-comment">//default q4 inits found already in main scripts here in between</span>
         <span class="hljs-comment">//...</span>
         
         <span class="hljs-comment">//This sticky element has a top offset of zero because there is no other fixed element above it so 'offsetTopElem' and 'offsetTopBreakPoint' will not be set.</span>
         
-        .sticky({
+        app.sticky({
            $stickyElem: $(<span class="hljs-string">'.pane--header .pane_outer'</span>),
            $stickyElemTrigger: $(<span class="hljs-string">'.pane--header'</span>),
            layoutStickyActiveCls: <span class="hljs-string">'js-sticky--pane-header'</span> <span class="hljs-comment">//optional; use if needed to style other elements on the page when this element get's fixed.</span>
@@ -102,7 +102,7 @@
         <span class="hljs-comment">// This sticky navigation will be used as a mobile navigation on resolutions equal or less than 1023px. </span>
         <span class="hljs-comment">// In this case we set 'stopStickyBreakPoint: 1023' and 'stopStickySwitchCondition: true' to stop the sticky functionality so it no interfier with the mobile design of the navigation.</span>
         
-        .sticky({
+        app.sticky({
            $stickyElem: $(<span class="hljs-string">'.pane--navigation .pane_outer'</span>),
            $stickyElemTrigger: $(<span class="hljs-string">'.pane--navigation'</span>),
            layoutStickyActiveCls: <span class="hljs-string">'js-sticky--pane-navigation'</span>, <span class="hljs-comment">//optional; use if needed to style other elements on the page when this element get's fixed. </span>
@@ -112,7 +112,7 @@
         });
     }
 });
-q4.init();
+q4App.init();
 </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre>
     </div>
 </section>
@@ -278,7 +278,6 @@ Add this class if you need to change style of other elements on the page when th
             <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
             <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
             <a href='q4.sticky.html'>q4.sticky</a>
-            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
         </nav>
     </div>
 </body>

@@ -13,15 +13,15 @@
  * <script src="/files/js/q4.getTopOffset.1.0.0.min.js"></script>
  * <script src="/files/js/q4.scrollToSection.1.0.0.min.js"></script>
  * <script>
- * var q4App = $.extend(q4Defaults, {
- *     _options: $.extend(q4Defaults.options, {
+ * var q4App = $.extend(true, q4Defaults, {
+ *     options: {
  *         //these tow options are available here since 'q4.getTopOffset' extends 'q4.defaults'
  *         offsetTopElem: [$('.pane--navigation .pane_outer')],
  *         offsetTopBreakPoint: [{
  *             breakPoint: 1023,
  *             offsetTopElem: []
  *         }]
- *     }),
+ *     },
  *     init: function() {
  *         var app = this,
  *             q4Options: this.options;
@@ -46,7 +46,7 @@
  * q4App.init();
  * </script>
  */
-var scrollToSection = $.extend(q4Defaults, /** @lends q4.scrollToSection */ {
+$.extend(true, q4Defaults, /** @lends q4.scrollToSection */ {
     /**
      * Use this method to add scroll to section functionality to a navigation.
      * 
