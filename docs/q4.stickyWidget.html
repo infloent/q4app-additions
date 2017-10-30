@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.stickyWidget</h1>
+    Adds sticky element fucntionality.<br><br>
+    <ul class="top-nav">
+        
+            <li><a href='#options'>Options</a>
+                <ul>
+                    <li><a href='#option-$stickyElem'>$stickyElem</a></li>
+                    <li><a href='#option-$stickyElemTrigger'>$stickyElemTrigger</a></li>
+                    <li><a href='#option-layoutStickyActiveCls'>layoutStickyActiveCls</a></li>
+                    <li><a href='#option-stopStickyBreakPoint'>stopStickyBreakPoint</a></li>
+                    <li><a href='#option-stopStickySwitchCondition'>stopStickySwitchCondition</a></li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='https://github.com/infloent/q4app-additions/tree/master/dist/q4.stickywidget.1.0.0.min.js' target='_blank'>q4.stickywidget.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L2' target='_blank'>q4.stickywidget.js</a>, line 2</dd>
+
+
+        <dt><strong>Requires</strong></dt>
+        <dd><ul class='plain'><li><a href='q4.getTopOffset.html' target="_blank">q4.getTopOffset.js</a></li></ul></dd>
+    </dl>
+
+
+
+</section>
+
+
+<section id='options'>
+    <h1>Options</h1>
+    <dl>
+        <div id='option-$stickyElem'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L32' target='_blank'>$stickyElem</a></strong>
+                <span>element</span>
+            </dt>
+            <dd>
+                Element that will get sticky, with by having a <code>'js--sticky'</code> class added.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-literal">null</span></code></dd>
+
+
+
+                    <dt>Example</dt>
+                    <dd><code>$(<span class="hljs-string">'.nav--main'</span>) </code></dd>
+
+                    <dt>Example</dt>
+                    <dd><pre><span class="hljs-keyword">default</span> styles <span class="hljs-keyword">for</span> <span class="hljs-string">'js-sitcky'</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">should</span> <span class="hljs-title">be</span>
+
+.<span class="hljs-title">js</span>-<span class="hljs-title">sitcky</span> </span>{
+    position: fixed;
+    left: <span class="hljs-number">0</span>;
+    right:<span class="hljs-number">0</span>;
+}
+
+<span class="hljs-string">'top'</span> property it is added dinamically by the script based on <span class="hljs-string">'offsetTopElem'</span> and <span class="hljs-string">'offsetTopBreakPoint'</span> options from below</pre></dd>
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-$stickyElemTrigger'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L39' target='_blank'>$stickyElemTrigger</a></strong>
+                <span>element</span>
+            </dt>
+            <dd>
+                Functionality needs to be triggered by the position of a parent of <code>'$stickyElem'</code> that will remain in the place where the <code>'$stickyElem'</code> was before getting position fixed.
+<br><br>
+To prevent content jumps when <code>'$stickyElem'</code> gets position fixed, <code>'$stickyElemTrigger'</code> will have the height set to <code>'$stickyElem'</code>s height by the script.<br><br>
+                <dl>
+
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-layoutStickyActiveCls'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L52' target='_blank'>layoutStickyActiveCls</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Sets a class that will be added tot the <code>'.layout'</code> element when the <code>'$stickyElem'</code> get's sticky.
+<br><br>
+Add this class if you need to change style of other elements on the page when the <code>'$stickyElem'</code> get's sticky.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-literal">null</span></code></dd>
+
+
+
+                    <dt>Example</dt>
+                    <dd><code><span class="hljs-string">"js--sticky-nav--main"</span></code></dd>
+                    <dt>Example</dt>
+                    <dd><code><span class="hljs-string">"js--sticky-nav--secondary"</span></code></dd>
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-stopStickyBreakPoint'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L61' target='_blank'>stopStickyBreakPoint</a></strong>
+                <span>number</span>
+            </dt>
+            <dd>
+                Break point at witch the sticky functionality will be disabled depending on the value <code>'stopStickySwitchCondition'</code>.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-literal">null</span></code></dd>
+
+
+
+                    <dt>Example</dt>
+                    <dd><code><span class="hljs-number">1024</span></code></dd>
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-stopStickySwitchCondition'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L74' target='_blank'>stopStickySwitchCondition</a></strong>
+                <span>boolean</span>
+            </dt>
+            <dd>
+                For <code>'stopStickyBreakPoint'</code> to work this should be set to either <code>true</code> or <code>false</code>.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-literal">null</span></code></dd>
+
+
+
+
+                    <dt>Example</dt>
+                    <dd><pre><span class="hljs-literal">true</span> 
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width it is equal or less than <span class="hljs-string">'stopStickyBreakPoint'</span></pre></dd>
+                    <dt>Example</dt>
+                    <dd><pre><span class="hljs-literal">false</span> 
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width greater than <span class="hljs-string">'stopStickyBreakPoint'</span></pre></dd>
+
+                </dl>
+            </dd>
+        </div>
+    </dl>
+</section>
+
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.stickyWidget.html'>q4.stickyWidget</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>
