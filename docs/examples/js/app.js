@@ -1,0 +1,1 @@
+$('.nav--intro').stickyWidget();

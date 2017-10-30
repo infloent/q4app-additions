@@ -74,26 +74,28 @@
             stopStickySwitchCondition: null,
             offsetTopElem: [],
             offsetTopBreakPoint: [],
-            getTopOffset: generalOpt.getTopOffset,
+            getTopOffset: q4Defaults.getTopOffset,
             afterSticky: function(event) {},
             beforeSticky: function(event) {},
             onStopSticky: function(event) {}
         },
         _create: function() {
+            console.log(this);
 
         },
         _init: function() {
 
         },
         destroy: function() {
-            
-            this._destroy()
+
+            this._destroy();
         },
         init: function(options) {
             var inst = this;
             inst._onScroll();
             inst._onResize();
         },
+
         _onScroll: function() {
             var inst = this;
 
@@ -119,10 +121,12 @@
                 }
             });
         },
+
         _addRemoveSticky: function(_event) {
             var inst = this,
                 o = inst.options,
                 condition = o.stopStickySwitchCondition === ($(window).width() <= o.stopStickyBreakPoint);
+
             if (!condition) {
                 var curentScroll = $(window).scrollTop(),
                     topOffset = o.getTopOffset();
@@ -141,3 +145,4 @@
         }
     });
 })(jQuery);
+
