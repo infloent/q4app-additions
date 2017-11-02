@@ -1,6 +1,4 @@
-/*==================================
- ------------ RESET CSS -----------
-==================================*/
+/*==================================------------ RESET CSS -----------==================================*/
 
 html,
 body,
@@ -85,10 +83,6 @@ video {
 }
 
 
-
-
-
-
 /* HTML5 display-role reset for older browsers */
 
 article,
@@ -155,10 +149,6 @@ em {
 }
 
 
-
-
-
-
 /*---------- Animations ----------*/
 
 @keyframes spin {
@@ -169,10 +159,6 @@ em {
         transform: rotate(360deg);
     }
 }
-
-
-
-
 
 
 /*==================================
@@ -190,10 +176,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-
-
-
 
 
 /*---------- TYPOGRAPHY ----------*/
@@ -268,10 +250,6 @@ em {
 }
 
 
-
-
-
-
 /*------------ COMMON ------------*/
 
 img {
@@ -295,10 +273,6 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
     border: 3px solid;
 }
-
-
-
-
 
 
 /*input[type="checkbox"]:focus {
@@ -327,10 +301,6 @@ iframe {
 }
 
 
-
-
-
-
 /*------- HACKS AND FIXES -------*/
 
 .clearfix {
@@ -346,10 +316,6 @@ iframe {
 .clearfix:after {
     clear: both;
 }
-
-
-
-
 
 
 /*------------ LISTS ------------*/
@@ -379,10 +345,6 @@ iframe {
 .list--inside {
     list-style-position: inside;
 }
-
-
-
-
 
 
 /*------- BUTTONS / INPUTS -------*/
@@ -524,10 +486,6 @@ iframe {
 }
 
 
-
-
-
-
 /*------------ TABLES ------------*/
 
 .table {
@@ -594,10 +552,6 @@ iframe {
 }
 
 
-
-
-
-
 /*--------- SPECIAL BOXES --------*/
 
 .code {
@@ -655,10 +609,6 @@ iframe {
 }
 
 
-
-
-
-
 /*==================================
  ----------- TOAST GRID -----------
 ==================================*/
@@ -669,19 +619,11 @@ iframe {
 }
 
 
-
-
-
-
 /*custom col classes*/
 
 .grid_col--1-of-7 {
     width: 14.285714%;
 }
-
-
-
-
 
 
 /*end custom col classes*/
@@ -1198,10 +1140,6 @@ iframe {
 }
 
 
-
-
-
-
 /* fix margin-right: -.24em; not working well on some casses */
 
 .grid--no-space-float:after {
@@ -1214,10 +1152,6 @@ iframe {
     float: left;
     margin-right: 0;
 }
-
-
-
-
 
 
 /*fix .grid--no-space on .pane with .grid_col as modules breaking .grid used inside modules*/
@@ -1428,10 +1362,6 @@ iframe {
 }
 
 
-
-
-
-
 /*==========================LAYOUT============================*/
 
 
@@ -1440,10 +1370,6 @@ iframe {
 .pane--left {
     position: relative;
 }
-
-
-
-
 
 
 /*-----------End Layout General Style---------------*/
@@ -1466,10 +1392,6 @@ iframe {
 }
 
 
-
-
-
-
 /*--------------End Layout Cotainer-----------------*/
 
 
@@ -1489,10 +1411,6 @@ iframe {
 }
 
 
-
-
-
-
 /*------------Custom General Styles/Classes---------*/
 
 .module_rss--top {
@@ -1506,10 +1424,6 @@ iframe {
 .module_rss-link:focus {
     color: #532380;
 }
-
-
-
-
 
 
 /*----------End Custom General Styles/Classes-------*/
@@ -1532,10 +1446,6 @@ iframe {
 :-ms-input-placeholder {
     color: #ccc;
 }
-
-
-
-
 
 
 /*-------------End Place Holder Styling-------------*/
@@ -1565,10 +1475,6 @@ iframe {
 }
 
 
-
-
-
-
 /*----------IOS Responsive Table SCROOLBAR FIX-------------*/
 
 
@@ -1594,10 +1500,6 @@ iframe {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
 }
-
-
-
-
 
 
 /*--------End IOS Responsive Table SCROOLBAR FIX-----------*/
@@ -1641,10 +1543,6 @@ iframe {
 }
 
 
-
-
-
-
 /*----------------End Css Tooltip-------------------*/
 
 
@@ -1671,10 +1569,6 @@ input[type="radio"]+label {
 }
 
 
-
-
-
-
 /*focus/accesibility indentifier*/
 
 input[type="checkbox"]:focus+label,
@@ -1689,10 +1583,6 @@ input[type="radio"]:focus+label:before {
     -moz-box-shadow: 0px 0px 5px 1px rgba(0, 192, 96, 0.5);
     box-shadow: 0px 0px 5px 1px rgba(0, 192, 96, 0.5);
 }
-
-
-
-
 
 
 /*active state styles general*/
@@ -1743,10 +1633,6 @@ input[type="radio"]:checked+label:after {
 }
 
 
-
-
-
-
 /*active state styles with check sign*/
 
 
@@ -1774,10 +1660,6 @@ input[type="radio"]:checked+label:after {
 }
 
 
-
-
-
-
 /*active state activation*/
 
 input[type="checkbox"]:not(:checked)+label:after {
@@ -1789,20 +1671,12 @@ input[type="checkbox"]:checked+label:after {
 }
 
 
-
-
-
-
 /*invalid js-state state activation*/
 
 .js--invalid input[type="checkbox"]+label:before,
 .js--invalid input[type="radio"]+label:before {
     border: 1px solid #e10000;
 }
-
-
-
-
 
 
 /*---------------End Custom Checkboxes--------------*/
@@ -1836,10 +1710,6 @@ input[type="checkbox"]:checked+label:after {
     white-space: normal;
     width: 100%;
 }
-
-
-
-
 
 
 /*--------------End Vertical Center-----------------*/
@@ -1886,10 +1756,6 @@ input[type="checkbox"]:checked+label:after {
 [role="tablist"] .js--active [role="tab"]:before {
     content: "\edba";
 }
-
-
-
-
 
 
 /*------------------End Accordion-------------------*/
@@ -1980,10 +1846,6 @@ input[type="checkbox"]:checked+label:after {
 }
 
 
-
-
-
-
 /*---------------End Slick Custom-------------------*/
 
 
@@ -2015,10 +1877,6 @@ input[type="checkbox"]:checked+label:after {
 }
 
 
-
-
-
-
 /*home page*/
 
 
@@ -2038,14 +1896,14 @@ input[type="checkbox"]:checked+label:after {
 }
 
 
-
-
-
-
 /*-----------------End Page Title-------------------*/
 
 
 /*-----------------------Nav------------------------*/
+
+.nav img {
+    width: 150px;
+}
 
 .nav {
     text-align: center;
@@ -2068,10 +1926,6 @@ input[type="checkbox"]:checked+label:after {
     width: 50%;
     margin-right: -.25em;
 }
-
-
-
-
 
 
 /*staked nav*/
@@ -2112,15 +1966,9 @@ Location Pages: Overview, Why Buy
 /*===========================HOME=============================*/
 
 
-/*.nav--intro {
-    height: 128px;
-}*/
+/*------------------Sticky styles-------------------*/
 
-.nav--intro .level2>li {
-    width: 25%;
-}
-
-.nav--intro .level1.js--sticky {
+.js--sticky {
     position: fixed;
     top: 0;
     left: 0;
@@ -2129,15 +1977,26 @@ Location Pages: Overview, Why Buy
     z-index: 100;
 }
 
+
+/*----------------End Sticky styles-----------------*/
+
+
+/*----------End Infographic Icons Slider------------*/
+
+
+/*.nav--intro {
+    height: 128px;
+}*/
+
+.nav--intro .level2>li {
+    width: 25%;
+}
+
 .nav--intro .level1.js--sticky>li.selected {
     max-width: 1144px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
-
-
-
 
 
 /*.nav--sticky {
@@ -2167,10 +2026,6 @@ Location Pages: Overview, Why Buy
 }
 
 
-
-
-
-
 /*.nav--scroll {
     height: 128px;
 }
@@ -2197,10 +2052,6 @@ Location Pages: Overview, Why Buy
 }
 
 
-
-
-
-
 /*=========================END HOME===========================*/
 
 
@@ -2211,4 +2062,4 @@ Location Pages: Overview, Why Buy
 
 /**************************************************************
 *****************End Custom Module By Pages********************
-**************************************************************/
+*************************************************************
