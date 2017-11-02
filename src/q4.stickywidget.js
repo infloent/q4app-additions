@@ -11,6 +11,7 @@
      */
     $.widget('q4.stickyWidget', /** @lends q4.stickyWidget */ {
         options: {
+            version: "1.0.0",
             /**
              * Element that will get sticky, with by having a <code>'js--sticky'</code> class added.
              * 
@@ -37,6 +38,8 @@
              * @type {string}
              */
             // $widget: null,
+            // 
+            layoutElem: '.layout',
             /**
              * Sets a class that will be added tot the <code>'.layout'</code> element when the <code>'stickyElem'</code> get's sticky.
              * <br><br>
@@ -79,6 +82,10 @@
             onUnSticky: function(event) {},
             afterSticky: function(event) {},
             beforeSticky: function(event) {},
+
+            classes: {
+                "js--sticky": "js--sticky-nav"
+            },
             responsive: [{
                 breakpoint: 1024,
                 settings: {
@@ -92,54 +99,42 @@
             }]
         },
         _create: function() {
-            var inst = this,
-                o = inst.options;
-            inst._globalVariables();
+            this._widgetVariables();
 
             // console.log(this);
 
-            inst._stickyOnScroll();
-            inst._stickyOnResize();
+            this._stickyOnScroll();
+            this._stickyOnResize();
 
         },
 
         _init: function() {
-            var inst = this,
-                o = inst.options;
-            inst.$window.trigger('scroll' + inst.eventNamespace);
-            inst.$window.trigger('resize' + inst.eventNamespace);
+            // this.window.trigger('scroll' + this.eventNamespace);
+            this.window.trigger('resize' + this.eventNamespace);
 
         },
         _setOption: function(key, value) {
-            var inst = this;
-
-            inst._super();
-            inst._stickyOnScroll();
-            inst.$window.trigger('resize' + inst.eventNamespace);
+            this._super();
+            this._stickyOnScroll();
+            this.window.trigger('resize' + this.eventNamespace);
             console.log('setOpt');
             console.log(this);
 
         },
         _destroy: function() {
-            var inst = this;
 
-            inst.$window.off(inst.eventNamespace);
-            this.isStickyDisabled = false;
-            inst._disableSticky();
+            //this._disableSticky();
             // base destroy
-            inst._super();
+            this._super();
         },
 
         /*
          *===== custom methods =====
          */
-        _globalVariables: function() {
-            var inst = this,
-                o = inst.options;
+        _widgetVariables: function() {
             //create chached element to be used inside all widget's methods.
-            this.$widgetElem = $(this.element);
-            this.$stickyElem = o.stickyElem !== null ? $(stickyElem) : $("> *:first", this.element);
-            this.$window = $(window);
+            this.$layout = $(this.options.layoutElem);
+            this.$stickyElem = this.options.stickyElem !== null ? $(stickyElem) : $("> *:first", this.element);
             this.throttleDelay = 0;
             this.isSticky = false;
             this.isStickyDisabled = false;
@@ -147,127 +142,138 @@
         },
 
         _setOptionsResponsive: function() {
-            var inst = this,
-                o = inst.options;
-            if (o.responsive &&
-                o.responsive.length &&
-                o.responsive !== null) {
-                for (var i = 0; i <= o.responsive.length; i++) {
+
+            if (this.options.responsive &&
+                this.options.responsive.length &&
+                this.options.responsive !== null) {
+                for (var i = 0; i <= this.options.responsive.length; i++) {
 
                 }
 
             }
         },
 
+        stopCondition: function() {
+            return this.options.stopStickySwitchCondition === (this.window.width() <= this.options.stopStickyBreakPoint);
+        },
+
         _stickyOnScroll: function() {
-            var inst = this;
-
-            inst.$window.on('scroll' + inst.eventNamespace, function(e) {
-                //run '_addRemoveSticky' on 'scroll'
-
-                inst._addRemoveSticky(e);
+            /*
+             * Use the build in '._on()' method for automatic event unbind on 'destroy'. 
+             * Inside the event callbacks 'this' points to the 'widget' not the 'element' on which the 'event' was called on.
+             * The element on which the 'event' was called on can be accessed with the 'target' property from the 'event' object passed to the callback 
+             */
+            this._on(this.window, {
+                scroll: "_addRemoveSticky"
             });
         },
 
         _stickyOnResize: function() {
-            var inst = this,
-                o = inst.options;
 
-            inst.$window.on('resize' + inst.eventNamespace, inst._throttle(function(e) {
+            this._on(this.window, {
+                resize: this._throttle(function(e) {
 
-                //run '_addRemoveSticky' on 'resize'
-                inst._addRemoveSticky(e);
+                    this._addRemoveSticky(e);
+                    this._enableDisableSticky(e);
 
-                // if stop condition is 'true' disable sticky functionality.
-                if (o.stopStickySwitchCondition === (inst.$window.width() <= o.stopStickyBreakPoint)) {
+                }, this.throttleDelay)
+            });
 
-                    inst._disableSticky();
-                    inst.isStickyDisabled = true;
+        },
 
-                }
-                //if stop condition is 'false' add back the sticky functionality.
-                else {
-                    if (inst.isStickyDisabled) {
-                        inst._stickyOnScroll();
-                        inst.isStickyDisabled = false;
+        _enableDisableSticky: function(_event) {
 
-                    }
-                }
-            }, inst.throttleDelay));
+            // if 'stopCondition' is 'true' disable sticky functionality.
+            if (this.stopCondition()) {
+
+                this._disableSticky();
+                this.isStickyDisabled = true;
+
+            }
+            //if 'stopCondition' is 'false' add back the sticky functionality.
+            else if (this.isStickyDisabled) {
+                this._stickyOnScroll();
+                this.isStickyDisabled = false;
+            }
         },
 
         _addRemoveSticky: function(_event) {
-            var inst = this,
-                o = inst.options,
-                curentScroll = inst.$window.scrollTop(),
-                topOffset = o.getTopOffset(),
-                widgetElem_offsetTop = inst.$widgetElem.offset().top - topOffset,
-                condition = o.stopStickySwitchCondition === (inst.$window.width() <= o.stopStickyBreakPoint);
 
-            //add height to '$widgetElem' to prevent content jumps when "$stickyElem" will get fixed position.
-            //height will be updated on 'scroll' and 'resize'
-            if (!condition) {
+            var o = this.options,
+                curentScroll = this.window.scrollTop(),
+                topOffset = this.options.getTopOffset(),
+                widgetElem_offsetTop = this.element.offset().top - topOffset;
 
-                inst._setElemHeight();
+            if (!this.stopCondition()) {
+
+                //add height to 'element' to prevent content jumps when "$stickyElem" will get fixed position.
+                //height will be updated on 'scroll' and 'resize'
+                this._setElemHeight();
 
                 if (curentScroll > widgetElem_offsetTop) {
 
-                    if (!inst.isSticky) inst._trigger("onSticky", _event);
+                    if (!this.isSticky) this._trigger("onSticky", _event);
 
-                    inst._addSticky(topOffset);
+                    this._addSticky(topOffset);
 
-                    // trigger 'stickyWidgetafterSticky' event on '$widgetElem'
-                    inst._trigger("afterSticky", _event);
+                    // trigger 'stickyWidgetafterSticky' event on 'element'
+                    this._trigger("afterSticky", _event);
 
                 } else {
 
-                    if (inst.isSticky) inst._trigger("onUnSticky", _event);
+                    if (this.isSticky) this._trigger("onUnSticky", _event);
 
-                    inst._removeSticky();
+                    this._removeSticky();
 
-                    // trigger 'stickyWidgetbeforeSticky' event '$widgetElem'
-                    inst._trigger("beforeSticky", _event);
+                    // trigger 'stickyWidgetbeforeSticky' event 'element'
+                    this._trigger("beforeSticky", _event);
 
                 }
             }
         },
 
         _setElemHeight: function() {
-            this.$widgetElem.css('height', this.$stickyElem.outerHeight());
+            this.element.css('height', this.$stickyElem.outerHeight());
         },
 
         _addSticky: function(_topOffset) {
-            var inst = this,
-                o = inst.options;
 
-            inst.$stickyElem.css("top", _topOffset + 'px');
+            //add top position here to update even when the element it's already sticky if the 'offset' top changes.
+            this.$stickyElem.css("top", _topOffset + 'px');
 
-            if (!inst.isSticky) {
-                inst.isSticky = !inst.isSticky;
-                inst.$stickyElem.addClass('js--sticky');
-                if (o.layoutStickyActiveCls) $('.layout').addClass(o.layoutStickyActiveCls);
+            //no need to run this after gets sticky
+            if (!this.isSticky) {
+                this.isSticky = !this.isSticky;
+
+                this._addClass(this.$stickyElem, 'js--sticky');
+                if (this.options.layoutStickyActiveCls) this._addClass(this.$layout, this.options.layoutStickyActiveCls);
             }
 
         },
 
         _removeSticky: function() {
-            var inst = this,
-                o = inst.options;
-            if (inst.isSticky) {
-                inst.isSticky = !inst.isSticky;
-                inst.$stickyElem.removeClass('js--sticky').removeAttr('style');
-                if (o.layoutStickyActiveCls) $('.layout').removeClass(o.layoutStickyActiveCls);
+
+            //no need to run this after sticky was removed
+            if (this.isSticky) {
+                this.isSticky = !this.isSticky;
+
+                this._removeClass(this.$stickyElem.css('top', ''), 'js--sticky');
+
+                if (this.options.layoutStickyActiveCls) this._removeClass(this.$layout, this.options.layoutStickyActiveCls);
             }
 
         },
 
         _disableSticky: function() {
-            var inst = this,
-                o = inst.options;
-            if (!inst.isStickyDisabled) {
-                inst.$window.off('scroll' + inst.eventNamespace);
-                inst.$stickyElem.removeClass('js--sticky').add(inst.$widgetElem).removeAttr('style');
-                if (o.layoutStickyActiveCls) $('.layout').removeClass(o.layoutStickyActiveCls);
+
+            if (!this.isStickyDisabled) {
+                this.isSticky = !this.isSticky;
+
+                this.window.off('scroll' + this.eventNamespace);
+
+                this.element.css('height', '');
+                this._removeClass(this.$stickyElem.css('top', ''), 'js--sticky');
+                if (this.options.layoutStickyActiveCls) $('.layout').removeClass(this.options.layoutStickyActiveCls);
             }
 
         },
@@ -296,4 +302,3 @@
         }
     });
 })(jQuery);
-
