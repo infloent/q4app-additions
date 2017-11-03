@@ -112,28 +112,29 @@
 
         _create: function() {
             this._widgetVariables();
-
-            // console.log(this);
-
             this._stickyOnScroll();
             this._stickyOnResize();
-            console.log(this.widget());
-
         },
 
         _init: function() {
-            // this.window.trigger('scroll' + this.eventNamespace);
-            this.window.trigger('resize' + this.eventNamespace);
-
+            this._enableDisableSticky();
         },
 
         _setOption: function(key, value) {
-            this._super();
-            this._stickyOnScroll();
-            this.window.trigger('resize' + this.eventNamespace);
-            console.log('setOpt');
-            console.log(this);
-
+            if (key === 'disabled') {
+                var prevDisabledVal = this.option('disabled');
+                if (value === true && prevDisabledVal === false) {
+                    this.isStickyDisabled = false;
+                    this._removeStickyOnResize();
+                    this._disableSticky();
+                } else if (value === false && prevDisabledVal === true) {
+                    this.isStickyDisabled = true;
+                    this._stickyOnResize();
+                    this._enableDisableSticky();
+                    this._addRemoveSticky();
+                }
+            }
+            this._super(key, value);
         },
 
         _destroy: function() {
@@ -141,6 +142,11 @@
             //this.disableSticky();
             // base destroy
             this._super();
+            this._removeWidgetElemHeight();
+            this.removeSticky();
+            if ($('.js_sticky-appended', this.element).length) {
+                $('.js_sticky-appended', this.element).children().unwrap();
+            }
         },
 
         /*=============== custom methods ================*/
@@ -177,10 +183,8 @@
             this.throttleDelay = 0;
             this.isSticky = false;
             this.isStickyDisabled = false;
-            this.disableByContidion = true;
-
         },
-
+        // not needed
         _setOptionsResponsive: function() {
 
             if (this.options.responsive &&
@@ -189,19 +193,21 @@
                 for (var i = 0; i <= this.options.responsive.length; i++) {
 
                 }
-
             }
         },
 
-        disableConstiton: function() {
+        disableCondititon: function() {
             return this.options.disableStickySwitchCondition === (this.window.width() <= this.options.disableStickyBreakPoint);
+        },
+
+        topOffset: function() {
+            return this.options.getTopOffset();
         },
 
         _setStickyElemHeightToWidgetElem: function(e) {
 
             //add "$stickyElem" height to 'this.element' to prevent content jumps when "$stickyElem" will get fixed position.
             this.element.css('height', this.$stickyElem.outerHeight());
-
         },
 
         _setWidgetElemHeight: function() {
@@ -217,11 +223,14 @@
                 });
             }
         },
+        _removeWidgetElemHeight: function() {
+            this.element.css('height', '');
+        },
 
-        addSticky: function(_topOffset) {
+        addSticky: function() {
 
             //add top position here to update even when the element it's already sticky if the 'offset' top changes.
-            this.$stickyElem.css("top", _topOffset + 'px');
+            this.$stickyElem.css("top", this.topOffset() + 'px');
 
             //no need to run this after gets sticky
             if (!this.isSticky) {
@@ -248,12 +257,10 @@
 
         _addRemoveSticky: function(_event) {
 
-            var o = this.options,
-                curentScroll = this.window.scrollTop(),
-                topOffset = this.options.getTopOffset(),
-                widgetElem_offsetTop = this.element.offset().top - topOffset;
+            var curentScroll = this.window.scrollTop(),
+                widgetElem_offsetTop = this.element.offset().top - this.topOffset();
 
-            if (!this.disableConstiton() && this.disableByContidion) {
+            if (!this.disableCondititon()) {
                 console.log("addrenove" + this.eventNamespace);
                 //height will be updated on 'scroll' and 'resize'
                 this._setWidgetElemHeight();
@@ -263,7 +270,7 @@
                     // TRIGGER 'stickyWidgetonSticky' event on 'this.element'
                     if (!this.isSticky) this._trigger("onSticky", _event);
 
-                    this.addSticky(topOffset);
+                    this.addSticky();
 
                     // TRIGGER 'stickyWidgetafterSticky' event on 'element'
                     this._trigger("afterSticky", _event);
@@ -282,7 +289,7 @@
             }
         },
 
-        //run sticky on 'scroll'
+        //run '_addRemoveSticky' on 'scroll'
         _stickyOnScroll: function() {
             /*
              * Use the build in '._on()' method for automatic event unbind on 'destroy'. 
@@ -294,38 +301,22 @@
                 scroll: "_addRemoveSticky"
             });
         },
-        // not working when already disabled by condition
-        disableSticky: function(disableByContidion) {
+        _removeStickyOnScroll: function() {
+            this._off(this.window, 'scroll');
+        },
 
-            if (!this.isStickyDisabled && this.disableByContidion) {
+        _disableSticky: function() {
+            if (!this.isStickyDisabled) {
 
-                if (typeof disableByContidion === "undefined" || disableByContidion !== true) {
-                    this.disableByContidion = false;
-                }
-                console.log('disableinner:' + disableByContidion);
-                console.log('disablethis:' + this.disableByContidion);
                 this.isStickyDisabled = !this.isStickyDisabled;
-                this.isSticky = !this.isSticky;
-
-                this.window.off('scroll' + this.eventNamespace);
-
-                this.element.css('height', '');
-                this._removeClass(this.$stickyElem.css('top', ''), 'js--sticky');
-
-                if (this.options.layoutStickyActiveCls) this._removeClass(this.$layout, this.options.layoutStickyActiveCls);
+                this._removeStickyOnScroll();
+                this._removeWidgetElemHeight();
+                this.removeSticky();
             }
         },
 
-        enableSticky: function(disableByContidion) {
-            if (typeof disableByContidion === "undefined" || disableByContidion !== true) {
-                this.disableByContidion = true; 
-                // this._addRemoveSticky();
-            }
-
-            if (this.isStickyDisabled && this.disableByContidion) {
-
-                console.log('enableinner:' + disableByContidion);
-                console.log('enablethis:' + this.disableByContidion);
+        _enableSticky: function() {
+            if (this.isStickyDisabled) {
 
                 this._stickyOnScroll();
                 this.isStickyDisabled = !this.isStickyDisabled;
@@ -335,18 +326,17 @@
 
         _enableDisableSticky: function(_event) {
 
-            // if 'disableConstiton' is 'true' disable sticky functionality.
-            if (this.disableConstiton()) {
+            // if 'disableCondititon' is 'true' disable sticky functionality.
+            if (this.disableCondititon()) {
 
-                this.disableSticky(true);
+                this._disableSticky(true);
             }
-            //if 'disableConstiton' is 'false' add back the sticky functionality.
+            //if 'disableCondititon' is 'false' add back the sticky functionality.
             else {
 
-                this.enableSticky(true);
+                this._enableSticky(true);
             }
         },
-
         //run sticky on 'resize'
         _stickyOnResize: function() {
 
@@ -359,6 +349,9 @@
                 }, this.throttleDelay)
             });
 
+        },
+        _removeStickyOnResize: function() {
+            this._off(this.window, 'resize');
         },
 
         //when using repetive events like "scroll", "resize", "mousemove" etc to prevent the callback function to run too manny times and hitting the performance, a 'throttled' callback should be used.
