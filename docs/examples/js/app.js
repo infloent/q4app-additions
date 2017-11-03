@@ -5,6 +5,6 @@ $('.nav--secondary').stickyWidget({
     disableStickyBreakPoint: 1024,
     disableStickySwitchCondition: true,
     stickyElem: "append",
-    layoutStickyActiveCls: "js--nav--secondary-sticky"
+    layoutStickyActiveCls: "js--nav--secondary-sticky",
 });
 
