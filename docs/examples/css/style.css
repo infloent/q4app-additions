@@ -1907,7 +1907,6 @@ input[type="checkbox"]:checked+label:after {
 
 .nav {
     text-align: center;
-    height: 61px;
 }
 
 .nav a {
