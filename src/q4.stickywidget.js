@@ -8,7 +8,7 @@
      *
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
      * 
-     * 
+     * {@tutorial}.
      */
     /*
      * ====TO DO=====
@@ -91,29 +91,20 @@
             onUnSticky: function(event) {},
             afterSticky: function(event) {},
             beforeSticky: function(event) {},
-
+            disabled: false,
             classes: {
                 "js--sticky": "js--sticky-nav"
-            },
-            responsive: [{
-                breakpoint: 1024,
-                settings: {
-
-                }
-            }, {
-                breakpoint: 768,
-                settings: {
-
-                }
-            }]
+            }
         },
 
         /*============== build in methods ===============*/
 
         _create: function() {
             this._widgetVariables();
-            this._stickyOnScroll();
-            this._stickyOnResize();
+            if (!('disabled' in this.options) || (('disabled' in this.options) && !(this.options.disabled === true))) {
+                this._stickyOnScroll();
+                this._stickyOnResize();
+            }
         },
 
         _init: function() {
@@ -272,7 +263,7 @@
 
                     this.addSticky();
 
-                    // TRIGGER 'stickyWidgetafterSticky' event on 'element'
+                    // TRIGGER 'stickyWidgetafterSticky' event on 'this.element'
                     this._trigger("afterSticky", _event);
 
                 } else {
