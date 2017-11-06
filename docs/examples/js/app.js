@@ -6,5 +6,6 @@ $('.nav--secondary').stickyWidget({
     disableStickySwitchCondition: true,
     stickyElem: "append",
     layoutStickyActiveCls: "js--nav--secondary-sticky",
+    disabled: false
 });
 
