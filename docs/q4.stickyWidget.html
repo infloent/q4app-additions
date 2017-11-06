@@ -21,8 +21,8 @@
                 <ul>
                     <li><a href='#option-stickyElem'>stickyElem</a></li>
                     <li><a href='#option-layoutStickyActiveCls'>layoutStickyActiveCls</a></li>
-                    <li><a href='#option-stopStickyBreakPoint'>stopStickyBreakPoint</a></li>
-                    <li><a href='#option-stopStickySwitchCondition'>stopStickySwitchCondition</a></li>
+                    <li><a href='#option-disableStickyBreakPoint'>disableStickyBreakPoint</a></li>
+                    <li><a href='#option-disableStickySwitchCondition'>disableStickySwitchCondition</a></li>
                 </ul>
             </li>
         
@@ -52,7 +52,7 @@
     <dl>
         <div id='option-stickyElem'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L33' target='_blank'>stickyElem</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L42' target='_blank'>stickyElem</a></strong>
                 <span>element</span>
             </dt>
             <dd>
@@ -83,7 +83,7 @@
         </div>
         <div id='option-layoutStickyActiveCls'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L55' target='_blank'>layoutStickyActiveCls</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L64' target='_blank'>layoutStickyActiveCls</a></strong>
                 <span>string</span>
             </dt>
             <dd>
@@ -106,13 +106,13 @@ Add this class if you need to change style of other elements on the page when th
                 </dl>
             </dd>
         </div>
-        <div id='option-stopStickyBreakPoint'>
+        <div id='option-disableStickyBreakPoint'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L64' target='_blank'>stopStickyBreakPoint</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L73' target='_blank'>disableStickyBreakPoint</a></strong>
                 <span>number</span>
             </dt>
             <dd>
-                Break point at witch the sticky functionality will be disabled depending on the value <code>'stopStickySwitchCondition'</code>.<br><br>
+                Break point at witch the sticky functionality will be disabled depending on the value <code>'disableStickySwitchCondition'</code>.<br><br>
                 <dl>
 
                     <dt>Default value</dt>
@@ -127,13 +127,13 @@ Add this class if you need to change style of other elements on the page when th
                 </dl>
             </dd>
         </div>
-        <div id='option-stopStickySwitchCondition'>
+        <div id='option-disableStickySwitchCondition'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L77' target='_blank'>stopStickySwitchCondition</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L86' target='_blank'>disableStickySwitchCondition</a></strong>
                 <span>boolean</span>
             </dt>
             <dd>
-                For <code>'stopStickyBreakPoint'</code> to work this should be set to either <code>true</code> or <code>false</code>.<br><br>
+                For <code>'disableStickyBreakPoint'</code> to work this should be set to either <code>true</code> or <code>false</code>.<br><br>
                 <dl>
 
                     <dt>Default value</dt>
@@ -144,10 +144,10 @@ Add this class if you need to change style of other elements on the page when th
 
                     <dt>Example</dt>
                     <dd><pre><span class="hljs-literal">true</span> 
-<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width it is equal or less than <span class="hljs-string">'stopStickyBreakPoint'</span></pre></dd>
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width it is equal or less than <span class="hljs-string">'disableStickyBreakPoint'</span></pre></dd>
                     <dt>Example</dt>
                     <dd><pre><span class="hljs-literal">false</span> 
-<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width greater than <span class="hljs-string">'stopStickyBreakPoint'</span></pre></dd>
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width greater than <span class="hljs-string">'disableStickyBreakPoint'</span></pre></dd>
 
                 </dl>
             </dd>
