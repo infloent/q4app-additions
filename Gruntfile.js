@@ -27,6 +27,19 @@ module.exports = function(grunt) {
             }
         },
 
+        clean: {
+            examples: ['docs/examples/latestSrc/q4.*.min.js']
+        },
+
+        copy: {
+            examples: {
+                expand: true,
+                cwd: 'dist/latest/',
+                src: 'q4.*.min.js',
+                dest: 'docs/examples/latestSrc/'
+            }
+        },
+
         less: {
             default: {
                 src: 'jsdoc_template/style.less',
@@ -57,7 +70,27 @@ module.exports = function(grunt) {
                 files: ['jsdoc_template/publish.js', 'jsdoc_template/*.mustache', 'src/*.js'],
                 tasks: ['jsdoc']
             }
+        },
+        browserSync: {
+            serveSticky: {
+                bsFiles: {
+                    src: [
+                        'src/*.js',
+                        'docs/examples/css/*.css',
+                        'docs/examples/js/*.js'
+                    ]
+                },
+                options: {
+                    // watchTask: true,
+                    port: 9000,
+                    //open: 'external',
+                    host: 'stickyWidget',
+                    server: './',
+                    startPath: "docs/examples/index.html"
+                }
+            }
         }
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -67,6 +100,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-jsdoc');
     grunt.loadNpmTasks('grunt-newer');
+    grunt.loadNpmTasks('grunt-browser-sync');
 
     grunt.registerMultiTask('uglify_newer', function() {
         // generate target filenames based on version numbers
@@ -111,9 +145,13 @@ module.exports = function(grunt) {
             grunt.task.run('copy:' + name);
         });
     });
+    grunt.registerTask('updateExamples', ['clean:examples', 'copy:examples']);
 
-    grunt.registerTask('min', ['uglify_newer']);
+    grunt.registerTask('min', ['uglify_newer', 'newer:updateExamples']);
     grunt.registerTask('doc', ['newer:less', 'newer:jsdoc']);
+
+    grunt.registerTask('serveSticky', ['browserSync:serveSticky']);
 
     grunt.registerTask('default', ['min', 'doc']);
 };
+
