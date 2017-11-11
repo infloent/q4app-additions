@@ -77,7 +77,7 @@ $.extend(true, q4Defaults, /** @lends q4.getTopOffset */ {
      * <br><br>
      * This method also checks if the elements passed to the <code>'offsetTopElem</code>' array exists before calculating the offset. 
      * <br>
-     * In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <code>'setHeaderOffset'</code> can be initialized globally and will not throw an error if a sticky navigation it's not a global element and only shows on some pages.
+     * In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <code>'setHeaderOffset'</code> can be initialized globally and will not throw an error if a sticky element it's not a global element and only shows on some pages.
      *
      * @type {function}
      * @param {array} [_offsetElem] If not set this methotd will use <code>'this.offsetTopElem'</code>
