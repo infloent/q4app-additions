@@ -14,15 +14,28 @@
         <main>
     <header>
     <h1>q4.stickyWidget</h1>
-    Adds sticky element fucntionality.<br><br>
+    Adds sticky element functionality.<br><br>
     <ul class="top-nav">
         
             <li><a href='#options'>Options</a>
                 <ul>
                     <li><a href='#option-stickyElem'>stickyElem</a></li>
                     <li><a href='#option-layoutStickyActiveCls'>layoutStickyActiveCls</a></li>
-                    <li><a href='#option-disableStickyBreakPoint'>disableStickyBreakPoint</a></li>
-                    <li><a href='#option-disableStickySwitchCondition'>disableStickySwitchCondition</a></li>
+                    <li><a href='#option-disableBreakPoint'>disableBreakPoint</a></li>
+                    <li><a href='#option-disableSwitchCondition'>disableSwitchCondition</a></li>
+                    <li><a href='#option-triggerOffset'>triggerOffset</a></li>
+                    <li><a href='#option-triggerOffsetElemHeight'>triggerOffsetElemHeight</a></li>
+                    <li><a href='#option-positionOffset'>positionOffset</a></li>
+                    <li><a href='#option-positionOffsetElemHeight'>positionOffsetElemHeight</a></li>
+                    <li><a href='#option-offsetTopElem'>offsetTopElem</a></li>
+                    <li><a href='#option-offsetTopBreakPoint'>offsetTopBreakPoint</a></li>
+                    <li><a href='#option-getTopOffset'>getTopOffset</a></li>
+                    <li><a href='#option-disabled'>disabled</a></li>
+                    <li><a href='#option-classes'>classes</a></li>
+                    <li><a href='#option-onSticky'>onSticky</a></li>
+                    <li><a href='#option-onUnSticky'>onUnSticky</a></li>
+                    <li><a href='#option-afterSticky'>afterSticky</a></li>
+                    <li><a href='#option-beforeSticky'>beforeSticky</a></li>
                 </ul>
             </li>
         
@@ -52,11 +65,23 @@
     <dl>
         <div id='option-stickyElem'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L42' target='_blank'>stickyElem</a></strong>
-                <span>element</span>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L54' target='_blank'>stickyElem</a></strong>
+                <span>string</span>
             </dt>
             <dd>
-                Element that will get sticky, with by having a <code>'js--sticky'</code> class added.<br><br>
+                Element that will get sticky, by having a <code>'js--sticky'</code> class added.
+<br><br>
+By default:
+<br>
+- if the widget element has children the first child element will be set as <code>'stickyElem'</code>.
+<br>
+- if there are no children a <code>div</code> element with the class <code>"js_sticky-appended"</code> will be appended and set as <code>'stickyElem'</code>
+<br><br>
+This option can be set to:
+<br>
+- a css class pointing to a child element of the widget element; typically it should be a first child element;
+<br>
+- "append" string which will add a <code>div</code> element with the class <code>"js_sticky-appended"</code> that wrap all the inner elements of the widget element if there are any.<br><br>
                 <dl>
 
                     <dt>Default value</dt>
@@ -65,7 +90,11 @@
 
 
                     <dt>Example</dt>
-                    <dd><code>$(<span class="hljs-string">'.nav--main'</span>) </code></dd>
+                    <dd><code><span class="hljs-string">'.level1'</span> <span class="hljs-comment">//if the widget it's called on $('.nav--main'); default value will achive the same result in this case.</span></code></dd>
+                    <dt>Example</dt>
+                    <dd><code><span class="hljs-string">'.pane_inner'</span> <span class="hljs-comment">//if the widget it's called on $('.pane--navigation');</span></code></dd>
+                    <dt>Example</dt>
+                    <dd><code><span class="hljs-string">'append'</span> <span class="hljs-comment">// special string value.</span></code></dd>
 
                     <dt>Example</dt>
                     <dd><pre><span class="hljs-keyword">default</span> styles <span class="hljs-keyword">for</span> <span class="hljs-string">'js-sitcky'</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">should</span> <span class="hljs-title">be</span>
@@ -83,7 +112,7 @@
         </div>
         <div id='option-layoutStickyActiveCls'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L64' target='_blank'>layoutStickyActiveCls</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L76' target='_blank'>layoutStickyActiveCls</a></strong>
                 <span>string</span>
             </dt>
             <dd>
@@ -106,13 +135,13 @@ Add this class if you need to change style of other elements on the page when th
                 </dl>
             </dd>
         </div>
-        <div id='option-disableStickyBreakPoint'>
+        <div id='option-disableBreakPoint'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L73' target='_blank'>disableStickyBreakPoint</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L85' target='_blank'>disableBreakPoint</a></strong>
                 <span>number</span>
             </dt>
             <dd>
-                Break point at witch the sticky functionality will be disabled depending on the value <code>'disableStickySwitchCondition'</code>.<br><br>
+                Break point at which the sticky functionality will be disabled depending on the value <code>'disableSwitchCondition'</code>.<br><br>
                 <dl>
 
                     <dt>Default value</dt>
@@ -127,13 +156,13 @@ Add this class if you need to change style of other elements on the page when th
                 </dl>
             </dd>
         </div>
-        <div id='option-disableStickySwitchCondition'>
+        <div id='option-disableSwitchCondition'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L86' target='_blank'>disableStickySwitchCondition</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L98' target='_blank'>disableSwitchCondition</a></strong>
                 <span>boolean</span>
             </dt>
             <dd>
-                For <code>'disableStickyBreakPoint'</code> to work this should be set to either <code>true</code> or <code>false</code>.<br><br>
+                For <code>'disableBreakPoint'</code> to work this should be set to either <code>true</code> or <code>false</code>.<br><br>
                 <dl>
 
                     <dt>Default value</dt>
@@ -144,10 +173,328 @@ Add this class if you need to change style of other elements on the page when th
 
                     <dt>Example</dt>
                     <dd><pre><span class="hljs-literal">true</span> 
-<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width it is equal or less than <span class="hljs-string">'disableStickyBreakPoint'</span></pre></dd>
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width it is equal or less than <span class="hljs-string">'disableBreakPoint'</span></pre></dd>
                     <dt>Example</dt>
                     <dd><pre><span class="hljs-literal">false</span> 
-<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width greater than <span class="hljs-string">'disableStickyBreakPoint'</span></pre></dd>
+<span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> sticky functionalilty will stop <span class="hljs-keyword">if</span> <span class="hljs-built_in">window</span> width greater than <span class="hljs-string">'disableBreakPoint'</span></pre></dd>
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-triggerOffset'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L107' target='_blank'>triggerOffset</a></strong>
+                <span>number</span>
+            </dt>
+            <dd>
+                A number to set a top relative position at which the sticky state will be triggered.
+<br>
+It can be a negative number.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-number">0</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-triggerOffsetElemHeight'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L116' target='_blank'>triggerOffsetElemHeight</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                sets the <code>'stickyElem'</code> height as trigger offset
+<br>
+To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><br>
+                <dl>
+
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-positionOffset'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L124' target='_blank'>positionOffset</a></strong>
+                <span>number</span>
+            </dt>
+            <dd>
+                A number to set the top position of the sticky element.
+<br>
+It can be a negative number.<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-number">0</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-positionOffsetElemHeight'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L133' target='_blank'>positionOffsetElemHeight</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                sets the <code>'stickyElem'</code> height as top position of the sticky element.
+<br>
+To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><br>
+                <dl>
+
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-offsetTopElem'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L145' target='_blank'>offsetTopElem</a></strong>
+                <span>array.&lt;elements&gt;</span>
+            </dt>
+            <dd>
+                Array of elements that will be used for: 
+<br>
+- to set a top relative position at which the sticky state will be triggered. <code>'triggerOffset'</code> will be added to the sum of these elements heights
+- to set the top position of the sticky element. <code>'positionOffset</code> will be added to the sum of these elements heights<br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>[] <span class="hljs-comment">//empty array for no offset top</span></code></dd>
+
+
+
+                    <dt>Example</dt>
+                    <dd><code>offsetTopElem: [$(<span class="hljs-string">'.pane--header'</span>), $(<span class="hljs-string">'.pane--banner'</span>)] <span class="hljs-comment">// 'getTopOffset' will return the sum of these two elements heights.</span></code></dd>
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-offsetTopBreakPoint'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L162' target='_blank'>offsetTopBreakPoint</a></strong>
+                <span>array.&lt;object&gt;</span>
+            </dt>
+            <dd>
+                An array of objects containing two properties <code>'breakPoint'</code> and <code>'offsetTopElem'</code> to run the functionality of "offsetTopElem" explained above on resolution breakpints.
+<br><br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code>[] <span class="hljs-comment">//empty array. In this case will calculte the offset only based on 'offsetTopElem'</span></code></dd>
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>breakPoint</strong>
+                            <span>number</span>
+                        </dt>
+                        <dd></dd>
+                        <dt>
+                            <strong>offsetTopElem</strong>
+                            <span>array.&lt;elements&gt;</span>
+                        </dt>
+                        <dd></dd>
+                    </dl></dd>
+
+
+                    <dt>Example</dt>
+                    <dd><pre>offsetTopBreakPoint: [{
+    breakPoint: <span class="hljs-number">1024</span>,
+    offsetTopElem: [$(<span class="hljs-string">'.pane--header'</span>)] <span class="hljs-comment">// 'getTopOffset' will return this element's height</span>
+  },{
+    breakPoint: <span class="hljs-number">768</span>,
+    offsetTopElem: [] <span class="hljs-comment">//empty array for no offset top at resolutions below or equal tp 768px</span>
+}]</pre></dd>
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-getTopOffset'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L177' target='_blank'>getTopOffset</a></strong>
+                <span>function</span>
+            </dt>
+            <dd>
+                Method that returns the top offset number based on <code>'offsetTopElem'</code> array and <code>'offsetTopBreakPoint'</code> array of objects.
+<br><br>
+This method also checks if the elements passed to the <code>'offsetTopElem</code>' array exists before calculating the offset. 
+<br>
+In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <code>'setHeaderOffset'</code> can be initialized globally and will not throw an error if a sticky element it's not a global element and only shows on some pages.<br><br>
+                <dl>
+
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>_offsetElem</strong>
+                            <span>array</span>
+                        </dt>
+                        <dd>If not set this methotd will use <code>'this.offsetTopElem'</code></dd>
+                        <dt>
+                            <strong>_offsetBreakPoint</strong>
+                            <span>array.&lt;object&gt;</span>
+                        </dt>
+                        <dd>If not set this methotd will use <code>'this.offsetTopBreakPoint'</code></dd>
+                    </dl></dd>
+
+
+
+                    <dt>Returns</dt>
+                    <dd>number</dd>
+                </dl>
+            </dd>
+        </div>
+        <div id='option-disabled'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L186' target='_blank'>disabled</a></strong>
+                <span>boolean</span>
+            </dt>
+            <dd>
+                With this set to <code>"true"</code> the widget will be initilized but sticky functionality not, and it can be activated after initialization by setting it to <code>'false'</code> : <code>$(element).stickyWidget("option", "disabled", false);</code>
+<br><br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-literal">false</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-classes'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L192' target='_blank'>classes</a></strong>
+                <span>Object</span>
+            </dt>
+            <dd>
+                This is a build in Widget Factory feature used to adding features or css theming with aditional css classes.<br><br>
+                <dl>
+
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-onSticky'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L202' target='_blank'>onSticky</a></strong>
+                <span>function</span>
+            </dt>
+            <dd>
+                This method will be triggered once time just before the sticky state it's set.<br><br>
+                <dl>
+
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>event</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>The event object that triggers this callback.</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-onUnSticky'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L209' target='_blank'>onUnSticky</a></strong>
+                <span>function</span>
+            </dt>
+            <dd>
+                This method will be triggered once time just before the sticky state it's reseted.<br><br>
+                <dl>
+
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>event</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>The event object that triggers this callback.</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-afterSticky'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L216' target='_blank'>afterSticky</a></strong>
+                <span>function</span>
+            </dt>
+            <dd>
+                This method will be triggered repetitively after the sticky state it's set and still active.<br><br>
+                <dl>
+
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>event</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>The event object that triggers this callback.</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-beforeSticky'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L223' target='_blank'>beforeSticky</a></strong>
+                <span>function</span>
+            </dt>
+            <dd>
+                This method will be triggered repetitively after the sticky state it's reset and still inactive.<br><br>
+                <dl>
+
+
+
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>event</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>The event object that triggers this callback.</dd>
+                    </dl></dd>
+
+
 
                 </dl>
             </dd>
