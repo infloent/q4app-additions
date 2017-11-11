@@ -145,9 +145,9 @@ module.exports = function(grunt) {
             grunt.task.run('copy:' + name);
         });
     });
-    grunt.registerTask('updateExamples', ['clean:examples', 'copy:examples']);
+    grunt.registerTask('updateExamples', ['newer:clean:examples', 'newer:copy:examples']);
 
-    grunt.registerTask('min', ['uglify_newer', 'newer:updateExamples']);
+    grunt.registerTask('min', ['uglify_newer', 'updateExamples']);
     grunt.registerTask('doc', ['newer:less', 'newer:jsdoc']);
 
     grunt.registerTask('serveSticky', ['browserSync:serveSticky']);
