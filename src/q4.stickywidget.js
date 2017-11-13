@@ -42,7 +42,7 @@
              * @example
              * default styles for 'js-sitcky' class should be
              * 
-             * .js-sitcky {
+             * .js--sitcky {
              *     position: fixed;
              *     left: 0;
              *     right:0;
@@ -52,6 +52,13 @@
              * @default null
              */
             stickyElem: null,
+            /**
+             * Css class that will be added to the sticky element when sticky state it's active
+             * @type {string}
+             * 
+             * @default
+             */
+            stickyClass: "js--sticky",
             /*
              * Functionality needs to be triggered by the position of a parent of <code>'stickyElem'</code> that will remain in the place where the <code>'stickyElem'</code> was before getting position fixed.
              * <br><br>
@@ -73,7 +80,7 @@
              * 
              * @default  null
              */
-            layoutStickyActiveCls: null,
+            layoutStickyActiveClass: null,
             /**
              * Break point at which the sticky functionality will be disabled depending on the value <code>'disableSwitchCondition'</code>.
              * @type {?number}
@@ -189,10 +196,10 @@
              * 
              * @type {Object}
              */
-            classes: {
-                "js_sticky-elem": "",
-                "js--sticky": ""
-            },
+            // classes: {
+            //     "js_sticky-elem": "",
+            //     "js--sticky": ""
+            // },
             /**
              * This method will be triggered once time just before the sticky state it's set.
              * 
@@ -268,7 +275,8 @@
 
         //extent base method to react dependion on option values.
         _setOption: function(key, value) {
-            // react to changes of 'disabled' option
+            console.log(key + ": " + value)
+                // react to changes of 'disabled' option
             if (key === 'disabled') {
                 var prevDisabledVal = this.option('disabled');
                 // if the value that will be set is 'true' and the previous value was 'false' run disable functionality. 
@@ -395,6 +403,13 @@
             this.element.css('height', '');
         },
 
+        _setStickyElemPosition: function() {
+            this.$stickyElem.css("top", this.positionOffset() + 'px');
+        },
+
+        _removeStickyElemPosition: function() {
+            this.$stickyElem.css('top', '');
+        },
 
         /* 
          * updates the top position of '$stickyElem' determinated by this.positionOffset() on each call
@@ -411,14 +426,14 @@
             if (!this.isSticky) this._trigger("onSticky", _event);
 
             //add top position here to update even when the element it's already sticky if the 'offset' top changes.
-            this.$stickyElem.css("top", this.positionOffset() + 'px');
+            this._setStickyElemPosition();
 
             //no need to run this after gets sticky
             if (!this.isSticky) {
                 this.isSticky = !this.isSticky;
 
-                this._addClass(this.$stickyElem, 'js--sticky');
-                if (this.options.layoutStickyActiveCls) this._addClass(this.$layout, this.options.layoutStickyActiveCls);
+                this._addClass(this.$stickyElem, this.options.stickyClass);
+                if (this.options.layoutStickyActiveClass) this._addClass(this.$layout, this.options.layoutStickyActiveClass);
             }
 
             // TRIGGER 'stickywidgetaftersticky' event on 'this.element'
@@ -445,9 +460,10 @@
             if (this.isSticky) {
                 this.isSticky = !this.isSticky;
 
-                this._removeClass(this.$stickyElem.css('top', ''), 'js--sticky');
+                this._removeClass(this.$stickyElem, this.options.stickyClass);
+                this._removeStickyElemPosition();
 
-                if (this.options.layoutStickyActiveCls) this._removeClass(this.$layout, this.options.layoutStickyActiveCls);
+                if (this.options.layoutStickyActiveClass) this._removeClass(this.$layout, this.options.layoutStickyActiveClass);
             }
 
             // TRIGGER 'stickyWidgetbeforeSticky' event on 'this.element'
@@ -455,6 +471,12 @@
 
         },
 
+        addCondition: function(_curentScroll, _offsetTop) {
+            return _curentScroll > _offsetTop;
+        },
+        removeCondition: function(_curentScroll, _offsetTop) {
+            return _curentScroll <= _offsetTop;
+        },
 
         // adds or removes the sticky state based on a sticky condition
         _addRemoveSticky: function(_event) {
@@ -467,11 +489,11 @@
                 //height will be updated on 'scroll' and 'resize'
                 this._setWidgetElemHeight();
 
-                if (curentScroll > stickyOffsetTop) {
+                if (this.addCondition(curentScroll, stickyOffsetTop)) {
 
                     this.addSticky(_event);
 
-                } else {
+                } else if (this.removeCondition(curentScroll, stickyOffsetTop)) {
 
                     this.removeSticky(_event);
 
@@ -569,4 +591,115 @@
             };
         }
     });
+
+    $.widget('q4.stickySlide', $.q4.stickyWidget, {
+        options: {
+            showHide: false,
+            triggerOffset: -200,
+            stickyClass: "js--slide-active",
+            triggerOffsetElemHeight: "negative",
+            positionOffsetElemHeight: "negative",
+            stickyOptions: {
+                showHide: false,
+                stickyClass: "js--sticky",
+                layoutStickyActiveClass: null,
+                triggerOffset: 0,
+                triggerOffsetElemHeight: "negative",
+                positionOffsetElemHeight: "negative",
+                classes: {
+                    "js--sticky": "js--slide"
+                },
+            }
+        },
+        _create: function() {
+            var optionss = this.options,
+                optionsSticky = this.options.stickyOptions;
+            this.element.stickyWidget(optionss);
+            this.element.stickyWidget('option', optionsSticky);
+            if (this.options.showHide) {
+                this.element.stickyWidget('removeCondition', function() {
+
+                });
+            }
+
+
+            this._super();
+        },
+        //extent base method to react dependion on option values.
+        _setOption: function(key, value) {
+            // react to changes of 'disabled' option
+            if (key === 'disabled') {
+                var prevDisabledVal = this.option('disabled');
+                // if the value that will be set is 'true' and the previous value was 'false' run disable functionality. 
+                // if the previous value already 'true' means it's already disabled
+                if (value === true && prevDisabledVal === false) {
+                    this.element.stickyWidget('disable');
+
+                }
+                // if the value that will be set is 'false' and the previous value was 'true' run enable functionality. 
+                // if the previous value already 'false' means it's already enabled
+                else if (value === false && prevDisabledVal === true) {
+                    this.element.stickyWidget('enable');
+                }
+            }
+            //run the base functionality to set the options.
+            this._super(key, value);
+        },
+        _destroy: function() {
+            this.element.stickyWidget("destroy");
+            this._super();
+        },
+        //remove base functionality
+        _setWidgetElemHeight: function() {},
+        _setStickyElemPosition: function() {},
+        _removeStickyElemPosition: function() {},
+        //end remove base functionality
+
+        addCondition: function(_curentScroll, _offsetTop) {
+            return _curentScroll > _offsetTop;
+        },
+        removeCondition: function(_curentScroll, _offsetTop) {
+            return _curentScroll <= _offsetTop;
+        },
+
+
+        lastScrollTop: 0,
+
+        _showHide: function(_event) {
+            if (this.window.scrollTop() <= this.lastScrollTop) {
+                this.addSticky(_event);
+            } else {
+                this.removeSticky(_event);
+            }
+
+            this.lastScrollTop = this.window.scrollTop();
+        },
+
+        // adds or removes the sticky state based on a sticky condition
+        _addRemoveSticky: function(_event) {
+
+
+            var curentScroll = this.window.scrollTop(),
+                stickyOffsetTop = this.element.offset().top - this.triggerOffset();
+
+            if (!this.disableCondititon()) {
+
+                //height will be updated on 'scroll' and 'resize'
+                this._setWidgetElemHeight();
+
+                if (this.addCondition(curentScroll, stickyOffsetTop)) {
+                    if (this.options.showHide) {
+
+                        this._showHide();
+
+                    } else this.addSticky(_event);
+                } else if (curentScroll <= this.element.offset().top - this.options.getTopOffset()) {
+
+                    this.removeSticky(_event);
+
+                }
+            }
+        },
+    });
+    // $.q4.stickySlide.prototype.destroy.apply(this, arguments);
 })(jQuery);

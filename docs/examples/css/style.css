@@ -1967,15 +1967,11 @@ Location Pages: Overview, Why Buy
 
 /*------------------Sticky styles-------------------*/
 
-.js--sticky-slide {
+.js--slide {
     transform: translateY(0);
     transition: transform 0.3s ease-in-out 0s;
-    /*    position: absolute;
-    left: 0;
-    right: 0;*/
     background: #e36464;
-    transition: background-color 0.3s ease-in-out 0s, transform 0.6s ease-in-out 0s;
-    ;
+    transition: background-color 0.3s ease-in-out 0s, transform 0.3s ease-in-out 0s;
 }
 
 .js--sticky {
@@ -1987,7 +1983,7 @@ Location Pages: Overview, Why Buy
     z-index: 100;
 }
 
-.js--sticky-slide-active {
+.js--slide-active {
     transform: translateY(100%);
     transition: background-color 0.3s ease-in-out 0s, transform 0.3s ease-in-out 0s;
 }
@@ -1995,7 +1991,9 @@ Location Pages: Overview, Why Buy
 .nav--main {
     position: relative;
 }
-
+.nav--secondary .js--sticky {
+    z-index: 99;
+}
 
 /*----------------End Sticky styles-----------------*/
 
