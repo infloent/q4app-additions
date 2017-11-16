@@ -104,16 +104,25 @@
              */
             disableSwitchCondition: null,
             /**
-             * A number to set a top relative position at which the sticky state will be triggered.
+             * A number to set a top relative position at which the sticky state will be added.
              * <br>
              * It can be a negative number.
              * 
              * @type {number}
              * @default
              */
-            triggerOffset: 0,
+            triggerOffsetAddSticky: 0,
             /**
-             * sets the <code>'stickyElem'</code> height as trigger offset
+             * A number to set a top relative position at which the sticky state will be remove.
+             * <br>
+             * It can be a negative number. But has effect only when <code>'triggerOffsetAddSticky' < 'triggerOffsetRemoveSticky'</code>
+             * 
+             * @type {number}
+             * @default
+             */
+            triggerOffsetRemoveSticky: 0,
+            /**
+             * Add the <code>'stickyElem'</code> height as trigger offset to 
              * <br>
              * To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;
              * 
@@ -317,7 +326,9 @@
 
         /*=============== custom methods ================*/
 
-        // the sticky element need to be an element inside the this.element because will get an fixed position and will be pulled out of the DOM flow and the offset().top of this.element will be used to trigger the sticky state on the sticky element.
+        // the sticky element need to be an element inside the 'this.element' 
+        // because will get a fixed position and will be pulled out of the DOM flow and the offset().top 
+        // of this.element will be used to trigger the sticky state on the sticky element.
         _setStickyElem: function() {
             var stickyElem;
 
@@ -340,11 +351,6 @@
 
             return stickyElem;
 
-        },
-
-        //condition that will render to 'true' or 'false' and will be use to disable/enables the sticky functionality based on breakpoint.
-        disableCondititon: function() {
-            return this.options.disableSwitchCondition === (this.window.width() <= this.options.disableBreakPoint);
         },
 
         //add "$stickyElem" height to 'this.element' to prevent content jumps when "$stickyElem" will get fixed position.
@@ -411,6 +417,7 @@
 
             //no need to run this after gets sticky
             if (!this.isSticky) {
+
                 this.isSticky = !this.isSticky;
 
                 this._addClass(this.$stickyElem, this.options.stickyClass);
@@ -438,6 +445,7 @@
 
             //no need to run this after sticky was removed
             if (this.isSticky) {
+
                 this.isSticky = !this.isSticky;
 
                 this._removeClass(this.$stickyElem, this.options.stickyClass);
@@ -450,29 +458,51 @@
             this._trigger("beforeSticky", _event);
 
         },
-        //return the calculated trigger offset based on 'triggerOffset', 'offsetTopElem' and 'offsetTopBreakPoint' options.
+
+        //condition that will render to 'true' or 'false' and will be use to disable/enables the sticky functionality based on breakpoint.
+        disableCondititon: function() {
+            return this.options.disableSwitchCondition === (this.window.width() <= this.options.disableBreakPoint);
+        },
+
+        _calcTriggerOffset: function(_triggerOffset, _triggerOffsetElemHeigh) {
+            var _offset = this.options.getTopOffset() + _triggerOffset;
+
+            switch (_triggerOffsetElemHeigh) {
+                case "positive":
+                    _offset += this.$stickyElem.outerHeight();
+                    break;
+                case "negative":
+                    _offset -= this.$stickyElem.outerHeight();
+            }
+            return _offset;
+        },
+        /* 
+         * return the calculated add sticky trigger offset based the following options:
+         * 'offsetTopElem',
+         * 'offsetTopBreakPoint'
+         * 'triggerOffsetAddSticky',
+         * 'triggerOffsetElemHeightAddSticky'  
+         */
         triggerOffsetAdd: function() {
-            var triggerOffset = this.options.getTopOffset() + this.options.triggerOffset;
-            switch (this.options.triggerOffsetElemHeightAddSticky) {
-                case "positive":
-                    triggerOffset += this.$stickyElem.outerHeight();
-                    break;
-                case "negative":
-                    triggerOffset -= this.$stickyElem.outerHeight();
-            }
-            return triggerOffset;
+            return this._calcTriggerOffset(
+                this.options.triggerOffsetAddSticky,
+                this.options.triggerOffsetElemHeightAddSticky
+            );
         },
+        /* 
+         * return the calculated remove sticky trigger offset based the following options:
+         * 'offsetTopElem',
+         * 'offsetTopBreakPoint'
+         * 'triggerOffsetAddSticky',
+         * 'triggerOffsetElemHeightAddSticky'  
+         */
         triggerOffsetRemove: function() {
-            var triggerOffset = this.options.getTopOffset() + this.options.triggerOffset;
-            switch (this.options.triggerOffsetElemHeightRemoveSticky) {
-                case "positive":
-                    triggerOffset += this.$stickyElem.outerHeight();
-                    break;
-                case "negative":
-                    triggerOffset -= this.$stickyElem.outerHeight();
-            }
-            return triggerOffset;
+            return this._calcTriggerOffset(
+                this.options.triggerOffsetRemoveSticky,
+                this.options.triggerOffsetElemHeightRemoveSticky
+            );
         },
+
         currentScroll: function() {
             return this.window.scrollTop();
         },
@@ -480,6 +510,7 @@
         elemTriggerOffsetTopAdd: function() {
             return this.element.offset().top - this.triggerOffsetAdd();
         },
+
         elemTriggerOffsetTopRemove: function() {
             return this.element.offset().top - this.triggerOffsetRemove();
         },
@@ -509,6 +540,7 @@
                     this.removeSticky(_event);
 
                 }
+
             }
         },
 
@@ -603,3 +635,4 @@
         }
     });
 })(jQuery);
+
