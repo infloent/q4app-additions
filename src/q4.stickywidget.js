@@ -115,12 +115,21 @@
             /**
              * sets the <code>'stickyElem'</code> height as trigger offset
              * <br>
-             * To activate set this to <code>"positive"</code> or <code>"negative"</code>;
+             * To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;
              * 
              * @type {string}
              * @default
              */
-            triggerOffsetElemHeight: null,
+            triggerOffsetElemHeightAddSticky: null,
+            /**
+             * sets the <code>'stickyElem'</code> height as trigger offset
+             * <br>
+             * To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;
+             * 
+             * @type {string}
+             * @default
+             */
+            triggerOffsetElemHeightRemoveSticky: null,
             /**
              * A number to set the top position of the sticky element.
              * <br>
@@ -132,7 +141,7 @@
             /**
              * sets the <code>'stickyElem'</code> height as top position of the sticky element.
              * <br>
-             * To activate set this to <code>"positive"</code> or <code>"negative"</code>;
+             * To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;
              * 
              * @type {string}
              * @default
@@ -275,8 +284,7 @@
 
         //extent base method to react dependion on option values.
         _setOption: function(key, value) {
-            console.log(key + ": " + value)
-                // react to changes of 'disabled' option
+            // react to changes of 'disabled' option
             if (key === 'disabled') {
                 var prevDisabledVal = this.option('disabled');
                 // if the value that will be set is 'true' and the previous value was 'false' run disable functionality. 
@@ -334,50 +342,10 @@
 
         },
 
-        // not needed
-        _setOptionsResponsive: function() {
-
-            if (this.options.responsive &&
-                this.options.responsive.length &&
-                this.options.responsive !== null) {
-                for (var i = 0; i <= this.options.responsive.length; i++) {
-
-                }
-            }
-        },
-
         //condition that will render to 'true' or 'false' and will be use to disable/enables the sticky functionality based on breakpoint.
         disableCondititon: function() {
             return this.options.disableSwitchCondition === (this.window.width() <= this.options.disableBreakPoint);
         },
-
-        //return the calculated trigger offset based on 'triggerOffset', 'offsetTopElem' and 'offsetTopBreakPoint' options.
-        triggerOffset: function() {
-            var triggerOffset = this.options.getTopOffset() + this.options.triggerOffset;
-            switch (this.options.triggerOffsetElemHeight) {
-                case "positive":
-                    triggerOffset += this.$stickyElem.outerHeight();
-                    break;
-                case "negative":
-                    triggerOffset -= this.$stickyElem.outerHeight();
-            }
-            return triggerOffset;
-        },
-
-        //return the calculated top offset based on 'positionOffset', offsetTopElem' and 'offsetTopBreakPoint' options.
-        positionOffset: function() {
-            var positionOffset = this.options.getTopOffset() + this.options.positionOffset;
-
-            switch (this.options.positionOffsetElemHeight) {
-                case "positive":
-                    positionOffset += this.$stickyElem.outerHeight();
-                    break;
-                case "negative":
-                    positionOffset -= this.$stickyElem.outerHeight();
-            }
-            return positionOffset;
-        },
-
 
         //add "$stickyElem" height to 'this.element' to prevent content jumps when "$stickyElem" will get fixed position.
         _setStickyElemHeightToWidgetElem: function(e) {
@@ -401,6 +369,19 @@
 
         _removeWidgetElemHeight: function() {
             this.element.css('height', '');
+        },
+        //return the calculated top offset based on 'positionOffset', offsetTopElem' and 'offsetTopBreakPoint' options.
+        positionOffset: function() {
+            var positionOffset = this.options.getTopOffset() + this.options.positionOffset;
+
+            switch (this.options.positionOffsetElemHeight) {
+                case "positive":
+                    positionOffset += this.$stickyElem.outerHeight();
+                    break;
+                case "negative":
+                    positionOffset -= this.$stickyElem.outerHeight();
+            }
+            return positionOffset;
         },
 
         _setStickyElemPosition: function() {
@@ -441,7 +422,6 @@
 
         },
 
-
         /* 
          * updates the top position of '$stickyElem' determinated by this.topOffset() on each call
          * 
@@ -470,30 +450,61 @@
             this._trigger("beforeSticky", _event);
 
         },
-
-        addCondition: function(_curentScroll, _offsetTop) {
-            return _curentScroll > _offsetTop;
+        //return the calculated trigger offset based on 'triggerOffset', 'offsetTopElem' and 'offsetTopBreakPoint' options.
+        triggerOffsetAdd: function() {
+            var triggerOffset = this.options.getTopOffset() + this.options.triggerOffset;
+            switch (this.options.triggerOffsetElemHeightAddSticky) {
+                case "positive":
+                    triggerOffset += this.$stickyElem.outerHeight();
+                    break;
+                case "negative":
+                    triggerOffset -= this.$stickyElem.outerHeight();
+            }
+            return triggerOffset;
         },
-        removeCondition: function(_curentScroll, _offsetTop) {
-            return _curentScroll <= _offsetTop;
+        triggerOffsetRemove: function() {
+            var triggerOffset = this.options.getTopOffset() + this.options.triggerOffset;
+            switch (this.options.triggerOffsetElemHeightRemoveSticky) {
+                case "positive":
+                    triggerOffset += this.$stickyElem.outerHeight();
+                    break;
+                case "negative":
+                    triggerOffset -= this.$stickyElem.outerHeight();
+            }
+            return triggerOffset;
+        },
+        currentScroll: function() {
+            return this.window.scrollTop();
+        },
+
+        elemTriggerOffsetTopAdd: function() {
+            return this.element.offset().top - this.triggerOffsetAdd();
+        },
+        elemTriggerOffsetTopRemove: function() {
+            return this.element.offset().top - this.triggerOffsetRemove();
+        },
+
+        addCondition: function() {
+            return this.currentScroll() > this.elemTriggerOffsetTopAdd();
+        },
+
+        removeCondition: function() {
+            return this.currentScroll() <= this.elemTriggerOffsetTopRemove();
         },
 
         // adds or removes the sticky state based on a sticky condition
         _addRemoveSticky: function(_event) {
-
-            var curentScroll = this.window.scrollTop(),
-                stickyOffsetTop = this.element.offset().top - this.triggerOffset();
 
             if (!this.disableCondititon()) {
 
                 //height will be updated on 'scroll' and 'resize'
                 this._setWidgetElemHeight();
 
-                if (this.addCondition(curentScroll, stickyOffsetTop)) {
+                if (this.addCondition()) {
 
                     this.addSticky(_event);
 
-                } else if (this.removeCondition(curentScroll, stickyOffsetTop)) {
+                } else if (this.removeCondition()) {
 
                     this.removeSticky(_event);
 
@@ -591,115 +602,4 @@
             };
         }
     });
-
-    $.widget('q4.stickySlide', $.q4.stickyWidget, {
-        options: {
-            showHide: false,
-            triggerOffset: -200,
-            stickyClass: "js--slide-active",
-            triggerOffsetElemHeight: "negative",
-            positionOffsetElemHeight: "negative",
-            stickyOptions: {
-                showHide: false,
-                stickyClass: "js--sticky",
-                layoutStickyActiveClass: null,
-                triggerOffset: 0,
-                triggerOffsetElemHeight: "negative",
-                positionOffsetElemHeight: "negative",
-                classes: {
-                    "js--sticky": "js--slide"
-                },
-            }
-        },
-        _create: function() {
-            var optionss = this.options,
-                optionsSticky = this.options.stickyOptions;
-            this.element.stickyWidget(optionss);
-            this.element.stickyWidget('option', optionsSticky);
-            if (this.options.showHide) {
-                this.element.stickyWidget('removeCondition', function() {
-
-                });
-            }
-
-
-            this._super();
-        },
-        //extent base method to react dependion on option values.
-        _setOption: function(key, value) {
-            // react to changes of 'disabled' option
-            if (key === 'disabled') {
-                var prevDisabledVal = this.option('disabled');
-                // if the value that will be set is 'true' and the previous value was 'false' run disable functionality. 
-                // if the previous value already 'true' means it's already disabled
-                if (value === true && prevDisabledVal === false) {
-                    this.element.stickyWidget('disable');
-
-                }
-                // if the value that will be set is 'false' and the previous value was 'true' run enable functionality. 
-                // if the previous value already 'false' means it's already enabled
-                else if (value === false && prevDisabledVal === true) {
-                    this.element.stickyWidget('enable');
-                }
-            }
-            //run the base functionality to set the options.
-            this._super(key, value);
-        },
-        _destroy: function() {
-            this.element.stickyWidget("destroy");
-            this._super();
-        },
-        //remove base functionality
-        _setWidgetElemHeight: function() {},
-        _setStickyElemPosition: function() {},
-        _removeStickyElemPosition: function() {},
-        //end remove base functionality
-
-        addCondition: function(_curentScroll, _offsetTop) {
-            return _curentScroll > _offsetTop;
-        },
-        removeCondition: function(_curentScroll, _offsetTop) {
-            return _curentScroll <= _offsetTop;
-        },
-
-
-        lastScrollTop: 0,
-
-        _showHide: function(_event) {
-            if (this.window.scrollTop() <= this.lastScrollTop) {
-                this.addSticky(_event);
-            } else {
-                this.removeSticky(_event);
-            }
-
-            this.lastScrollTop = this.window.scrollTop();
-        },
-
-        // adds or removes the sticky state based on a sticky condition
-        _addRemoveSticky: function(_event) {
-
-
-            var curentScroll = this.window.scrollTop(),
-                stickyOffsetTop = this.element.offset().top - this.triggerOffset();
-
-            if (!this.disableCondititon()) {
-
-                //height will be updated on 'scroll' and 'resize'
-                this._setWidgetElemHeight();
-
-                if (this.addCondition(curentScroll, stickyOffsetTop)) {
-                    if (this.options.showHide) {
-
-                        this._showHide();
-
-                    } else this.addSticky(_event);
-                } else if (curentScroll <= this.element.offset().top - this.options.getTopOffset()) {
-
-                    this.removeSticky(_event);
-
-                }
-            }
-        },
-    });
-    // $.q4.stickySlide.prototype.destroy.apply(this, arguments);
 })(jQuery);
