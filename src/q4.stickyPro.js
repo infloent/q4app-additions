@@ -4,7 +4,7 @@
      * 
      * @version 1.0.0
      * 
-     * @class  q4.stickySlide
+     * @class  q4.stickyPro
      * @extends q4.stickyWidget
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
      * 
@@ -16,23 +16,22 @@
      * 
      */
 
-    $.widget('q4.stickySlide', $.q4.stickyWidget, /** @lends q4.stickySlide */ {
+    $.widget('q4.stickyPro', $.q4.stickyWidget, /** @lends q4.stickyPro */ {
         options: {
             showHide: false,
-            triggerOffset: -200,
-            stickyClass: "js--slide-active",
-            triggerOffsetElemHeightAddSticky: "negative",
-            triggerOffsetElemHeightRemoveSticky: "negative",
+            stickyClass: "js--sticky-pro-active",
+            triggerOffsetElemHeightAddSticky: null,
+            triggerOffsetElemHeightRemoveSticky: null,
             stickyOptions: {
-                showHide: false,
                 stickyClass: "js--sticky",
                 layoutStickyActiveClass: null,
-                triggerOffset: 0,
-                triggerOffsetElemHeightAddSticky: "negative",
-                triggerOffsetElemHeightRemoveSticky: "negative",
-                positionOffsetElemHeight: "negative",
+                triggerOffsetAddSticky: 0,
+                triggerOffsetRemoveSticky: 0,
+                triggerOffsetElemHeightAddSticky: null,
+                triggerOffsetElemHeightRemoveSticky: null,
+                positionOffsetElemHeight: null,
                 classes: {
-                    "js--sticky": "js--slide"
+                    "js--sticky": "js--sticky--pro"
                 },
             }
         },
@@ -44,7 +43,7 @@
 
             this._super();
         },
-        //extent base method to react dependion on option values.
+        //extend base method to react depending on option values.
         _setOption: function(key, value) {
             // react to changes of 'disabled' option
             if (key === 'disabled') {
@@ -83,7 +82,7 @@
                 this.removeSticky(_event);
             }
 
-            this.lastScrollTop = this.window.scrollTop();
+            this.lastScrollTop = this.currentScroll();
         },
 
         // adds or removes the sticky state based on a sticky condition
@@ -109,4 +108,69 @@
             }
         },
     });
+
+    $.widget('q4.stickySlide', $.q4.stickyPro, /** @lends q4.stickySlide */ {
+        options: {
+            showHide: false,
+            triggerOffsetAddSticky: -200,
+            triggerOffsetRemoveSticky: -200,
+            stickyClass: "js--slide-active",
+            triggerOffsetElemHeightAddSticky: "negative",
+            triggerOffsetElemHeightRemoveSticky: "negative",
+            stickyOptions: {
+                stickyClass: "js--sticky",
+                layoutStickyActiveClass: null,
+                triggerOffsetAddSticky: 0,
+                triggerOffsetRemoveSticky: 0,
+                triggerOffsetElemHeightAddSticky: "negative",
+                triggerOffsetElemHeightRemoveSticky: "negative",
+                positionOffsetElemHeight: "negative",
+                classes: {
+                    "js--sticky": "js--slide"
+                },
+            }
+        }
+    });
+
+    $.widget('q4.stickySlideIn', $.q4.stickyPro, /** @lends q4.stickySlide */ {
+        options: {
+            showHide: false,
+            triggerOffsetAddSticky: -200,
+            triggerOffsetRemoveSticky: 0,
+            stickyClass: "js--slide-active",
+            triggerOffsetElemHeightAddSticky: "negative",
+            stickyOptions: {
+                stickyClass: "js--sticky",
+                layoutStickyActiveClass: null,
+                triggerOffsetAddSticky: 0,
+                triggerOffsetRemoveSticky: 0,
+                triggerOffsetElemHeightAddSticky: "negative",
+                positionOffsetElemHeight: "negative",
+                classes: {
+                    "js--sticky": "js--slide"
+                },
+            }
+        }
+    });
+    $.widget('q4.stickyShowHide', $.q4.stickyPro, /** @lends q4.stickySlide */ {
+        options: {
+            showHide: true,
+            triggerOffsetAddSticky: -200,
+            triggerOffsetRemoveSticky: 0,
+            stickyClass: "js--slide-active",
+            triggerOffsetElemHeightAddSticky: "negative",
+            stickyOptions: {
+                stickyClass: "js--sticky",
+                layoutStickyActiveClass: null,
+                triggerOffsetAddSticky: 0,
+                triggerOffsetRemoveSticky: 0,
+                triggerOffsetElemHeightAddSticky: "negative",
+                positionOffsetElemHeight: "negative",
+                classes: {
+                    "js--sticky": "js--slide"
+                },
+            }
+        }
+    });
 })(jQuery);
+
