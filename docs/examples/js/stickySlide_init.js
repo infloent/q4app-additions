@@ -5,14 +5,13 @@ $('.pane--header').stickyWidget({
         // console.log(event);
     }
 });
-$('.nav--secondary').stickySlide({
+$('.pane--navigation').stickySlide({
     offsetTopElem: [$('.nav--main')],
     offsetTopBreakPoint: [],
     disableBreakPoint: 1024,
     disableSwitchCondition: true,
-    stickyElem: ".level2",
     layoutStickyActiveCls: "js--nav--secondary-sticky",
-    showHide: true,
+    // showHide: true,
     triggerOffset: 0,
 
 });

@@ -1371,7 +1371,12 @@ iframe {
     position: relative;
 }
 
-
+.pane--header .pane_outer {
+    z-index: 300;
+}
+.pane--navigation .pane_outer {
+    z-index: 250;
+}
 /*-----------End Layout General Style---------------*/
 
 
