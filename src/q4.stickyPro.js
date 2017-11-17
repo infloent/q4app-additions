@@ -1,12 +1,13 @@
 (function($) {
     /**
-     * Adds sticky element functionality with a slide down effect and show/hide  on scrool up/down.
+     * Adds sticky element functionality.
      * 
-     * @version 1.0.0
+     * @version 0.1.0
      * 
      * @class  q4.stickyPro
      * @extends q4.stickyWidget
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
+     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
      * 
      * {@tutorial}.
      */
@@ -108,7 +109,15 @@
             }
         },
     });
-
+    /**
+     * Adds sticky element functionality with a slide down effect and show/hide  on scrool up/down.
+     * 
+     * @class  q4.stickySlide
+     * @extends q4.stickyPro
+     * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
+     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * 
+     */
     $.widget('q4.stickySlide', $.q4.stickyPro, /** @lends q4.stickySlide */ {
         options: {
             showHide: false,
@@ -131,8 +140,16 @@
             }
         }
     });
-
-    $.widget('q4.stickySlideIn', $.q4.stickyPro, /** @lends q4.stickySlide */ {
+    /**
+     * Adds sticky element functionality with a slide down effect and show/hide  on scrool up/down.
+     * 
+     * @class  q4.stickySlideIn
+     * @extends q4.stickyPro
+     * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
+     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * 
+     */
+    $.widget('q4.stickySlideIn', $.q4.stickyPro, /** @lends q4.stickySlideIn */ {
         options: {
             showHide: false,
             triggerOffsetAddSticky: -200,
@@ -152,7 +169,16 @@
             }
         }
     });
-    $.widget('q4.stickyShowHide', $.q4.stickyPro, /** @lends q4.stickySlide */ {
+    /**
+     * Adds sticky element functionality with a slide down effect and show/hide  on scrool up/down.
+     * 
+     * @class  q4.stickyShowHide
+     * @extends q4.stickyPro
+     * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
+     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * 
+     */
+    $.widget('q4.stickyShowHide', $.q4.stickyPro, /** @lends q4.stickyShowHide */ {
         options: {
             showHide: true,
             triggerOffsetAddSticky: -200,

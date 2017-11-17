@@ -148,14 +148,20 @@ exports.publish = function(data, opts) {
         }
     });
 
-    for (clss in classes) {
+    for (var clss in classes) {
         classes[clss].extends.forEach(function(parent) {
             // add reference to parent class
             classes[parent].children.push(clss);
             //inherit version and dist file from parent
             if (parent !== "q4.defaults") {
+
+                // if (typeof(classes[clss].version) == "undefined") {
                 classes[clss].version = classes[parent].version;
-                classes[clss].distfile = classes[parent].distfile;
+                // }
+
+                if (!("distfile" in classes[clss])) {
+                    classes[clss].distfile = classes[parent].distfile;
+                }
             }
 
         });

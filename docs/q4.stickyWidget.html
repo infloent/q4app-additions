@@ -24,8 +24,10 @@
                     <li><a href='#option-layoutStickyActiveClass'>layoutStickyActiveClass</a></li>
                     <li><a href='#option-disableBreakPoint'>disableBreakPoint</a></li>
                     <li><a href='#option-disableSwitchCondition'>disableSwitchCondition</a></li>
-                    <li><a href='#option-triggerOffset'>triggerOffset</a></li>
-                    <li><a href='#option-triggerOffsetElemHeight'>triggerOffsetElemHeight</a></li>
+                    <li><a href='#option-triggerOffsetAddSticky'>triggerOffsetAddSticky</a></li>
+                    <li><a href='#option-triggerOffsetRemoveSticky'>triggerOffsetRemoveSticky</a></li>
+                    <li><a href='#option-triggerOffsetElemHeightAddSticky'>triggerOffsetElemHeightAddSticky</a></li>
+                    <li><a href='#option-triggerOffsetElemHeightRemoveSticky'>triggerOffsetElemHeightRemoveSticky</a></li>
                     <li><a href='#option-positionOffset'>positionOffset</a></li>
                     <li><a href='#option-positionOffsetElemHeight'>positionOffsetElemHeight</a></li>
                     <li><a href='#option-offsetTopElem'>offsetTopElem</a></li>
@@ -57,6 +59,14 @@
 
 
 
+    <p>
+        Child libraries have all the options and methods of this widget, but may add their own as well.
+        See the child library's documentation for additional options or methods.<br>
+        This library has the following child libraries:
+    </p>
+    <ul>
+        <li><a href='q4.stickyPro.html'>q4.stickyPro</a></li>
+    </ul>
 </section>
 
 
@@ -200,13 +210,13 @@ Add this class if you need to change style of other elements on the page when th
                 </dl>
             </dd>
         </div>
-        <div id='option-triggerOffset'>
+        <div id='option-triggerOffsetAddSticky'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L114' target='_blank'>triggerOffset</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L114' target='_blank'>triggerOffsetAddSticky</a></strong>
                 <span>number</span>
             </dt>
             <dd>
-                A number to set a top relative position at which the sticky state will be triggered.
+                A number to set a top relative position at which the sticky state will be added.
 <br>
 It can be a negative number.<br><br>
                 <dl>
@@ -221,15 +231,55 @@ It can be a negative number.<br><br>
                 </dl>
             </dd>
         </div>
-        <div id='option-triggerOffsetElemHeight'>
+        <div id='option-triggerOffsetRemoveSticky'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L123' target='_blank'>triggerOffsetElemHeight</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L123' target='_blank'>triggerOffsetRemoveSticky</a></strong>
+                <span>number</span>
+            </dt>
+            <dd>
+                A number to set a top relative position at which the sticky state will be remove.
+<br>
+It can be a negative number. But has effect only when <code>'triggerOffsetAddSticky' < 'triggerOffsetRemoveSticky'</code><br><br>
+                <dl>
+
+                    <dt>Default value</dt>
+                    <dd><code><span class="hljs-number">0</span></code></dd>
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-triggerOffsetElemHeightAddSticky'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L132' target='_blank'>triggerOffsetElemHeightAddSticky</a></strong>
+                <span>string</span>
+            </dt>
+            <dd>
+                Add the <code>'stickyElem'</code> height as trigger offset to 
+<br>
+To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;<br><br>
+                <dl>
+
+
+
+
+
+
+                </dl>
+            </dd>
+        </div>
+        <div id='option-triggerOffsetElemHeightRemoveSticky'>
+            <dt>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L141' target='_blank'>triggerOffsetElemHeightRemoveSticky</a></strong>
                 <span>string</span>
             </dt>
             <dd>
                 sets the <code>'stickyElem'</code> height as trigger offset
 <br>
-To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><br>
+To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;<br><br>
                 <dl>
 
 
@@ -242,7 +292,7 @@ To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><
         </div>
         <div id='option-positionOffset'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L131' target='_blank'>positionOffset</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L149' target='_blank'>positionOffset</a></strong>
                 <span>number</span>
             </dt>
             <dd>
@@ -263,13 +313,13 @@ It can be a negative number.<br><br>
         </div>
         <div id='option-positionOffsetElemHeight'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L140' target='_blank'>positionOffsetElemHeight</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L158' target='_blank'>positionOffsetElemHeight</a></strong>
                 <span>string</span>
             </dt>
             <dd>
                 sets the <code>'stickyElem'</code> height as top position of the sticky element.
 <br>
-To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><br>
+To activate set this to <code>"positive"</code> or <code>"negative"</code> to either add or remove the height from the trigger offset;<br><br>
                 <dl>
 
 
@@ -282,7 +332,7 @@ To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><
         </div>
         <div id='option-offsetTopElem'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L152' target='_blank'>offsetTopElem</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L170' target='_blank'>offsetTopElem</a></strong>
                 <span>array.&lt;elements&gt;</span>
             </dt>
             <dd>
@@ -306,7 +356,7 @@ To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><
         </div>
         <div id='option-offsetTopBreakPoint'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L169' target='_blank'>offsetTopBreakPoint</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L187' target='_blank'>offsetTopBreakPoint</a></strong>
                 <span>array.&lt;object&gt;</span>
             </dt>
             <dd>
@@ -347,7 +397,7 @@ To activate set this to <code>"positive"</code> or <code>"negative"</code>;<br><
         </div>
         <div id='option-getTopOffset'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L184' target='_blank'>getTopOffset</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L202' target='_blank'>getTopOffset</a></strong>
                 <span>function</span>
             </dt>
             <dd>
@@ -383,7 +433,7 @@ In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <c
         </div>
         <div id='option-disabled'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L193' target='_blank'>disabled</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L211' target='_blank'>disabled</a></strong>
                 <span>boolean</span>
             </dt>
             <dd>
@@ -403,7 +453,7 @@ In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <c
         </div>
         <div id='option-onSticky'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L209' target='_blank'>onSticky</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L227' target='_blank'>onSticky</a></strong>
                 <span>function</span>
             </dt>
             <dd>
@@ -428,7 +478,7 @@ In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <c
         </div>
         <div id='option-onUnSticky'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L216' target='_blank'>onUnSticky</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L234' target='_blank'>onUnSticky</a></strong>
                 <span>function</span>
             </dt>
             <dd>
@@ -453,7 +503,7 @@ In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <c
         </div>
         <div id='option-afterSticky'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L223' target='_blank'>afterSticky</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L241' target='_blank'>afterSticky</a></strong>
                 <span>function</span>
             </dt>
             <dd>
@@ -478,7 +528,7 @@ In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <c
         </div>
         <div id='option-beforeSticky'>
             <dt>
-                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L230' target='_blank'>beforeSticky</a></strong>
+                <strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickywidget.js#L248' target='_blank'>beforeSticky</a></strong>
                 <span>function</span>
             </dt>
             <dd>
@@ -513,6 +563,10 @@ In this way <code>'offsetTopElem'</code>, <code>'offsetTopBreakPoint'</code>, <c
             <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
             <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
             <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.stickyPro.html'>q4.stickyPro</a>
+            <a href='q4.stickyShowHide.html'>q4.stickyShowHide</a>
+            <a href='q4.stickySlide.html'>q4.stickySlide</a>
+            <a href='q4.stickySlideIn.html'>q4.stickySlideIn</a>
             <a href='q4.stickyWidget.html'>q4.stickyWidget</a>
             <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
         </nav>

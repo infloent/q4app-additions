@@ -10,23 +10,7 @@ $('.pane--header').stickyWidget({
     offsetTopBreakPoint: [],
     disableBreakPoint: 1024,
     disableSwitchCondition: true,
-    layoutStickyActiveCls: "js--nav--secondary-sticky",
-    triggerOffsetAddSticky: 0,
-    triggerOffsetRemoveSticky: 0,
-    triggerOffsetElemHeightRemoveSticky: null,
-    // showHide: true,
-    stickyOptions: {
-        stickyClass: "js--sticky",
-        layoutStickyActiveClass: null,
-        triggerOffsetAddSticky: 0,
-        triggerOffsetRemoveSticky: 0,
-        triggerOffsetElemHeightAddSticky: "negative",
-        triggerOffsetElemHeightRemoveSticky: null,
-        positionOffsetElemHeight: "negative",
-        classes: {
-            "js--sticky": "js--slide"
-        },
-    }
+    layoutStickyActiveCls: "js--nav--slide",
 });*/
 
 // $('.pane--navigation').stickySlideIn({
@@ -34,7 +18,7 @@ $('.pane--header').stickyWidget({
 //     offsetTopBreakPoint: [],
 //     disableBreakPoint: 1024,
 //     disableSwitchCondition: true,
-//     layoutStickyActiveCls: "js--nav--secondary-sticky",
+//     layoutStickyActiveCls: "js--nav--slide-in",
 // });
 
 $('.pane--navigation').stickyShowHide({
@@ -42,6 +26,6 @@ $('.pane--navigation').stickyShowHide({
     offsetTopBreakPoint: [],
     disableBreakPoint: 1024,
     disableSwitchCondition: true,
-    layoutStickyActiveCls: "js--nav--secondary-sticky",
+    layoutStickyActiveCls: "js--nav--show-hide",
 });
 

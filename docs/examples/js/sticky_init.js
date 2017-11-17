@@ -8,10 +8,6 @@ $('.pane--navigation').stickyWidget({
     offsetTopBreakPoint: [],
     disableBreakPoint: 1024,
     disableSwitchCondition: true,
-    layoutStickyActiveCls: "js--nav--secondary-sticky",
-    // triggerOffsetAddSticky: -300,
-    // triggerOffsetRemoveSticky: -150,
-    // triggerOffsetElemHeightAddSticky: "negative",
-    // triggerOffsetElemHeightRemoveSticky: "positive",
+    layoutStickyActiveCls: "js--nav--secondary-sticky"
 });
 
