@@ -1,9 +1,9 @@
-$('.pane--header').stickyWidget({
+$('.pane--header').sticky({
     afterSticky: function(event) {
         // console.log(event);
     }
 });
-$('.pane--navigation').stickyWidget({
+$('.pane--navigation').sticky({
     offsetTopElem: [$('.pane--header')],
     offsetTopBreakPoint: [],
     disableBreakPoint: 1024,
