@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <title>q4.app Documentation</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <header>
+        <h1><a href='index.html'>q4.app Documentation</a></h1>
+    </header>
+    <div>
+        <main>
+    <header>
+    <h1>q4.stickyOld</h1>
+    Adds sticky element fucntionality.<br><br>
+    <ul class="top-nav">
+        <li><a href='#examples'>Examples</a></li>
+            <li><a href='#methods'>Methods</a>
+                <ul>
+                    <li><a href='#method-sticky'>sticky</a>
+                    </li>
+                </ul>
+            </li>
+        
+    </ul>
+</header>
+
+<section id='details'>
+    <dl>
+        <dt><strong>Script link</strong></dt>
+        <dd><a href='https://github.com/infloent/q4app-additions/tree/master/dist/q4.stickyOld.1.0.0.min.js' target='_blank'>q4.stickyOld.1.0.0.min.js</a></dd>
+
+        <dt><strong>Source file</strong></dt>
+        <dd><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickyOld.js#L1' target='_blank'>q4.stickyOld.js</a>, line 1</dd>
+
+
+        <dt><strong>Requires</strong></dt>
+        <dd><ul class='plain'><li><a href='q4.getTopOffset.html' target="_blank">q4.getTopOffset.js</a></li></ul></dd>
+    </dl>
+
+
+    <p>
+        This <em>extends</em> the <a href='q4.defaults.html'>'q4.defaults'</a> library. All the options and methods from <code>'q4.stickyOld'</code> will be inherited by <a href='q4.defaults.html'>'q4.defaults'</a> and will be available in <code>q4App</code>.<br>
+        All the default options and methods from <a href='q4.defaults.html'>'q4.defaults'</a> are also inherited by <code>'q4.stickyOld'</code> and may be use here in the implementation of it's own options and methods.
+    </p>
+
+</section>
+
+<section id='examples'>
+    <h1>Examples </h1>
+    <div>
+        
+        <pre><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.getTopOffset.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/files/js/q4.sticky.1.0.0.min.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+<span class="hljs-keyword">var</span> q4App = $.extend(<span class="hljs-literal">true</span>, q4Defaults, {
+    options: {
+        <span class="hljs-comment">//these tow options below are available here since 'q4.getTopOffset' extends 'q4.defaults'</span>
+        
+        <span class="hljs-comment">// this array sould be set to all element that are fixed at the top to calculate the top scroll offset based on this elements.</span>
+        
+        offsetTopElem: [$(<span class="hljs-string">'.pane--header .pane_outer'</span>), $(<span class="hljs-string">'.pane--navigation .pane_outer'</span>)],
+        
+        <span class="hljs-comment">// Because one of the offset element will be used as a mobile navigation on resolutions equal or less than 1023px this element will be hidden and not a fixed element anymore; and</span>
+        <span class="hljs-comment">// Because on resolutions equal or less than 768px the remaining fixed element will not be fixed anymore, 'offsetTopBreakPoint' sould be set like in the example below:</span>
+        
+        offsetTopBreakPoint: [{
+            breakPoint: <span class="hljs-number">1023</span>,
+            offsetTopElem: [$(<span class="hljs-string">'.pane--header .pane_outer'</span>]
+        },{
+            breakPoint: <span class="hljs-number">768</span>,
+            offsetTopElem: []
+        }]
+    },
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>,
+            q4Options: <span class="hljs-keyword">this</span>.options;
+        app.setHeaderOffset();
+        <span class="hljs-comment">//...</span>
+        <span class="hljs-comment">//default q4 inits found already in main scripts here in between</span>
+        <span class="hljs-comment">//...</span>
+        
+        <span class="hljs-comment">//This sticky element has a top offset of zero because there is no other fixed element above it so 'offsetTopElem' and 'offsetTopBreakPoint' will not be set.</span>
+        
+        app.sticky({
+           $stickyElem: $(<span class="hljs-string">'.pane--header .pane_outer'</span>),
+           $stickyElemTrigger: $(<span class="hljs-string">'.pane--header'</span>),
+           layoutStickyActiveCls: <span class="hljs-string">'js-sticky--pane-header'</span> <span class="hljs-comment">//optional; use if needed to style other elements on the page when this element get's fixed.</span>
+        });
+        
+        <span class="hljs-comment">// Because there is already a fixed element above this navigation 'offsetTopElem' will be set to that element. There is no need to set 'offsetTopBreakPoint' because the offset element will not change when the resolution changes.</span>
+        <span class="hljs-comment">// This sticky navigation will be used as a mobile navigation on resolutions equal or less than 1023px. </span>
+        <span class="hljs-comment">// In this case we set 'stopStickyBreakPoint: 1023' and 'stopStickySwitchCondition: true' to stop the sticky functionality so it no interfier with the mobile design of the navigation.</span>
+        
+        app.sticky({
+           $stickyElem: $(<span class="hljs-string">'.pane--navigation .pane_outer'</span>),
+           $stickyElemTrigger: $(<span class="hljs-string">'.pane--navigation'</span>),
+           layoutStickyActiveCls: <span class="hljs-string">'js-sticky--pane-navigation'</span>, <span class="hljs-comment">//optional; use if needed to style other elements on the page when this element get's fixed. </span>
+           stopStickyBreakPoint: <span class="hljs-number">1023</span>, 
+           stopStickySwitchCondition: <span class="hljs-literal">true</span>,
+           offsetTopElem: [$(<span class="hljs-string">'.pane--header .pane_outer'</span>)] 
+        });
+    }
+});
+q4App.init();
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span></pre>
+    </div>
+</section>
+
+
+<section id='methods'>
+    <h1>Methods</h1>
+    <dl>
+        <div id='method-sticky'>
+            <dt><strong><a href='https://github.com/infloent/q4app-additions/tree/master/src/q4.stickyOld.js#L76' target='_blank'>sticky</a></strong></dt>
+            <dd>
+                Use this method to add stiky functionality to an element.<br><br>
+                <dl>
+                    <dt>Parameters</dt>
+                    <dd><dl>
+                        <dt>
+                            <strong>options</strong>
+                            <span>object</span>
+                        </dt>
+                        <dd>Object of options used to initialize <code>'sticky'</code> method</dd>
+                    </dl></dd>
+
+
+
+                </dl>
+            </dd>
+           
+        </div>
+    </dl>
+</section>
+
+        </main>
+        <nav>
+            <h1>Widgets</h1>
+            <a href='q4.defaults.html'>q4.defaults</a>
+            <a href='q4.getTopOffset.html'>q4.getTopOffset</a>
+            <a href='q4.navLevelSlide.html'>q4.navLevelSlide</a>
+            <a href='q4.scrollToSection.html'>q4.scrollToSection</a>
+            <a href='q4.sticky.html'>q4.sticky</a>
+            <a href='q4.stickyOld.html'>q4.stickyOld</a>
+            <a href='q4.stickyPro.html'>q4.stickyPro</a>
+            <a href='q4.stickyShowHide.html'>q4.stickyShowHide</a>
+            <a href='q4.stickySlide.html'>q4.stickySlide</a>
+            <a href='q4.stickySlideIn.html'>q4.stickySlideIn</a>
+            <a href='q4.widgetsCompleted.html'>q4.widgetsCompleted</a>
+        </nav>
+    </div>
+</body>
+</html>
