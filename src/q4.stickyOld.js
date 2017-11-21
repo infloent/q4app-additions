@@ -11,7 +11,7 @@
  *
  * @example  
  * <script src="/files/js/q4.getTopOffset.1.0.0.min.js"></script>
- * <script src="/files/js/q4.sticky.1.0.0.min.js"></script>
+ * <script src="/files/js/q4.stickyOld.1.0.0.min.js"></script>
  * <script>
  * var q4App = $.extend(true, q4Defaults, {
  *     options: {
@@ -76,7 +76,7 @@ $.extend(q4Defaults, /** @lends q4.stickyOld */ {
     sticky: function(settings) {
 
         var generalOpt = this.options,
-            /** @lends q4.sticky.sticky */
+            /** @lends q4.stickyOld.stickyOld */
             sticky = {
                 options: {
                     /**
