@@ -1,4 +1,4 @@
-$('.pane--header').stickyWidget({
+$('.pane--header').sticky({
     disableBreakPoint: 1024,
     disableSwitchCondition: true,
     afterSticky: function(event) {

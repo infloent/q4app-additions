@@ -5,9 +5,9 @@
      * @version 0.1.0
      * 
      * @class  q4.stickyPro
-     * @extends q4.stickyWidget
+     * @extends q4.sticky
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
-     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * @requires   [q4.sticky.js](q4.sticky.html) 
      * 
      * {@tutorial}.
      */
@@ -17,7 +17,7 @@
      * 
      */
 
-    $.widget('q4.stickyPro', $.q4.stickyWidget, /** @lends q4.stickyPro */ {
+    $.widget('q4.stickyPro', $.q4.sticky, /** @lends q4.stickyPro */ {
         options: {
             showHide: false,
             stickyClass: "js--sticky-pro-active",
@@ -39,8 +39,8 @@
         _create: function() {
             var optionss = this.options,
                 optionsSticky = this.options.stickyOptions;
-            this.element.stickyWidget(optionss);
-            this.element.stickyWidget('option', optionsSticky);
+            this.element.sticky(optionss);
+            this.element.sticky('option', optionsSticky);
 
             this._super();
         },
@@ -52,20 +52,20 @@
                 // if the value that will be set is 'true' and the previous value was 'false' run disable functionality. 
                 // if the previous value already 'true' means it's already disabled
                 if (value === true && prevDisabledVal === false) {
-                    this.element.stickyWidget('disable');
+                    this.element.sticky('disable');
 
                 }
                 // if the value that will be set is 'false' and the previous value was 'true' run enable functionality. 
                 // if the previous value already 'false' means it's already enabled
                 else if (value === false && prevDisabledVal === true) {
-                    this.element.stickyWidget('enable');
+                    this.element.sticky('enable');
                 }
             }
             //run the base functionality to set the options.
             this._super(key, value);
         },
         _destroy: function() {
-            this.element.stickyWidget("destroy");
+            this.element.sticky("destroy");
             this._super();
         },
         //remove base functionality
@@ -115,7 +115,7 @@
      * @class  q4.stickySlide
      * @extends q4.stickyPro
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
-     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * @requires   [q4.sticky.js](q4.sticky.html) 
      * 
      */
     $.widget('q4.stickySlide', $.q4.stickyPro, /** @lends q4.stickySlide */ {
@@ -146,7 +146,7 @@
      * @class  q4.stickySlideIn
      * @extends q4.stickyPro
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
-     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * @requires   [q4.sticky.js](q4.sticky.html) 
      * 
      */
     $.widget('q4.stickySlideIn', $.q4.stickyPro, /** @lends q4.stickySlideIn */ {
@@ -175,7 +175,7 @@
      * @class  q4.stickyShowHide
      * @extends q4.stickyPro
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
-     * @requires   [q4.stickyWidget.js](q4.stickyWidget.html) 
+     * @requires   [q4.sticky.js](q4.sticky.html) 
      * 
      */
     $.widget('q4.stickyShowHide', $.q4.stickyPro, /** @lends q4.stickyShowHide */ {
