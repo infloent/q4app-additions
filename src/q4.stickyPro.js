@@ -11,11 +11,6 @@
      * 
      * {@tutorial}.
      */
-    /*
-     * ====TO DO=====
-     * 
-     * 
-     */
 
     $.widget('q4.stickyPro', $.q4.sticky, /** @lends q4.stickyPro */ {
         options: {
