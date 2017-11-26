@@ -155,13 +155,13 @@ exports.publish = function(data, opts) {
             //inherit version and dist file from parent
             if (parent !== "q4.defaults") {
 
-                // if (typeof(classes[clss].version) == "undefined") {
-                classes[clss].version = classes[parent].version;
-                // }
 
-                if (!("distfile" in classes[clss])) {
+                if (typeof classes[clss].version == "undefined") {
                     classes[clss].distfile = classes[parent].distfile;
+                    classes[clss].version = classes[parent].version;
+
                 }
+
             }
 
         });
@@ -189,7 +189,9 @@ exports.publish = function(data, opts) {
 
     fs.writeFileSync('docs/index.html', mustache.render(layoutTemplate, {
         classes: classlist,
-        content: mustache.render(indexTemplate, { classes: classlist })
+        content: mustache.render(indexTemplate, {
+            classes: classlist
+        })
     }), 'utf8');
     console.log(classlist);
     classlist.forEach(function(clss) {
@@ -199,4 +201,3 @@ exports.publish = function(data, opts) {
         }), 'utf8');
     });
 };
-
