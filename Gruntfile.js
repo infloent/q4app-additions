@@ -27,19 +27,6 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: {
-            examples: ['docs/examples/latestSrc/q4.*.min.js']
-        },
-
-        copy: {
-            examples: {
-                expand: true,
-                cwd: 'dist/latest/',
-                src: 'q4.*.min.js',
-                dest: 'docs/examples/latestSrc/'
-            }
-        },
-
         less: {
             default: {
                 src: 'jsdoc_template/style.less',
@@ -108,18 +95,26 @@ module.exports = function(grunt) {
             var path = file.src[0],
                 data = fs.readFileSync(path, 'utf8'),
                 name = path.match(/q4\.(.*)\.js/)[1],
-                version = data.match(/@version (.*)/)[1],
-                file = {
-                    src: [path],
-                    dest: 'dist/q4.' + name + '.' + version + '.min.js'
-                };
+                nameExamples = name + "examples",
+                version = data.match(/@version (.*)/)[1];
+            file = {
+                src: [path],
+                dest: 'dist/q4.' + name + '.' + version + '.min.js'
+            };
 
             // create clean and uglify targets for this file
             grunt.config('clean.' + name, ['dist/**/q4.' + name + '*.min.js']);
+            grunt.config('clean.' + nameExamples, ['docs/examples/latestSrc/q4.' + name + '*.min.js']);
             grunt.config('uglify.' + name + '.files', [file]);
             grunt.config('copy.' + name, {
                 src: [file.dest],
                 dest: 'dist/latest/q4.' + name + '.min.js'
+            });
+            grunt.config('copy.' + nameExamples, {
+                expand: true,
+                cwd: 'dist/latest/',
+                src: ['q4.' + name + '.min.js'],
+                dest: 'docs/examples/latestSrc/'
             });
 
             // while we're at it, add info to config for use in the uglify banner
@@ -139,19 +134,21 @@ module.exports = function(grunt) {
     grunt.registerMultiTask('clean_and_uglify', function() {
         this.files.forEach(function(file) {
             // run the clean and uglify targets for this file
-            var name = file.src[0].match(/q4\.(.*)\.js/)[1];
+            var name = file.src[0].match(/q4\.(.*)\.js/)[1],
+                nameExamples = name + "examples";
+
             grunt.task.run('clean:' + name);
+            grunt.task.run('clean:' + nameExamples);
             grunt.task.run('uglify:' + name);
             grunt.task.run('copy:' + name);
+            grunt.task.run('copy:' + nameExamples);
         });
     });
-    grunt.registerTask('updateExamples', ['newer:clean:examples', 'newer:copy:examples']);
 
-    grunt.registerTask('min', ['uglify_newer', 'updateExamples']);
+    grunt.registerTask('min', ['uglify_newer']);
     grunt.registerTask('doc', ['newer:less', 'newer:jsdoc']);
 
     grunt.registerTask('serveSticky', ['browserSync:serveSticky']);
 
     grunt.registerTask('default', ['min', 'doc']);
 };
-
