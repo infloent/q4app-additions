@@ -4,7 +4,7 @@
  * @version 1.0.0
  * 
  * @class q4.getTopOffset
- * 
+ * @type {object}
  * @extends q4.defaults
  * 
  * @example 

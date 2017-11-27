@@ -1,10 +1,14 @@
 /**
  * Adds the functioanlity to run a callback function when all the choosen <code>q4.widgets</code> have completed.
  * 
+ * teest12345
+ * 
  * @version 1.0.0
  * 
  * @class  q4.widgetsCompleted
- * @example 
+ * @type {object}
+ * @extends q4.defaults
+ * @example
  * q4Defaults.widgetsCompleted({
  *       widgets: [{
  *           $element: $('.module-financial-quarter .module_container--inner'),
@@ -18,6 +22,7 @@
  *           console.dir(events);
  *       }
  *  });
+ *  
  */
 $.extend(true, q4Defaults, /** @lends q4.widgetsCompleted */ {
     /**

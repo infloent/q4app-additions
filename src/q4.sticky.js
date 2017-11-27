@@ -5,15 +5,10 @@
      * @version 1.0.0
      * 
      * @class  q4.sticky
+     * 
+     * @type {widget}
      *
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
-     * 
-     * {@tutorial}.
-     */
-    /*
-     * ====TO DO=====
-     * 
-     * - Manage to set the widget when options are changed.
      * 
      */
     $.widget('q4.sticky', /** @lends q4.sticky */ {

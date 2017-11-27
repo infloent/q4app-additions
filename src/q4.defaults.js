@@ -2,7 +2,7 @@
  * Reuseable functions used on Q4app Websites
  * 
  * @class q4.defaults
- * 
+ * @type {object}
  * @version 1.0.0
  * 
  */

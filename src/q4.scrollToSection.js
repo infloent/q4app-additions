@@ -4,7 +4,7 @@
  * @version 1.0.0
  * 
  * @class q4.scrollToSection
- * 
+ * @type {object}
  * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
  * 
  * @extends q4.defaults

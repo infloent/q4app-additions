@@ -5,6 +5,7 @@
      * @version 0.1.0
      * 
      * @class  q4.stickyPro
+     * @type {widget}
      * @extends q4.sticky
      * @requires   [q4.getTopOffset.js](q4.getTopOffset.html) 
      * @requires   [q4.sticky.js](q4.sticky.html) 
