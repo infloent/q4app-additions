@@ -51,6 +51,11 @@
         <dt><strong>Requires</strong></dt>
         <dd><ul class='plain'>{{#requires}}<li><a href='{{{url}}}' target="_blank">{{name}}</a></li>{{/requires}}</ul></dd>
         {{/requires.0}}
+
+        {{#tutorials.0}}
+        <dt><strong>Tutorials</strong></dt>
+        <dd><ul class='plain'>{{#tutorials}}<li><a href='{{{url}}}' target="_blank">{{name}}</a></li>{{/tutorials}}</ul></dd>
+        {{/tutorials.0}}
     </dl>
 
     {{#abstract}}
@@ -59,13 +64,21 @@
         Use one of its child widgets.
     </p>
     {{/abstract}}
+    {{#extendsWidget}}
+        {{#extends.0}}
+            <p>This widget <em>extends</em> the <a href='{{.}}.html'>{{.}}</a> widget. It has all the options and methods of the parent widget, in addition to those below. See the parent widget's documentation for details.</p>
+        {{/extends.0}}
+    {{/extendsWidget}}
 
-    {{#extends.0}}
-    <p>
-        This <em>extends</em> the <a href='{{.}}.html'>'{{.}}'</a> library. All the options and methods from <code>'{{name}}'</code> will be inherited by <a href='{{.}}.html'>'{{.}}'</a> and will be available in <code>q4App</code>.<br>
-        All the default options and methods from <a href='{{.}}.html'>'{{.}}'</a> are also inherited by <code>'{{name}}'</code> and may be use here in the implementation of it's own options and methods.
-    </p>
-    {{/extends.0}}
+    {{#extendsObject}}
+        {{#extends.0}}
+            <p>
+                This <em>extends</em> the <a href='{{.}}.html'>'{{.}}'</a> library. All the options and methods from <code>'{{name}}'</code> will be inherited by <a href='{{.}}.html'>'{{.}}'</a> and will be available in <code>q4App</code>.<br>
+                All the default options and methods from <a href='{{.}}.html'>'{{.}}'</a> are also inherited by <code>'{{name}}'</code> and may be use here in the implementation of it's own options and methods.
+            </p>
+        {{/extends.0}}
+    {{/extendsObject}}
+
 
     {{#children.0}}
     <p>

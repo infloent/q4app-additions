@@ -46,6 +46,10 @@ function multi_line(example) {
     return example.indexOf('\n') > -1;
 }
 
+function classType(doclet, type) {
+    return 'type' in doclet && doclet.type.names.indexOf(type.toLowerCase()) > -1 && (doclet.augments || []).length ? true : false;
+}
+
 exports.publish = function(data, opts) {
     var classes = {};
 
@@ -60,12 +64,15 @@ exports.publish = function(data, opts) {
                 name: clss,
                 description: doclet.description,
                 version: doclet.version,
+                extendsWidget: classType(doclet, 'widget'),
+                extendsObject: classType(doclet, 'object'),
                 file: doclet.meta.filename,
                 latest: doclet.meta.filename.replace(/js$/, '' + 'min.js'),
                 distfile: doclet.meta.filename.replace(/js$/, doclet.version + '.min.js'),
                 line: doclet.meta.lineno,
                 author: doclet.author,
                 examples: (doclet.examples || []).map(captioned_example),
+                tutorials: (doclet.tutorials || []).map(parse_markdown_link),
                 options: [],
                 methods: [],
                 methodsOptions: [],
@@ -155,7 +162,6 @@ exports.publish = function(data, opts) {
             //inherit version and dist file from parent
             if (parent !== "q4.defaults") {
 
-
                 if (typeof classes[clss].version == "undefined") {
                     classes[clss].distfile = classes[parent].distfile;
                     classes[clss].version = classes[parent].version;
@@ -201,3 +207,4 @@ exports.publish = function(data, opts) {
         }), 'utf8');
     });
 };
+
